@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- displays site properly based on user's device -->
+		<link
+			href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="style.css" />
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="32x32"
+			href="./images/favicon-32x32.png"
+		/>
+
+		<title>Frontend Mentor | FAQ Accordion Card</title>
+
+		<!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+		<style>
+			.attribution {
+				margin-top: 7.3rem;
+				font-size: 11px;
+				text-align: center;
+			}
+			.attribution a {
+				color: hsl(228, 45%, 44%);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="card-con">
+			<div class="card">
+				<img
+					src="images/illustration-woman-online-mobile.svg"
+					alt="a woman in front of a huge monitor"
+					class="illu"
+				/>
+				<h1 class="FAQ">FAQ</h1>
+				<ul>
+					<!-- !1 -->
+					<li>
+						<input
+							type="radio"
+							name="faq"
+							id="1"
+							class="accordion__input"
+							checked
+						/>
+						<label for="1" class="accordion__label"
+							>How many team members can I invite?</label
+						>
+						<div class="accordion__content">
+							<p class="answer"
+								>You can invite up to 2 additional users on the Free plan.
+								There is no limit on team members for the Premium plan.</p
+							>
+						</div>
+						<div class="hr"></div>
+					</li>
+					<!-- !2 -->
+					<li>
+						<input
+							type="radio"
+							name="faq"
+							id="2"
+							class="accordion__input"
+							checked
+						/>
+						<label for="2" class="accordion__label"
+							>What is the maximum file upload size?</label
+						>
+						<div class="accordion__content">
+							<p
+								>No more than 2GB. All files in your account must fit your
+								allotted storage space.</p
+							>
+						</div>
+						<div class="hr"></div>
+					</li>
+				</ul>
+				<!-- !3 -->
+				<li>
+					<input
+						type="radio"
+						name="faq"
+						id="3"
+						class="accordion__input"
+						checked
+					/>
+					<label for="3" class="accordion__label"
+						>How do I reset my password?</label
+					>
+					<div class="accordion__content">
+						<p
+							>Click “Forgot password” from the login page or “Change
+							password” from your profile page. A reset link will be emailed
+							to you.</p
+						>
+					</div>
+					<div class="hr"></div>
+				</li>
+				<li>
+					<input
+						type="radio"
+						name="faq"
+						id="4"
+						class="accordion__input"
+						checked
+					/>
+					<label for="4" class="accordion__label"
+						>Can I cancel my subscription?</label
+					>
+					<div class="accordion__content">
+						<p
+							>Yes ! Send us a message and we’ll process your request no
+							questions asked.</p
+						>
+					</div>
+					<div class="hr"></div>
+				</li>
+				<li>
+					<input
+						type="radio"
+						name="faq"
+						id="5"
+						class="accordion__input"
+						checked
+					/>
+					<label for="5" class="accordion__label"
+						>Do you provide additional support?</label
+					>
+					<div class="accordion__content">
+						<p
+							>Chat and email support is available 24/7. Phone lines are open
+							during normal business hours.</p
+						>
+					</div>
+					<div id="last" class="hr"></div>
+				</li>
+			</div>
+		</div>
+
+		<div class="attribution">
+			Challenge by
+			<a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+				>Frontend Mentor</a
+			>. Coded by <a href="#">Szász Barna</a>.
+		</div>
+	</body>
+</html>

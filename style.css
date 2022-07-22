@@ -1,0 +1,129 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: rgb(175, 104, 234);
+  background: linear-gradient(342deg, rgba(123, 100, 232, 1) 0%, rgba(175, 104, 234, 1) 100%);
+  font-family: 'Kumbh Sans', sans-serif;
+  font-weight: 400;
+  color: hsl(238, 29%, 16%);
+  font-size: 12px;
+  /* height: 100vh; */
+}
+
+.card-con {
+  margin: 0 auto;
+  width: 330px;
+  position: relative;
+  height: 100%;
+}
+
+.FAQ {
+  margin: 2rem 0;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  padding-top: .5rem;
+  /* outline: 1px solid black; */
+}
+
+.illu {
+  width: 250px;
+  position: absolute;
+  top: -115px;
+  left: 40px;
+  filter: drop-shadow(0em 2em 1px #f0f0fc);
+  /* box-shadow: 0px 10px 10px; */
+}
+
+.card {
+  background: white;
+  border-radius: 20px;
+  padding: 2rem 1.5rem;
+  padding-bottom: 3rem;
+  margin-top: 10rem;
+  padding-top: 5rem;
+  box-shadow: 0 10px 30px 10px #494949a3;
+  /* padding-bottom: 2rem; */
+}
+
+.question:active {
+  font-weight: 700;
+}
+
+.hr {
+  background: hsl(240, 5%, 91%);
+  height: 1px;
+  width: 275px;
+}
+
+#last {
+  /* margin-bottom: 2rem; */
+  /* background: red; */
+}
+
+ul {
+  list-style: none;
+}
+
+.accordion__label {
+  display: block;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.1s;
+  padding: 1rem 0;
+  /* padding-top: .5rem; */
+}
+
+.accordion__label::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 6px;
+  right: 1px;
+  background-image: url('images/icon-arrow-down.svg');
+  /* background-size: contain; */
+  transition: transform 0.4s;
+  /* border-radius: 5px; */
+}
+
+.accordion__content {
+  line-height: 1.3;
+  display: none;
+  font-size: .7rem;
+  color: hsl(0, 0%, 53%);
+  width: 85%;
+}
+
+.accordion__content p {
+  margin: 0;
+  margin-bottom: 1rem;
+}
+
+.accordion__input {
+  display: none;
+}
+
+.accordion__input:checked~.accordion__content {
+  display: block;
+}
+
+ul {
+  padding-left: 0;
+}
+
+.accordion__input:checked~.accordion__label::after {
+  transform: translateY(-50%) rotate(0.5turn);
+}
+
+.accordion__input:checked~.accordion__label {
+  font-weight: 700;
+}
+
+li {
+  list-style: none;
+}
