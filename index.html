@@ -15,18 +15,19 @@
 			sizes="32x32"
 			href="./images/favicon-32x32.png"
 		/>
-
+		<script src="app.js" defer></script>
 		<title>Frontend Mentor | FAQ Accordion Card</title>
 
 		<!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
 		<style>
 			.attribution {
-				margin-top: 7.3rem;
+				/* padding-top: 1.5rem; */
+				margin-top: 8.8rem;
 				font-size: 11px;
 				text-align: center;
 			}
 			.attribution a {
-				color: hsl(228, 45%, 44%);
+				color: hsl(14, 88%, 65%);
 			}
 		</style>
 	</head>
@@ -36,7 +37,22 @@
 				<img
 					src="images/illustration-woman-online-mobile.svg"
 					alt="a woman in front of a huge monitor"
-					class="illu"
+					class="illu-mobile"
+				/>
+				<img
+					src="images/illustration-box-desktop.svg"
+					alt="orange box"
+					class="box"
+				/>
+				<img
+					src="images/illustration-woman-online-desktop.svg"
+					alt="woman standing in front of a huge monitor"
+					class="illu-desktop"
+				/>
+				<img
+					src="images/bg-pattern-desktop.svg"
+					alt="shadow"
+					class="shadow"
 				/>
 				<h1 class="FAQ">FAQ</h1>
 				<ul>
@@ -80,74 +96,74 @@
 						</div>
 						<div class="hr"></div>
 					</li>
+					<!-- !3 -->
+					<li>
+						<input
+							type="radio"
+							name="faq"
+							id="3"
+							class="accordion__input"
+							checked
+						/>
+						<label for="3" class="accordion__label"
+							>How do I reset my password?</label
+						>
+						<div class="accordion__content">
+							<p
+								>Click “Forgot password” from the login page or “Change
+								password” from your profile page. A reset link will be emailed
+								to you.</p
+							>
+						</div>
+						<div class="hr"></div>
+					</li>
+					<li>
+						<input
+							type="radio"
+							name="faq"
+							id="4"
+							class="accordion__input"
+							checked
+						/>
+						<label for="4" class="accordion__label"
+							>Can I cancel my subscription?</label
+						>
+						<div class="accordion__content">
+							<p
+								>Yes ! Send us a message and we’ll process your request no
+								questions asked.</p
+							>
+						</div>
+						<div class="hr"></div>
+					</li>
+					<li>
+						<input
+							type="radio"
+							name="faq"
+							id="5"
+							class="accordion__input"
+							checked
+						/>
+						<label for="5" class="accordion__label"
+							>Do you provide additional support?</label
+						>
+						<div class="accordion__content">
+							<p
+								>Chat and email support is available 24/7. Phone lines are
+								open during normal business hours.</p
+							>
+						</div>
+						<div id="last" class="hr"></div>
+					</li>
 				</ul>
-				<!-- !3 -->
-				<li>
-					<input
-						type="radio"
-						name="faq"
-						id="3"
-						class="accordion__input"
-						checked
-					/>
-					<label for="3" class="accordion__label"
-						>How do I reset my password?</label
-					>
-					<div class="accordion__content">
-						<p
-							>Click “Forgot password” from the login page or “Change
-							password” from your profile page. A reset link will be emailed
-							to you.</p
-						>
-					</div>
-					<div class="hr"></div>
-				</li>
-				<li>
-					<input
-						type="radio"
-						name="faq"
-						id="4"
-						class="accordion__input"
-						checked
-					/>
-					<label for="4" class="accordion__label"
-						>Can I cancel my subscription?</label
-					>
-					<div class="accordion__content">
-						<p
-							>Yes ! Send us a message and we’ll process your request no
-							questions asked.</p
-						>
-					</div>
-					<div class="hr"></div>
-				</li>
-				<li>
-					<input
-						type="radio"
-						name="faq"
-						id="5"
-						class="accordion__input"
-						checked
-					/>
-					<label for="5" class="accordion__label"
-						>Do you provide additional support?</label
-					>
-					<div class="accordion__content">
-						<p
-							>Chat and email support is available 24/7. Phone lines are open
-							during normal business hours.</p
-						>
-					</div>
-					<div id="last" class="hr"></div>
-				</li>
 			</div>
 		</div>
 
-		<div class="attribution">
+		<!-- <div class="attribution">
 			Challenge by
 			<a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
 				>Frontend Mentor</a
 			>. Coded by <a href="#">Szász Barna</a>.
-		</div>
+		</div> -->
 	</body>
 </html>
