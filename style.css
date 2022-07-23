@@ -144,7 +144,7 @@ body {
 .annual-flex {
   display: flex;
   flex-direction: column;
-  margin-right: 3rem;
+  margin-right: 2rem;
 }
 
 @media (min-width: 1440px) {
