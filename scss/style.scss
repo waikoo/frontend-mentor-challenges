@@ -31,7 +31,8 @@ body {
 
 .card {
   background: $bg-card;
-  width: 345px;
+  // width: 345px; OG
+  width: min(92%, 550px);
   border-radius: 10px 10px 10px 10px;
 }
 
@@ -57,7 +58,7 @@ body {
 @media (min-width: 1440px) {
   .card-img {
     min-width: 100%;
-    min-height: auto;
+    height: auto;
     position:static;
     border-radius: 0 10px 10px 0;
   }
