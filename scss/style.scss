@@ -1,0 +1,183 @@
+// Card colors
+$sedans: hsl(31, 77%, 52%);
+$suvs: hsl(184, 100%, 22%);
+$luxury: hsl(179, 100%, 13%);
+
+// Whites
+$description: hsla(0, 0%, 100%, 0.75);
+$brwhighte: hsl(0, 0%, 95%);
+
+$fs: 15px;
+$ff-lexend: 'Lexend Deca', sans-serif;
+$ff-shoulders: 'Big Shoulders Display', sans-serif;
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #f2f2f2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 100%;
+  padding: 5rem;
+  font-size: $fs;
+}
+
+.cards-con {
+  width: 325px;
+  border-radius: 10px;
+}
+
+@media (min-width: 1440px) {
+  .cards-con {
+    display: flex;
+    flex-direction: row;
+    width: 926px;
+  }
+}
+
+.title {
+  font-family: $ff-shoulders;
+  text-transform: uppercase;
+  color: $brwhighte;
+  margin: 0;
+  padding-bottom: .5rem;
+  font-size: 2.4rem;
+}
+
+p {
+  color: $description;
+  font-family: $ff-lexend;
+  margin: 0;
+  padding: 1rem 0;
+  line-height: 1.6;
+}
+
+@media (min-width: 1440px) {
+  p {
+    width: 95%;
+
+  }
+}
+
+button {
+  background: $brwhighte;
+  border-radius: 20px;
+  padding: .7rem 1.6rem;
+  border: none;
+  margin-top: .3rem;
+}
+
+@media (min-width: 1440px) {
+  button {
+    margin-top: 3.5rem;
+  }
+}
+
+span {
+  color: transparent;
+    font-weight: 700;
+}
+
+.card {
+  padding: 2.8rem;
+}
+
+img {
+  padding-bottom: 1.7rem;
+}
+
+.sedans {
+  background: $sedans;
+  border-radius: 10px 10px 0 0;
+
+  span {
+    color: $sedans;
+  }
+}
+
+@media (min-width: 1440px) {
+  .sedans {
+    border-radius: 10px 0 0 10px;
+
+    button {
+      border: 3px solid $sedans;
+
+    }
+
+    button:hover {
+      background: $sedans;
+      border-color: $brwhighte;
+      border: 3px solid white;
+      cursor: pointer;
+      span {
+        color: $brwhighte;
+      }
+    }
+  }
+}
+
+.suvs {
+  background: $suvs;
+  span {
+    color: $suvs;
+  }
+}
+
+@media (min-width: 1440px) {
+  .suvs {
+    button {
+      border: 3px solid $suvs;
+    }
+
+    button:hover {
+      background: $suvs;
+        border-color: $brwhighte;
+        border: 3px solid white;
+        cursor: pointer;
+
+        span {
+          color: $brwhighte;
+        }
+    }
+  }
+}
+
+.luxury {
+  background: $luxury;
+  border-radius: 0 0 10px 10px;
+  span {
+      color: $luxury;
+    }
+}
+
+@media (min-width: 1440px) {
+  .luxury {
+    border-radius: 0 10px 10px 0;
+
+    button {
+      border: 3px solid $luxury;
+    }
+
+    button:hover {
+      background: $luxury;
+      border-color: $brwhighte;
+      border: 3px solid white;
+      cursor: pointer;
+
+      span {
+        color: $brwhighte;
+      }
+    }
+  }
+
+
+}
