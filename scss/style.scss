@@ -1,0 +1,163 @@
+$cyan: hsl(185, 75%, 39%);
+$txt-dark: hsl(229, 23%, 23%);
+$txt-light: hsl(227, 10%, 46%);
+$dark-gray: hsl(0, 0%, 59%);
+
+$fs: 18px;
+$ff: 'Kumbh Sans', sans-serif;
+$regular: 400;
+$bold: 700;
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+height: 100%;
+}
+
+body {
+  margin: 0;
+  height: 100%;
+  background: $cyan;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bg-con {
+  // width: 100%;
+  // height: 100%;
+  position: absolute;
+  z-index: -1;
+  // height: 100%;
+  // width: 100%;
+  outline: 1px solid white;
+}
+
+.bg-1-con {
+  position: absolute;
+  top: -472px;
+  left: -628px;
+}
+
+.bg-1 {
+  width:500px;
+  height:500px;
+}
+
+.bg-2-con {
+  position: absolute;
+  left: 55px;
+  bottom: -548px;
+  // right: 0;
+  // top: 0;
+}
+
+.bg-2 {
+  width:500px;
+  height:500px;
+}
+
+.img-con {
+  margin: 0 auto;
+  position: absolute;
+  height: 100px;
+  top: 148px;
+  left: 200px;
+}
+
+.profile-pic {
+  display: block;
+  border-radius: 50%;
+  border: 5px solid white;
+  right: 0;
+}
+
+.card-bg-con {
+  // width: 500px;
+}
+
+.card-bg {
+  border-radius: 15px 15px 0 0;
+  display: block;
+  width: 100%;
+}
+
+.card {
+  position: relative;
+  width: 500px;
+  border-radius: 0 0 20px 20px;
+}
+
+.content {
+  background: white;
+}
+
+.divider {
+  background: rgb(238, 238, 238);
+  height: 1px;
+}
+
+.bottom-flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  font-family: $ff;
+}
+
+.stats-con {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.stats-value {
+  // margin: 0;
+  margin-bottom: 0;
+  font-size: 1.5rem;
+}
+
+.stats-name {
+  color: $txt-light;
+  letter-spacing: 1px;
+  margin-top: 0;
+}
+
+.name {
+  margin: 0;
+}
+
+.content {
+  padding: 1rem;
+  border-radius: 0 0 20px 20px;
+}
+
+.name-age-con {
+  padding-top: 3rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: baseline;
+}
+
+.name {
+  font-family: $ff;
+  font-size: 1.5rem;
+}
+
+.age {
+  margin-left: 1rem;
+  font-family: $ff;
+  color: $txt-light;
+
+}
+
+.city {
+  text-align: center;
+  font-family: $ff;
+  color: $txt-light;
+}
