@@ -1,0 +1,168 @@
+$magenta: hsl(300, 43%, 22%);
+$pink: hsl(333, 80%, 67%);
+
+$dark-gray-magenta: hsl(303, 10%, 53%);
+$light-gray-magenta: hsl(300, 24%, 96%);
+$white: hsl(0, 0%, 100%);
+
+$fs: 15px;
+$ff: 'League Spartan', sans-serif;
+$fw-400: 400;
+$fw-500: 500;
+$fw-700: 700;
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: $ff;
+  position: relative;
+  font-family: 'League Spartan', sans-serif;
+  overflow-x: hidden;
+}
+
+.bg-con {
+  position: absolute;
+  // outline: 13px solid green;
+  width: 100%;
+  top: 0;
+}
+
+.bg-con-1, .bg-con-2 {
+  // outline: 1px solid black;
+  width: 375px;
+  position: absolute;
+  left: 0;
+  // padding-left: -3rem;
+  // outline: 1px solid black;
+  // height:;
+}
+
+.bg-con-2 {
+  outline: 1px solid red;
+  bottom: 0;
+  position: relative;
+}
+
+.bg-1, .bg-2 {
+  width: 375px;
+}
+.bg-2 {
+  position: absolute;
+  bottom: 0;
+}
+
+main {
+  max-width: 342px;
+  padding: 1.2rem;
+  // outline: 1px solid magenta;
+}
+
+.main-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-title {
+  color: $magenta;
+  font-size: 2rem;
+  font-weight: $fw-700;
+  font-family: $ff;
+  margin: 0;
+  text-align: center;
+  padding: 1rem;
+}
+
+.main-description{
+  text-align: center;
+  color: $dark-gray-magenta;
+  // width: 87%;
+  line-height: 1.3;
+}
+
+.rating-section {
+  background: $light-gray-magenta;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  padding-top: 1rem;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.rating-img-con {
+  // majd media querybe
+}
+
+
+.rating-text {
+  margin-top: .6rem;
+  font-weight: $fw-700;
+  color: $magenta;
+}
+
+.feedback-section {
+  margin-top: 3rem;
+}
+
+.feedback-card {
+  background: $magenta;
+  padding: 1.7rem;
+  // padding-bottom: .3;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.feedback-column {
+  display: flex;
+  flex-direction: column;
+  // justify-content: center;
+  align-items: center;
+}
+
+.feedback-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.profile-picture {
+  border-radius: 50%;
+  width: 40px;
+  margin-right: 1.1rem;
+}
+
+.profile-picture-con {
+}
+
+.feedback-name {
+  margin: 0;
+  color: $white;
+}
+
+.feedback-role {
+  color: $pink;
+  font-weight: 500;
+}
+
+.feedback-description {
+  color: $white;
+  font-weight: $fw-500;
+  margin-bottom: 0;
+}
