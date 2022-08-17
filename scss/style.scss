@@ -1,0 +1,184 @@
+
+
+*, *::after, *::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+// Primary
+$dark-cyan: hsl(158, 36%, 37%);
+$cream: hsl(30, 38%, 92%);
+
+// Neutral
+$very-dark-blue: hsl(212, 21%, 14%);
+$dark-grayish-blue: hsl(228, 12%, 48%);
+$white: hsl(0, 0%, 100%);
+$dark-dark-cyan: hsl(156, 42%, 18%);
+
+//
+$font-size: 14px;
+$font-montserrat: 'Montserrat';
+$font-fraunces: 'Fraunces';
+
+body {
+  background: $cream;
+  font-family: $font-montserrat;
+}
+
+.content {
+  background: $white;
+}
+
+
+.perfume {
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  font-size: 12px;
+}
+
+.title,  .price{
+  font-family: $font-fraunces;
+}
+
+.price {
+  font-size: 2rem;
+  color: $dark-cyan;
+}
+
+.price-old {
+  text-decoration-line: line-through;
+  font-weight: 400;
+}
+
+.perfume, .description, .price-old {
+  color: $dark-grayish-blue;
+}
+
+.description {
+  font-size: $font-size;
+  line-height: 1.6;
+}
+
+.cart-text {
+  color: white;
+  font-weight: 700;
+}
+
+.cart-button {
+  background: $dark-cyan;
+  border: none;
+  padding: 1rem 0;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  width: 100%;
+}
+
+//
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
+  min-width: 100%;
+}
+
+html {
+  height: 100%;
+}
+
+.card {
+  width: 340px;
+}
+
+@media (min-width: 1440px) {
+  .card {
+    display: flex;
+    height: 440px;
+    width: 600px;
+  }
+}
+
+.img-mobile {
+  border-radius: 10px 10px 0 0;
+  width: 340px;
+  display: block;
+}
+
+@media (min-width: 1440px) {
+  .img-mobile {
+    display: none;
+
+  }
+}
+
+.img-desktop {
+  display: none;
+}
+
+@media (min-width: 1440px) {
+  .img-desktop {
+    display: block;
+    border-radius: 10px 0 0 10px;
+    width: 100%;
+  }
+}
+
+.content {
+  padding: 1.5rem;
+  border-radius: 0 0 10px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+@media (min-width: 1440px) {
+  .content {
+    border-radius: 0 10px 10px 0;
+    padding: 1.5rem 2rem 1.5rem 2rem;
+    width: 700px;
+    height: 440px;
+  }
+}
+
+.perfume {
+  margin: 0;
+  margin-bottom: .6rem;
+}
+
+.price-con {
+  display: flex;
+  align-items: center;
+}
+
+.price-old {
+  margin-left: 1.5rem;
+  font-size: .85rem;
+}
+
+.price {
+  padding: 1rem 0;
+}
+
+.cart-text {
+  margin-left: .8rem;
+}
+
+.cart-button {
+  display: flex;
+  justify-content: center;
+}
+
+.title {
+  margin-bottom: 1rem;
+  line-height: 1;
+}
+
+@media (min-width: 1440px) {
+  .cart-button:hover {
+    background: $dark-dark-cyan;
+    cursor: pointer;
+  }
+}
