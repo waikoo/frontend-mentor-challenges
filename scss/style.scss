@@ -43,14 +43,14 @@ section {
   color: $main;
   font-weight: 600;
   margin-top: 0;
-  font-size: 1rem;
+  font-size: 1.1rem;
 }
 
 .subtitle {
   color: $accent;
   font-weight: 600;
   line-height: 1.4;
-  font-size: 1rem;
+  font-size: .9rem;
 }
 
 .description {
@@ -85,6 +85,7 @@ section {
 .per-month {
   margin-left: .7rem;
   color:hsl(179, 58%, 77%);
+  font-size: .9rem;
 }
 
 .price-per-month {
@@ -94,8 +95,8 @@ section {
 
 .details {
   display: block;
-  margin-top: .5rem;
-  font-size: .95rem;
+  margin-top: .4rem;
+  font-size: .85rem;
 }
 
 button {
@@ -106,14 +107,16 @@ button {
   font-weight: 400;
   width: 100%;
   border-radius: 5px;
-  padding: 1rem;
+  padding: .8rem;
   font-size: .9rem;
-  box-shadow: 0 8px 10px 5px hsla(179, 72%, 32%, 0.505);
+  box-shadow: 0 8px 10px 5px hsla(179, 73%, 28%, 0.716);
   cursor: pointer;
 }
 
 .subscription {
   padding: 1.5rem 2rem;
+  box-shadow: inset 30px 30px 20px 100px hsla(179, 72%, 32%, 0.505);
+  // font-size: .5rem;
 }
 
 .why {
@@ -128,7 +131,7 @@ button {
 .why-us {
   display: block;
   margin-bottom: .3rem;
-  font-size: .9rem;
+  font-size: .8rem;
 }
 
 @media (min-width: 1440px) {
