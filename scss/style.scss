@@ -18,13 +18,14 @@ height: 100%;
 
 body {
   height: 100%;
+  width: 100%;
   margin: 0;
   padding: 2rem;
   font-family: $ff-body;
   background: $main;
   background-image: url(../images/bg-mobile.svg);
-  background-position: top left;
   // background-size: cover;
+  background-position: top left;
   background-repeat: no-repeat;
   color: white;
 }
@@ -71,6 +72,12 @@ body {
   margin-top: 1rem;
 }
 
+.huddle__btn:hover {
+  background: $accent;
+  color: white;
+  cursor: pointer;
+}
+
 .huddle--socials {
 
   width: max-content;
@@ -92,14 +99,21 @@ body {
   padding: .5rem;
 }
 
+.huddle--social:hover {
+  cursor: pointer;
+  // background: #f953be;
+  border-color: #f953be;
+}
+
 @media (min-width: 1440px) {
   body {
     background-image: url(../images/bg-desktop.svg);
-    margin: 2rem;
+    margin: 0 2rem;
   }
 
   .huddle__logo img {
     width: 270px;
+    margin-top: 2rem;
   }
 
   .huddle--flex {
@@ -120,7 +134,7 @@ body {
   .huddle--text {
     width: 80%;
     padding: 3rem;
-    padding-right: 2rem;
+    padding-right: 3rem;
   }
 
   .huddle__title {
@@ -130,8 +144,9 @@ body {
   }
 
   .huddle__description {
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     margin-top: 0;
+    width: 94%;
   }
 
   .huddle__title, .huddle__description {
@@ -142,11 +157,13 @@ body {
     margin: 0;
     font-size: 1rem;
     padding: 1rem 4.3rem;
+    box-shadow: 0 10px 8px 4px hsla(257, 41%, 27%, 0.431);
   }
 
   .huddle--socials {
-    margin-top: 2.5rem;;
-    width: 100%;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    width: 95%;
     display: flex;
     justify-content: flex-end;
   }
