@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins:wght@400;600&display=swap');
+
+$main: hsl(257, 40%, 49%);
+$accent: hsl(300, 69%, 71%);
+
+$ff-heading: 'Poppins', sans-serif;
+$ff-body: 'Open Sans', sans-serif;
+$fw-regular: 400;
+$fw-bold: 600;
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+height: 100%;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  padding: 2rem;
+  font-family: $ff-body;
+  background: $main;
+  background-image: url(../images/bg-mobile.svg);
+  background-position: top left;
+  // background-size: cover;
+  background-repeat: no-repeat;
+  color: white;
+}
+
+.huddle__logo img {
+  width: 130px;
+}
+
+.huddle__illustration img {
+  width: 100%;
+  margin-top: 3rem;
+}
+
+.huddle__text {
+  width: 100%;
+}
+
+.huddle__title, .huddle__description {
+  text-align: center;
+}
+
+.huddle__title {
+  font-weight: 600;
+  font-family: $ff-heading;
+  color: white;
+}
+
+.huddle__description {
+  line-height: 1.6;
+  font-size: .8rem;
+  color: white;
+}
+
+.huddle__btn {
+  margin: 0 auto;
+  display: block;
+  border: none;
+  color: $main;
+  padding: .75rem 4rem;
+  font-size: .7rem;
+  font-weight: 400;
+  border-radius: 40px;
+  background: white;
+  margin-top: 1rem;
+}
+
+.huddle--socials {
+
+  width: max-content;
+  display: flex;
+  gap: .5rem;
+  margin: 4rem auto 0;
+}
+
+.huddle--social img {
+  width: 16px;
+  height: 16px;
+}
+
+.huddle--social {
+  border-radius: 50%;
+  border: 1px solid white;
+  display: grid;
+  place-items: center;
+  padding: .5rem;
+}
+
+@media (min-width: 1440px) {
+  body {
+    background-image: url(../images/bg-desktop.svg);
+    margin: 2rem;
+  }
+
+  .huddle__logo img {
+    width: 270px;
+  }
+
+  .huddle--flex {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
+
+  .huddle__illustration {
+    width: 100%;
+  }
+
+  .huddle__illustration img {
+    margin-top: 3.4rem;
+    max-width: 730px;
+  }
+
+  .huddle--text {
+    width: 80%;
+    padding: 3rem;
+    padding-right: 2rem;
+  }
+
+  .huddle__title {
+    font-size: 2.6rem;
+    margin-top: 6rem;
+    margin-bottom: .8rem;
+  }
+
+  .huddle__description {
+    font-size: 1.15rem;
+    margin-top: 0;
+  }
+
+  .huddle__title, .huddle__description {
+    text-align: left;
+  }
+
+  .huddle__btn {
+    margin: 0;
+    font-size: 1rem;
+    padding: 1rem 4.3rem;
+  }
+
+  .huddle--socials {
+    margin-top: 2.5rem;;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+}
