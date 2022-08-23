@@ -3,35 +3,63 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<!-- displays site properly based on user's device -->
-
+		<meta name="description" content="A frontendmentor.io challenge." />
 		<link
 			rel="icon"
 			type="image/png"
 			sizes="32x32"
 			href="./images/favicon-32x32.png"
 		/>
-
+		<link
+			href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="css/style.css" />
 		<title>Frontend Mentor | Base Apparel coming soon page</title>
 	</head>
 	<body>
-		<main>
-			<div class="logo">
+		<main class="sub__con">
+			<div class="sub__logo-con">
 				<img src="images/logo.svg" alt="base apparel company logo" />
 			</div>
 
-			<img
-				srcset="images/hero-desktop.jpg 1440w, images/hero-mobile.jpg 375w"
-				src="images/hero-mobile.jpg"
-				alt="a woman looking into the camera"
-			/>
+			<div class="sub__img-con">
+				<img
+					srcset="images/hero-desktop.jpg 1440w, images/hero-mobile.jpg 375w"
+					src="images/hero-mobile.jpg"
+					alt="a woman looking into the camera"
+				/>
+			</div>
 
-			<h1 class="title"><span>We're</span> coming soon</h1>
-			<p class="description"
-				>Hello fellow shoppers! We're currently building our new fashion
-				store. Add your email below to stay up-to-date with announcements and
-				our launch deals.</p
-			>
+			<div class="sub__text-con">
+				<h1 class="sub__title"><span>We're</span> coming soon</h1>
+				<p class="sub__description"
+					>Hello fellow shoppers! We're currently building our new fashion
+					store. Add your email below to stay up-to-date with announcements
+					and our launch deals.</p
+				>
+
+				<form class="sub__input">
+					<input
+						type="email"
+						name="email"
+						id="sub__email"
+						title="Please provide a valid email"
+						placeholder="Email Address"
+					/>
+
+					<button type="sub__submit">
+						<svg xmlns="http://www.w3.org/2000/svg" width="12" height="20">
+							<path
+								fill="none"
+								stroke="#FFF"
+								stroke-width="2"
+								d="M1 1l8.836 8.836L1 18.671"
+							/>
+						</svg>
+					</button>
+				</form>
+			</div>
 		</main>
 	</body>
 </html>
