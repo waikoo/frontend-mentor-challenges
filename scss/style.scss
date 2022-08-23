@@ -26,7 +26,7 @@ body {
   font-family: $ff-body;
   background: $main;
   background-image: url(../images/bg-mobile.svg);
-  // background-size: cover;
+  background-size: contain;
   background-position: top left;
   background-repeat: no-repeat;
   color: white;
@@ -103,8 +103,28 @@ body {
 
 .huddle--social:hover {
   cursor: pointer;
-  // background: #f953be;
   border-color: #f953be;
+}
+
+.iconz {
+  border: 1px solid white;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  padding: .5rem;
+}
+
+svg {
+  fill:white;
+  height: 16px;
+  width: 16px;
+}
+
+.iconz:hover {
+  border-color: #f953be;
+    svg {
+      fill: #f953be;
+    }
 }
 
 @media (min-width: 1440px) {
