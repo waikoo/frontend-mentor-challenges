@@ -257,8 +257,8 @@ body {
     max-width: 1350px;
     max-height: 750px;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: 280px 290px 290px 280px;
+    grid-template-rows: 1fr 245px;
     gap: 2rem;
   }
 
