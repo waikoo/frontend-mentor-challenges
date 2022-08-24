@@ -1,3 +1,39 @@
+/* josefin-sans-300 - latin */
+@font-face {
+  font-family: 'Josefin Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: local(''),
+    url('../fonts/josefin-sans-v25-latin-300.woff2') format('woff2'),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+    url('../fonts/josefin-sans-v25-latin-300.woff') format('woff');
+  /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/* josefin-sans-regular - latin */
+@font-face {
+  font-family: 'Josefin Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local(''),
+    url('../fonts/josefin-sans-v25-latin-regular.woff2') format('woff2'),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+    url('../fonts/josefin-sans-v25-latin-regular.woff') format('woff');
+  /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/* josefin-sans-600 - latin */
+@font-face {
+  font-family: 'Josefin Sans';
+  font-style: normal;
+  font-weight: 600;
+  src: local(''),
+    url('../fonts/josefin-sans-v25-latin-600.woff2') format('woff2'),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+    url('../fonts/josefin-sans-v25-latin-600.woff') format('woff');
+  /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
 $eunry: #ce9797;
 $bittersweet: #f96262;
 
@@ -75,47 +111,34 @@ body {
 }
 
 .sub__input {
-  margin: 0 auto;
-  // width: 800px;
+  margin: 2rem auto 0;
   display: flex;
-  justify-self: center;
-  transform: translate(+9%, 30%);
-  // width: 80%;
-}
-
-.email__outline {
-  // border: 1px solid $eunry;
+  justify-content: center;
+  // width: calc(90vw + 2.2rem);
 }
 
 #sub__email {
-  width: 280px;
+  // display: block;
+  // margin: 0 auto;
   border-style: solid;
   border-color: $eunry;
   border-width: 1px;
   border-radius: 55px;
   box-shadow: none;
   padding: .8rem;
-  ::-moz-focus-inner {
-      border: 0;
-      padding: 0;
-    }
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+  padding-left: 1.2rem;
   opacity: 50%;
+  position: relative;
+  // right: -.5rem;
 }
 
 input[type="text"]::placeholder {
   font-family: $ff;
-  margin-left: 100px;
-}
-
-input[type="text"] {
-  padding-left: 100px;
 }
 
 input::placeholder {
-  padding-left: 2rem;
+  padding-left: .6rem;
+  color: $eunry;
 }
 
 input {
@@ -137,6 +160,7 @@ input:focus {
 }
 
 button {
+  // display: block;
   background: rgb(246, 178, 177);
   background: linear-gradient(142deg, rgb(243, 202, 202) 0%, rgba(238, 144, 144, 1) 100%);
   border: none;
@@ -146,6 +170,93 @@ button {
   right: 2.2rem;
   box-shadow: 0 10px 30px 0 #ce979779;
   cursor: pointer;
+  display: grid;
+  place-items: center;
 }
 
-// fix btn svg
+@media (min-width: 1440px) {
+  .sub__con {
+    display: grid;
+    grid-template-columns: 55% 45%;
+    grid-template-rows: auto 1fr;
+    row-gap: 3rem;
+  }
+
+  .sub__logo-con img {
+    width: 20%;
+    margin-top: 2rem;
+  }
+
+  .sub__logo-con {
+    grid-column: 1/2;
+    grid-row: 1/2;
+    margin-left: 0rem;
+    margin-bottom: 0;
+  }
+
+  .sub__img-con {
+    grid-column: 2/3;
+    grid-row: 1/-1;
+  }
+
+  .sub__text-con {
+    grid-column: 1/2;
+    grid-row: 2/3;
+    width: 82%;
+  }
+
+  .sub__input {
+    width: 100%;
+    justify-content: flex-start;
+    margin: 2rem 0 0 8rem;
+  }
+
+  .sub__email {
+    width: 100%;
+    width: 300px;
+  }
+
+  .sub__title, .sub__description {
+    text-align: left;
+  }
+
+    .sub__description {
+      padding-left: 0;
+      font-size: 1rem;
+      line-height: 2;
+      letter-spacing: 1px;
+    }
+
+    .sub__title {
+      font-size: 4.5vw;
+      line-height: 1.2;
+      margin-top: 6rem;
+    }
+    .sub__input {
+      max-width: 100%;
+      // display: block;
+      // justify-content:stretch;
+      // flex-basis:100%;
+      // flex-grow:
+      // display: block;
+    }
+
+    .sub__email {
+      // width: 500px;
+      flex-basis: 100%;
+      width: 100%;
+    }
+
+    .sub__title, .sub__description, .sub__logo-con {
+      margin-left: 8rem;
+    }
+
+    .sub__submit {
+      padding: 0 2.5rem;
+      display: inline-block;
+      // position: relative;
+      right: 0;
+      // display: inline-block;
+      justify-self: flex-end;
+    }
+}
