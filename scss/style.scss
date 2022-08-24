@@ -105,14 +105,17 @@ body {
   opacity: 50%;
 }
 
-input[type="email"]::placeholder {
+input[type="text"]::placeholder {
   font-family: $ff;
-  margin-left: 20px;
+  margin-left: 100px;
 }
 
-input[type="email"] {
-  padding-left: 20px;
+input[type="text"] {
+  padding-left: 100px;
+}
 
+input::placeholder {
+  padding-left: 2rem;
 }
 
 input {
