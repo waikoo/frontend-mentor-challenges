@@ -81,6 +81,12 @@ body {
   width: 110px;
 }
 
+.sub__text-con {
+  max-width: 400px;
+  display: grid;
+  place-items: center;
+}
+
 .sub__img-con img {
   display: block;
   width: 100%;
@@ -113,13 +119,14 @@ body {
 .sub__input {
   margin: 2rem auto 0;
   display: flex;
-  justify-content: center;
-  // width: calc(90vw + 2.2rem);
+  // justify-content: center;
+  margin: 0 auto;
+  margin-left: 2rem;
+  width: 91%;
 }
 
 #sub__email {
   // display: block;
-  // margin: 0 auto;
   border-style: solid;
   border-color: $eunry;
   border-width: 1px;
@@ -129,6 +136,7 @@ body {
   padding-left: 1.2rem;
   opacity: 50%;
   position: relative;
+  width: 100%;
   // right: -.5rem;
 }
 
@@ -149,14 +157,19 @@ input {
 }
 
 input:invalid {
-  background: black;
-  color: white;
+  outline: 3px solid red;
 }
 
 input:focus {
-  // outline: none;
-  outline: 2px solid rgb(246, 178, 177);
+  outline: 3px solid rgb(246, 178, 177);
+  opacity: 1;
+  // padding: 0;
+  height: 50%;
   box-shadow: 0 10px 5px 20px $eclipse;
+
+  input {
+    height: 90%;
+  }
 }
 
 button {
@@ -172,6 +185,30 @@ button {
   cursor: pointer;
   display: grid;
   place-items: center;
+}
+
+.error-img {
+  display: none;
+  position: relative;
+  width: 25px;
+  height: 25px;
+  left: -130px;
+  top: 10px;
+}
+
+.error {
+  display: block;
+  position: relative;
+  color: rgb(221, 113, 113);
+  margin-left: 3rem;
+  margin-top: .5rem;
+  font-size: .9rem;
+}
+
+@media (min-width: 600px) {
+  .sub__text-con {
+    max-width: 500px;
+  }
 }
 
 @media (min-width: 1440px) {
@@ -202,7 +239,7 @@ button {
   .sub__text-con {
     grid-column: 1/2;
     grid-row: 2/3;
-    width: 82%;
+    max-width: 82%;
   }
 
   .sub__input {
@@ -212,8 +249,8 @@ button {
   }
 
   .sub__email {
-    width: 100%;
-    width: 300px;
+    width: 67%;
+    // width: 300px;
   }
 
   .sub__title, .sub__description {
@@ -241,22 +278,27 @@ button {
       // display: block;
     }
 
-    .sub__email {
-      // width: 500px;
-      flex-basis: 100%;
-      width: 100%;
-    }
-
     .sub__title, .sub__description, .sub__logo-con {
       margin-left: 8rem;
+    }
+
+    #sub__email {
+      max-width: 66%;
     }
 
     .sub__submit {
       padding: 0 2.5rem;
       display: inline-block;
-      // position: relative;
-      right: 0;
+      position: relative;
+      right: 2rem;
       // display: inline-block;
       justify-self: flex-end;
     }
+
+    .error {
+      margin-left: 9rem;
+        margin-top: .5rem;
+    }
+
+
 }

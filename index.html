@@ -22,11 +22,16 @@
 			</div>
 
 			<div class="sub__img-con">
-				<img
-					srcset="images/hero-desktop.jpg 1440w, images/hero-mobile.jpg 375w"
-					src="images/hero-mobile.jpg"
-					alt="a woman looking into the camera"
-				/>
+				<picture>
+					<source
+						media="(min-width: 600px)"
+						srcset="images/hero-desktop.jpg"
+					/>
+					<img
+						src="images/hero-mobile.jpg"
+						alt="a woman looking into the camera"
+					/>
+				</picture>
 			</div>
 
 			<div class="sub__text-con">
@@ -42,7 +47,6 @@
 						type="text"
 						name="text"
 						id="sub__email"
-						title="Please provide a valid email"
 						placeholder="Email Address"
 					/>
 					<button type="submit" class="sub__submit">
@@ -60,6 +64,7 @@
 							/>
 						</svg>
 					</button>
+					<img class="error-img" src="images/error-icon.png" alt="red icon" />
 				</form>
 			</div>
 		</main>

@@ -2,6 +2,7 @@
 
 const input = document.getElementById('sub__email');
 const form = document.querySelector('form');
+const text = document.querySelector('.sub__text-con');
 
 form.addEventListener('submit', e => {
 	e.preventDefault();
@@ -13,6 +14,11 @@ form.addEventListener('submit', e => {
 		console.log('Valid email!');
 		input.value = '';
 	} else {
-		alert('Please provide a valid email');
+		console.log('Please provide a valid email');
+		const errorMsg = document.createElement('p');
+		text.appendChild(errorMsg);
+		document.querySelector('.error-img').style.display = 'block';
+		errorMsg.textContent = 'Please provide a valid email';
+		errorMsg.className = 'error';
 	}
 });
