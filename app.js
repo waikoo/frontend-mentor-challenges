@@ -15,10 +15,9 @@ form.addEventListener('submit', e => {
 		input.value = '';
 	} else {
 		console.log('Please provide a valid email');
-		const errorMsg = document.createElement('p');
-		text.appendChild(errorMsg);
+		input.value = '';
+
 		document.querySelector('.error-img').style.display = 'block';
-		errorMsg.textContent = 'Please provide a valid email';
-		errorMsg.className = 'error';
+		document.querySelector('.error').style.display = 'block';
 	}
 });
