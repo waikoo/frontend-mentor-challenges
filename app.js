@@ -15,6 +15,9 @@ form.addEventListener('submit', e => {
 		input.value = '';
 	} else {
 		console.log('Please provide a valid email');
+		input.style.borderColor = '#dd7171';
+		input.style.borderWidth = '2px';
+		input.style.opacity = '1';
 		input.value = '';
 
 		document.querySelector('.error-img').style.display = 'block';
