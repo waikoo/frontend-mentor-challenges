@@ -1,0 +1,294 @@
+/* libre-franklin-regular - latin */
+@font-face {
+  font-family: 'Libre Franklin';
+  font-style: normal;
+  font-weight: 300;
+  src: local(''),
+    url('../fonts/libre-franklin-v13-latin-300.woff2') format('woff2'),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+    url('../fonts/libre-franklin-v13-latin-300.woff') format('woff');
+  /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/* libre-franklin-600 - latin */
+@font-face {
+  font-family: 'Libre Franklin';
+  font-style: normal;
+  font-weight: 600;
+  src: local(''),
+    url('../fonts/libre-franklin-v13-latin-600.woff2') format('woff2'),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+    url('../fonts/libre-franklin-v13-latin-600.woff') format('woff');
+  /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/* libre-franklin-700 - latin */
+@font-face {
+  font-family: 'Libre Franklin';
+  font-style: normal;
+  font-weight: 700;
+  src: local(''),
+    url('../fonts/libre-franklin-v13-latin-700.woff2') format('woff2'),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+    url('../fonts/libre-franklin-v13-latin-700.woff') format('woff');
+  /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+$CornflowerBlue: #4f7df3;
+$LavenderBlue: #c2d3ff;
+$WildWatermelon: #ff5263;
+$ShadyLady: #969696;
+$Tangaroa: #151f29;
+
+$ff: 'Libre Franklin', sans-serif;
+$fw-light: 300;
+$fw-mid: 600;
+$fw-bold: 700;
+
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+height: 100%;
+}
+
+body {
+  height: 100%;
+  margin: 2rem 0;
+  font-family: $ff;
+  font-size: 20px;
+  display: grid;
+  justify-items: center;
+}
+
+.ping--container {
+  display: grid;
+  justify-items: center;
+  width: 85%;
+  max-width: 600px;
+}
+
+.ping__logo--con {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.ping__logo-img {
+  width: 60px;
+}
+
+.ping__text--con {
+  display: flex;
+  justify-content: center;
+  align-items: space-between;
+  flex-direction: column;
+  margin-top: 2.5rem;
+}
+
+.ping__title {
+  text-align: center;
+  font-weight: $fw-light;
+  // font-size: 1.4rem; OG
+  font-size: clamp(1.4rem, 1.0479rem + 1.5023vw, 2.4rem);
+  color: $ShadyLady;
+  margin-top: 2.35rem;
+  margin-bottom: .5rem;
+}
+
+.ping__title span {
+  font-weight: $fw-bold;
+  color: $Tangaroa;
+}
+
+.ping__desc {
+  text-align: center;
+  font-size: clamp(0.8rem, 0.7296rem + 0.3005vw, 1rem);
+  color: $Tangaroa;
+  opacity: .7;
+  letter-spacing: .3px;
+  font-weight: $fw-light;
+  margin-top: 1rem;
+}
+
+.ping__form {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+}
+
+.ping__email {
+  border-radius: 30px;
+  padding: .7rem;
+  padding-left: 2rem;
+  margin-bottom: .5rem;
+  border: 1px solid #96969642;
+  width: 100%;
+}
+
+.ping__email::placeholder {
+  color: #96969642;
+}
+
+.ping__button {
+  border: none;
+  color: white;
+  background: $CornflowerBlue;
+  border-radius: 30px;
+  padding: .8rem;
+  font-weight: $fw-mid;
+  font-size: .8rem;
+  box-shadow: 0 5px 10px 0 #a3b9f09f;
+  cursor: pointer;
+}
+
+.ping__hero--con {
+  margin-top: 3.5rem;
+}
+
+.ping__hero-img {
+  display: block;
+  margin: 0 auto;
+  width: 95%;
+}
+
+footer {
+  width: 100%;
+  margin: 0 auto 1rem;
+}
+
+.ping__socials--con {
+  // background: greenyellow;
+  max-width: 30%;
+  margin: 6rem auto 1rem;
+}
+
+.ping__socials--con {
+  display: flex;
+  gap: 1rem;
+  padding-left: 0;
+  justify-content: space-evenly;
+  max-width: 20%;
+}
+
+.social {
+  list-style: none;
+  border: 1px solid $LavenderBlue;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  padding: .3rem;
+}
+
+.social svg {
+  width: 16px;
+  height: 16px;
+  fill: $CornflowerBlue;
+}
+
+.ping__copyright {
+  margin-top: 1.7rem;
+  display: block;
+  font-size: .6rem;
+  color: $ShadyLady;
+  text-align: center;
+}
+
+@media (min-width: 500px) {
+  .ping__form {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .ping__title {
+    // ! font-size: 2.4rem;
+    white-space: nowrap;
+  }
+
+  .ping__desc {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    // font-size: 1rem;
+  }
+
+  .ping__form {
+    align-items: center;
+    width: 88%;
+  }
+
+  .ping__email {
+    margin-bottom: 0;
+  }
+
+  .ping__hero-img {
+    max-width: 90%;
+  }
+
+  .ping__socials--con {
+    margin-bottom: 0;
+  }
+
+  .ping__button {
+    margin-left: 1rem;
+    padding: .7rem 2rem;
+    width: 50%;
+  }
+
+  .ping__button:hover {
+    background: #7195f5;
+    cursor: pointer;
+  }
+
+  .ping__copyright {
+    margin-top: 1.5rem;
+  }
+
+  .social:hover {
+    background: $CornflowerBlue;
+
+    .social svg {
+      fill: white;
+    }
+  }
+
+  .social:hover > svg *{
+    fill: white;
+  }
+}
+
+
+.valid {
+  border: 1px solid green;
+}
+
+.invalid {
+  border: 1px solid red;
+}
+
+.error-msg {
+  color: red;
+  font-size: .55rem;
+  justify-self: flex-start;
+  margin-left: 1.4rem;
+  margin-top: 0;
+  display: none;
+}
+
+.focus-invalid:focus {
+  outline: 3px solid red;
+}
+
+.focus-valid:focus {
+  outline: 1px solid green;
+}
+
+.show-error {
+  display: block;
+}
+
+.ping__email:focus-visible {
+  outline: 2px solid $ShadyLady;
+  // outline: 2px solid $CornflowerBlue;
+}
