@@ -4,12 +4,31 @@ const errorMsg = document.querySelector('.error-msg');
 const regex =
 	/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
+const showError = () => {
+	emailEl.classList.add('invalid');
+	errorMsg.classList.add('show-error');
+};
+
+const removeError = () => {
+	emailEl.classList.remove('invalid');
+	errorMsg.classList.remove('show-error');
+};
+
+const showValidation = () => {
+	emailEl.classList.add('valid');
+	emailEl.classList.add('focus-valid');
+};
+
+const removeValidation = () => {
+	emailEl.classList.remove('focus-valid');
+	emailEl.classList.remove('valid');
+};
+
 const emailValidator = email => {
 	const isValidEmail = regex.test(email);
 
 	if (!isValidEmail) {
-		emailEl.classList.add('invalid');
-		errorMsg.classList.add('show-error');
+		showError();
 	}
 	return isValidEmail;
 };
@@ -28,22 +47,21 @@ const onSubmit = e => {
 
 const onEmailInput = () => {
 	if (regex.test(emailEl.value)) {
-		emailEl.classList.add('valid');
-		emailEl.classList.add('focus-valid');
-		emailEl.classList.remove('invalid');
-		errorMsg.classList.remove('show-error');
+		showValidation();
+		removeError();
+		emailEl.classList.add('no-focus-accent');
 	}
 
 	if (emailEl.value === '') {
-		emailEl.classList.remove('focus-valid');
-		emailEl.classList.remove('valid');
+		removeValidation();
+		emailEl.classList.remove('no-focus-accent');
 	}
 };
 
+emailEl.addEventListener('focus', () => {
+	removeValidation();
+	removeError();
+});
+
 emailEl.addEventListener('input', onEmailInput);
 formEl.addEventListener('submit', onSubmit);
-emailEl.addEventListener('focus', () => {
-	emailEl.classList.remove('focus-valid');
-	emailEl.classList.remove('invalid');
-	errorMsg.classList.remove('show-error');
-});

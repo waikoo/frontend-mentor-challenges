@@ -40,6 +40,8 @@ $WildWatermelon: #ff5263;
 $ShadyLady: #969696;
 $Tangaroa: #151f29;
 
+$ErrorRed: #db3a4a;
+
 $ff: 'Libre Franklin', sans-serif;
 $fw-light: 300;
 $fw-mid: 600;
@@ -91,7 +93,6 @@ body {
 .ping__title {
   text-align: center;
   font-weight: $fw-light;
-  // font-size: 1.4rem; OG
   font-size: clamp(1.4rem, 1.0479rem + 1.5023vw, 2.4rem);
   color: $ShadyLady;
   margin-top: 2.35rem;
@@ -160,7 +161,6 @@ footer {
 }
 
 .ping__socials--con {
-  // background: greenyellow;
   max-width: 30%;
   margin: 6rem auto 1rem;
 }
@@ -203,23 +203,22 @@ footer {
   }
 
   .ping__title {
-    // ! font-size: 2.4rem;
     white-space: nowrap;
   }
 
   .ping__desc {
     margin-top: 0;
     margin-bottom: 1.5rem;
-    // font-size: 1rem;
   }
 
   .ping__form {
-    align-items: center;
-    width: 88%;
+    align-items: flex-start;
+    justify-content: center;
   }
 
   .ping__email {
     margin-bottom: 0;
+    min-width: 33vw;
   }
 
   .ping__hero-img {
@@ -232,8 +231,7 @@ footer {
 
   .ping__button {
     margin-left: 1rem;
-    padding: .7rem 2rem;
-    width: 50%;
+    padding: .7rem 2.5rem;
   }
 
   .ping__button:hover {
@@ -247,10 +245,7 @@ footer {
 
   .social:hover {
     background: $CornflowerBlue;
-
-    .social svg {
-      fill: white;
-    }
+    cursor: pointer;
   }
 
   .social:hover > svg *{
@@ -264,20 +259,20 @@ footer {
 }
 
 .invalid {
-  border: 1px solid red;
+  border: 1px solid $ErrorRed;
 }
 
 .error-msg {
-  color: red;
+  color: $ErrorRed;
   font-size: .55rem;
   justify-self: flex-start;
   margin-left: 1.4rem;
-  margin-top: 0;
+  margin-top: .35rem;
   display: none;
 }
 
 .focus-invalid:focus {
-  outline: 3px solid red;
+  outline: 3px solid $ErrorRed;
 }
 
 .focus-valid:focus {
@@ -290,5 +285,8 @@ footer {
 
 .ping__email:focus-visible {
   outline: 2px solid $ShadyLady;
-  // outline: 2px solid $CornflowerBlue;
+}
+
+.no-focus-accent:focus-visible {
+  outline: 0;
 }
