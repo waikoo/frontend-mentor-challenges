@@ -1,0 +1,96 @@
+/* space-grotesk-500 - latin */
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 500;
+  src: local(''),
+    url('../fonts/space-grotesk-v13-latin-500.woff2') format('woff2'),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+    url('../fonts/space-grotesk-v13-latin-500.woff') format('woff');
+  /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+$activeInputBorder: hsl(249, 99%, 64%) to hsl(278, 94%, 30%);
+$inputErrors: hsl(0, 100%, 66%);
+
+$white: #ffffff;
+$brightTurquoise: #dedddf;
+$amethystSmoke: #8e8593;
+$midnightBlue: #21092f;
+
+$ff: 'Space Grotesk', sans-serif;
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+height: 100%;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  font-family: $ff;
+  font-size: 18px;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: center;
+  // padding: 0 2rem;
+}
+
+.main {
+  // width: 90%;
+}
+
+.card__img--section {
+  background-image: url('../images/bg-main-mobile.png');
+  background-size: cover;
+  width: 100%;
+  height: 43vh;
+  position: relative;
+}
+
+.card__img {
+  display: block;
+  width: 100%;
+}
+
+.card__img--back {
+  width: 75%;
+  position: absolute;
+  top: 40px;
+  right: 20px;
+}
+
+.card__img--front {
+  width: 75%;
+  position: absolute;
+  top: 126px;
+  left: 20px;
+}
+
+.card__img--cvc {
+  // background: red;
+  position: relative;
+  z-index: 1;
+  color: $white;
+  font-size: .6rem;
+  display: block;
+  top: 110px;
+  right: -298px;
+}
+
+.card__img--txt--con {
+  position: relative;
+  // color: white;
+}
+
+.card__img--txt-name-date {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card__form--section {
+  margin-top: 5rem;
+}

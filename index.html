@@ -3,19 +3,66 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
-
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
+  <link rel="stylesheet" href="css/style.css">
   <title>Frontend Mentor | Interactive card details form</title>
-
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
 </head>
 <body>
+  <main class="main">
+    <section class="card__img--section">
+      <div class="card__img--con card__img--back">
+        <img src="images/bg-card-back.png" alt="back of a bank card" class="card__img">
+      </div>
+      <span class="card__img--cvc">000</span>
+      <div class="card__img--con card__img--front">
+        <img src="images/bg-card-front.png" alt="front of a bank card" class="card__img">
+        <div class="card__img--txt--con">
+          <span class="card__img--number">9591 6489 6389 101E</span>
+          <div class="card__img--txt-name-date">
+            <span class="card__img--name">FELICIA LEIRE</span>
+            <span class="card__img--date">09/00</span>
+          </div>
+        </div>
 
+      </div>
+    </section>
+
+    <section class="card__form--section">
+      <form action="" class="card__form">
+        <!-- name -->
+        <div class="card__form--name-con">
+          <label for="name" class="card__label">CARDHOLDER NAME</label>
+          <input id="name" type="text" class="card__form--input" placeholder="e.g. Jane Appleseed">
+        </div>
+        <!-- number -->
+        <div class="card__form--number-con">
+          <label for="card_number" class="card__label">CARD NUMBER</label>
+          <input id="card_number" type="number" class="card__form--input" placeholder="e.g. 1234 5678 9123 0000">
+          <p class="error-msg">Wrong format, numbers only</p>
+        </div>
+        <!-- exp date -->
+        <div class="card__form--date-cvc-con">
+          <div class="card__form--expdate-con">
+            <label for="expiry_month" class="card__label">EXP. DATE (MM/YY)</label>
+            <input id="expiry_month" type="number" class="card__form--input" placeholder="MM">
+            <p class="error-msg">Can't be blank</p>
+            <input id="expiry_year" type="number" class="card__form--input" placeholder="YY">
+          </div>
+          <!-- cvc -->
+          <div class="card__form--cvc-con">
+            <label for="cvc" class="card__label">CVC</label>
+            <input id="cvc" type="number" class="card__form--input" placeholder="e.g. 123">
+            <p class="error-msg">Can't be blank</p>
+          </div>
+        </div>
+        <!-- button -->
+        <input type="submit" value="Confirm" class="card__form--btn">
+
+
+      </form>
+    </section>
+
+  </main>
   0000 0000 0000 0000
   Jane Appleseed
   00/00
@@ -42,10 +89,7 @@
   Thank you!
   We've added your card details
   Continue
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
+  <script src="app.js"></script>
   </div>
 </body>
 </html>
