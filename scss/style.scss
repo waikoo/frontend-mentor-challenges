@@ -26,71 +26,205 @@ $ff: 'Space Grotesk', sans-serif;
 
 html {
 height: 100%;
+width: 100%;
 }
 
 body {
   height: 100%;
+  width: 100%;
   margin: 0;
   font-family: $ff;
   font-size: 18px;
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: center;
-  // padding: 0 2rem;
 }
 
-.main {
-  // width: 90%;
-}
-
-.card__img--section {
-  background-image: url('../images/bg-main-mobile.png');
+.img-con {
+  width: 100%;
+  background-image: url("../images/bg-main-mobile.png");
+  background-repeat: no-repeat;
   background-size: cover;
-  width: 100%;
-  height: 43vh;
-  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 3fr 14fr 4fr 1fr;
+  grid-template-rows: 10% 28% 35% 20%;
+  height: 30%;
 }
 
-.card__img {
-  display: block;
-  width: 100%;
+.card {
+  background-repeat: no-repeat;
+  background-size: contain;
+  color: white;
+  // font-family: 'Courier New', sans-serif;
+  border-radius: 5px;
+  height: 160px;
 }
 
-.card__img--back {
-  width: 75%;
-  position: absolute;
-  top: 40px;
-  right: 20px;
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem;
+  height: 70%;
 }
 
-.card__img--front {
-  width: 75%;
-  position: absolute;
-  top: 126px;
-  left: 20px;
+.img-white {
+  background: white;
+  grid-column: 1/-1;
+  grid-row: 4/6;
 }
 
-.card__img--cvc {
-  // background: red;
+.img-back {
+  background-image: url("../images/bg-card-back.png");
+  grid-column: 3/5;
+  grid-row: 2/3;
   position: relative;
   z-index: 1;
-  color: $white;
-  font-size: .6rem;
-  display: block;
-  top: 110px;
-  right: -298px;
 }
 
-.card__img--txt--con {
+.img-front {
+  background-image: url("../images/bg-card-front.png");
+  grid-column: 2/4;
+  grid-row: 3/4;
   position: relative;
-  // color: white;
+  z-index: 2;
 }
 
-.card__img--txt-name-date {
+
+.front-lower {
+  margin-top: 2rem;
+}
+
+.front-logo {
+  width: 50px;
+  height: auto;
+  margin-bottom: auto;
+}
+
+.card-name-expiry {
+  margin-top: 1rem;
   display: flex;
   justify-content: space-between;
+  letter-spacing: .5px;
+  font-size: .4rem;
+  font-weight: 300;
 }
 
+.card-nr {
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+}
+
+.cvc {
+  right: 40px;
+  position: absolute;
+  top: 45%;
+  font-size: .8rem;
+}
+
+.card-name-expiry, .cvc {
+  font-size: .7rem;
+}
+
+
+// ! FORM // // // // // // // // // // // // // //
+
 .card__form--section {
-  margin-top: 5rem;
+  padding: 1rem;
+}
+
+.card__label {
+  font-size: .75rem;
+  letter-spacing: 2px;
+  margin-top: 2rem;
+}
+
+.card__form--name-con .card__label {
+  margin-top: 0;
+}
+
+.-block {
+  display: block;
+}
+
+.card__form--input {
+  padding: 1rem;
+  width: 100%;
+  border: 1px solid $brightTurquoise;
+  border-radius: 10px;
+  margin-top: .5rem;
+}
+
+.card__form--input::placeholder {
+  color: $brightTurquoise;
+  font-family: $ff;
+  font-size: 1.1rem;
+}
+
+.error-msg {
+  color: $inputErrors;
+  font-size: .8rem;
+  margin: .5rem 0;
+  display: none;
+}
+
+.card__form--date-cvc-con {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;;
+}
+
+#expiry_month, #expiry_year {
+  width: 48%;
+  display: inline-block;
+  // margin-top: 0;
+}
+
+#cvc {
+  width: 100%;
+}
+
+.card__form--expdate-con {
+  display: flex;
+}
+
+.exp_label {
+  display: block;
+}
+
+.date-div {
+  width: 60%;
+}
+
+.cvc-div {
+  display: flex;
+  flex-direction: column;
+  margin-left: 1rem;
+}
+
+.card__form--btn {
+  background: #220930;
+  color: white;
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.2rem;
+  font-family: $ff;
+  margin-top: 1.8rem;
+  border-radius: 10px;
+  border: none;
+}
+
+// todo: Thank you!
+
+.card__success {
+  padding: 1rem;
+  text-align: center;
+  display: none;
+}
+
+.thank-you {
+  text-transform: uppercase;
+  letter-spacing: 6px;
+  font-size: 2rem;
+}
+
+.thank-you-desc {
+  color: $amethystSmoke;
 }
