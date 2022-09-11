@@ -33,13 +33,14 @@
         <!-- name -->
         <div class="card__form--name-con">
           <label for="name" class="-block card__label">CARDHOLDER NAME</label>
-          <input id="name" type="text" class="card__form--input" placeholder="e.g. Jane Appleseed">
+          <input id="name" type="text" class="card__form--input" placeholder="e.g. Jane Appleseed" spellcheck="false">
+          <p class="error-msg error-name invisible">Enter the name on your card</p>
         </div>
         <!-- number -->
         <div class="card__form--number-con">
           <label for="card_number" class="-block card__label">CARD NUMBER</label>
-          <input id="card_number" type="number" class="card__form--input" placeholder="e.g. 1234 5678 9123 0000">
-          <p class="error-msg">Wrong format, numbers only</p>
+          <input id="card_number" type="tel" class="card__form--input" placeholder="e.g. 1234 5678 9123 0000">
+          <p class="error-msg error-number invisible">Wrong format, numbers only</p>
         </div>
         <!-- exp date -->
         <div class="card__form--date-cvc-con">
@@ -47,14 +48,16 @@
             <div class="date-div">
               <label for="expiry_month" class="exp_label card__label">EXP. DATE (MM/YY)</label>
               <!-- <br> -->
-              <input id="expiry_month" type="number" class="card__form--input" placeholder="MM">
-              <p class="error-msg">Can't be blank</p>
-              <input id="expiry_year" type="number" class="card__form--input" placeholder="YY">
+              <div class="month-year-input-con">
+                <input id="expiry_month" type="number" class="card__form--input" placeholder="MM">
+                <input id="expiry_year" type="number" class="card__form--input" placeholder="YY">
+              </div>
+              <p class="error-msg error-expdate invisible">Can't be blank</p>
             </div>
             <div class="cvc-div">
               <label for="cvc" class="card__label">CVC</label>
               <input id="cvc" type="number" class="card__form--input" placeholder="e.g. 123">
-              <p class="error-msg">Can't be blank</p>
+              <p class="error-msg error-cvc invisible">Can't be blank</p>
             </div>
           </div>
           <!-- cvc -->
