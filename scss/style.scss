@@ -165,6 +165,8 @@ body {
   border: 1px solid $brightTurquoise;
   border-radius: 10px;
   margin-top: .5rem;
+  font-family: $ff;
+  font-size: 1.2rem;
 }
 
 .card__form--input::placeholder {
@@ -261,4 +263,8 @@ body {
 
 .card__form--input {
   // background: $activeInputBorder;
+}
+
+.focus-invalid {
+  outline: 1px solid red;
 }
