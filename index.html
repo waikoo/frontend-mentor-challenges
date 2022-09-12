@@ -41,7 +41,7 @@
         <!-- number -->
         <div class="card__form--number-con">
           <label for="card_number" class="-block card__label">CARD NUMBER</label>
-          <input id="card_number" type="tel" class="card__form--input" placeholder="e.g. 1234 5678 9123 0000">
+          <input data-maxlength="19" id="card_number" type="tel" class="card__form--input limit-length" placeholder="e.g. 1234 5678 9123 0000">
           <p class="error-msg error-number invisible">Wrong format, numbers only</p>
         </div>
         <!-- exp date -->
@@ -51,14 +51,14 @@
               <label for="expiry_month" class="exp_label card__label">EXP. DATE (MM/YY)</label>
               <!-- <br> -->
               <div class="month-year-input-con">
-                <input id="expiry_month" type="number" class="card__form--input" placeholder="MM">
-                <input id="expiry_year" type="number" class="card__form--input" placeholder="YY">
+                <input data-maxlength="2" id="expiry_month" type="number" class="card__form--input limit-length" placeholder="MM">
+                <input data-maxlength="2" id="expiry_year" type="number" class="card__form--input limit-length" placeholder="YY">
               </div>
               <p class="error-msg error-expdate invisible">Can't be blank</p>
             </div>
             <div class="cvc-div">
               <label for="cvc" class="card__label">CVC</label>
-              <input oninput="this.value=this.value.slice(0, this.dataset.maxlength)" data-maxlength="3" id="cvc" type="number" class="card__form--input" placeholder="e.g. 123">
+              <input oninput="" data-maxlength="3" id="cvc" type="number" class="card__form--input limit-length" placeholder="e.g. 123">
               <p class="error-msg error-cvc invisible">Can't be blank</p>
             </div>
           </div>

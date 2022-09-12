@@ -8,6 +8,9 @@ const cvcEl = document.querySelector('#cvc');
 const submitBtnEl = document.querySelector('.card__form--btn');
 
 const errName = document.querySelector('.error-name');
+const errCardNr = document.querySelector('.error-number');
+const errExpDate = document.querySelector('.error-expdate');
+const errCvc = document.querySelector('.error-cvc');
 
 const cardName = document.querySelector('.card-name');
 const cardNumber = document.querySelector('.card-nr');
@@ -15,83 +18,91 @@ const cardMonth = document.querySelector('.card-month');
 const cardYear = document.querySelector('.card-year');
 const cardCvc = document.querySelector('.cvc');
 
+function charLimit() {
+	this.value = this.value.slice(0, this.dataset.maxlength);
+}
+
+document.querySelectorAll('.limit-length').forEach(input => {
+	input.addEventListener('input', charLimit);
+});
+
+function errorMsgAppear(inputEl, errorEl) {
+	errorEl.classList.remove('invisible');
+	inputEl.classList.add('focus-invalid');
+}
+
+function errorMsgDisappear(inputEl, errorEl) {
+	errorEl.classList.add('invisible');
+	inputEl.classList.remove('focus-invalid');
+}
+
+function isInputValid(inputEl, errorEl, regex = null) {
+	let isValid = null;
+
+	if (!inputEl.value) {
+		errorMsgAppear(inputEl, errorEl);
+		inputEl.focus();
+	} else {
+		if (regex === null) {
+			return 'noregex';
+		} else {
+			isValid = regex.test(inputEl.value);
+			return isValid;
+			// return isValid ? true : false;
+		}
+	}
+}
+
 formEl.addEventListener('submit', e => {
 	e.preventDefault();
 
-	// if name field is empty, make error message visible
-	const isNameCompleted = () => {
-		if (!nameEl.value) {
-			errName.classList.remove('invisible');
-			nameEl.classList.add('focus-invalid');
-			nameEl.focus();
-		} else {
-			return true;
-		}
-	};
-	// ! CARD NR NOT VALID, THEN...
-	const isCardNumberValid = () => {
-		// if there is an input value, check it with regex:
-		if (cardNumberEl.value) {
-			return /^[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}$/.test(cardNumberEl.value);
-		} else {
-			//if input field is empty:
-			document.querySelector('.error-number').classList.remove('invisible');
-			cardNumberEl.classList.add('focus-invalid');
-			cardNumberEl.focus();
-		}
-	};
+	let nameValueOnSubmit;
+	if (isInputValid(nameEl, errName) === 'noregex') {
+		nameValueOnSubmit = true;
+	}
 
-	const isExpMonthValid = () => {
-		const monthRegex = /01|02|03|04|05|06|07|08|09|10|11|12/;
-		if (monthEl.value) {
-			return monthRegex.test(monthEl.value);
-		} else {
-			document.querySelector('.error-expdate').classList.remove('invisible');
-			monthEl.classList.add('focus-invalid');
-			monthEl.focus();
-		}
-	};
+	let cardNrOnSubmit = isInputValid(
+		cardNumberEl,
+		errCardNr,
+		/^[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}$/,
+	);
 
-	const isExpYearValid = () => {
-		if (yearEl.value) {
-			return /^\d{2}$/.test(yearEl.value);
-		} else {
-			document.querySelector('.error-expdate').classList.remove('invisible');
-			yearEl.classList.add('focus-invalid');
-			yearEl.focus();
-		}
-	};
+	let monthValueOnSubmit = isInputValid(
+		monthEl,
+		errExpDate,
+		/01|02|03|04|05|06|07|08|09|10|11|12/,
+	);
+	let yearValueOnSubmit = isInputValid(yearEl, errExpDate, /^\d{2}$/);
+	let cvcValueOnSubmit = isInputValid(cvcEl, errCvc, /^\d{3}$/);
 
-	const isCvcValid = () => {
-		if (cvcEl.value) {
-			return /^\d{3}$/.test(cvcEl.value);
-		} else {
-			document.querySelector('.error-cvc').classList.remove('invisible');
-			cvcEl.classList.add('focus-invalid');
-			cvcEl.focus();
-		}
-	};
-
-	//final evaluation on submit
-
-	console.log('name: ' + isNameCompleted());
-	console.log('card: ' + isCardNumberValid());
-	console.log('month: ' + isExpMonthValid());
-	console.log('year: ' + isExpYearValid());
-	console.log('cvc: ' + isCvcValid());
+	function consoleLogBooleanOnSubmit() {
+		console.log(nameValueOnSubmit);
+		console.log(cardNrOnSubmit);
+		console.log(monthValueOnSubmit);
+		console.log(yearValueOnSubmit);
+		console.log(cvcValueOnSubmit);
+	}
 
 	if (
-		isNameCompleted() &&
-		isCardNumberValid() &&
-		isExpMonthValid() &&
-		isExpYearValid() &&
-		isCvcValid()
+		nameValueOnSubmit &&
+		cardNrOnSubmit &&
+		monthValueOnSubmit &&
+		yearValueOnSubmit &&
+		cvcValueOnSubmit
 	) {
 		formEl.submit();
 	}
 });
+// ! KEYUP !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-nameEl.addEventListener('keyup', () => {
+// abstraction
+// inputEl.addEventListener('keyup', () => {
+// 	outputEl.textContent = inputEl.value;
+// 	// errorMsgDisappear()
+// });
+// keyup UX needs optimization
+
+nameEl.addEventListener('keyup', e => {
 	cardName.textContent = nameEl.value;
 	if (nameEl.value) {
 		document.querySelector('.error-name').classList.add('invisible');
@@ -99,22 +110,51 @@ nameEl.addEventListener('keyup', () => {
 	}
 });
 
-cardNumberEl.addEventListener('keyup', () => {
+// 2. a) if becomes unfocused after char.length < 19, error msg appear
+//    b) add auto space after 4 characters
+// 3. month - error msg to appear on focus change if regex test is false
+// 4. year - same
+
+cardNumberEl.addEventListener('keyup', e => {
 	cardNumber.textContent = cardNumberEl.value;
-	const cardNumberValueValid = /^[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}$/.test(
-		cardNumberEl.value,
-	);
-	if (cardNumberValueValid) {
-		document.querySelector('.error-number').classList.add('invisible');
-	}
-	if (!cardNumberValueValid) {
-		document.querySelector('.error-number').classList.remove('invisible');
+	const cardNumberRegex = /^[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}$/;
+
+	if (/\d/g.test(cardNumberEl.value)) {
 		cardNumberEl.classList.remove('focus-invalid');
+		errCardNr.classList.add('invisible');
+	}
+
+	if (cardNumberEl.value.length === 0) {
+		cardNumberEl.classList.remove('focus-invalid');
+		errCardNr.classList.add('invisible');
+	}
+
+	if (
+		cardNumberEl.value.length === 19 &&
+		cardNumberRegex.test(cardNumberEl.value) === false
+	) {
+		errCardNr.classList.remove('invisible');
+		cardNumberEl.classList.add('focus-invalid');
+	}
+
+	if (
+		cardNumberEl.value.length === 19 &&
+		cardNumberRegex.test(cardNumberEl.value)
+	) {
+		cardNumberEl.classList.remove('focus-invalid');
+		errCardNr.classList.add('invisible');
+	}
+	// if anything else than number
+	if (/[^\d\s]+/.test(cardNumberEl.value)) {
+		cardNumberEl.value = cardNumberEl.value.slice(0, -1);
+		errCardNr.classList.remove('invisible');
+		cardNumberEl.classList.add('focus-invalid');
 	}
 });
 
 monthEl.addEventListener('keyup', () => {
 	cardMonth.textContent = monthEl.value;
+	// ! define regex in var
 	const monthValueValid = /01|02|03|04|05|06|07|08|09|10|11|12/.test(
 		monthEl.value,
 	);
@@ -151,3 +191,19 @@ cvcEl.addEventListener('keyup', () => {
 		cvcEl.classList.remove('focus-invalid');
 	}
 });
+
+// const inputElements = document.querySelectorAll('.card__form--input');
+
+// for (let inputBox of inputElements) {
+// 	if (inputBox.id === 'name') {
+// 		console.log('Found name!');
+// 	} else if (inputBox.id === 'card_number') {
+// 		console.log('Found card number!');
+// 	} else if (inputBox.id === 'expiry_month') {
+// 		console.log('Found expiry month!');
+// 	} else if (inputBox.id === 'expiry_year') {
+// 		console.log('Found expiry year!');
+// 	} else if (inputBox.id === 'cvc') {
+// 		console.log('Found cvc!');
+// 	}
+// }
