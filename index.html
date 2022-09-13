@@ -12,7 +12,9 @@
     <div class="img-con">
 			<div class="img-white"></div>
 			<div class="card img-back">
-				<span class="cvc">000</span>
+				<div class="cvc-con">
+          <span class="cvc">000</span>
+        </div>
 			</div>
 			<div class="card img-front">
 				<div class="content">
@@ -21,9 +23,11 @@
 						<span class="card-nr">0000 0000 0000 0000</span>
 						<div class="card-name-expiry">
 							<span class="card-name">JANE APPLESEED</span>
-							<span class="card-month">00</span>
-							<span class="card-slash">/</span>
-							<span class="card-year">00</span>
+              <div class="card-month-year-con">
+                <span class="card-month">00</span>
+                <span class="card-slash">/</span>
+                <span class="card-year">00</span>
+              </div>
 						</div>
 					</div>
 				</div>
@@ -31,7 +35,7 @@
 		</div>
 
     <section class="card__form--section">
-      <form action="" class="card__form" novalidate>
+      <form action="success.html" class="card__form" novalidate>
         <!-- name -->
         <div class="card__form--name-con">
           <label for="name" class="-block card__label">CARDHOLDER NAME</label>
@@ -69,13 +73,6 @@
         <!-- button -->
         <input type="submit" value="Confirm" class="card__form--btn">
       </form>
-    </section>
-
-    <section class="card__success">
-      <img src="images/icon-complete.svg" alt="check mark indicator">
-      <h1 class="thank-you">Thank you!</h1>
-      <p class="thank-you-desc">We've added your card details</p>
-      <button class="card__form--btn">Continue</button>
     </section>
 
   </main>

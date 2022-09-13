@@ -43,8 +43,8 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   display: grid;
-  grid-template-columns: 1fr 3fr 14fr 4fr 1fr;
-  grid-template-rows: 10% 28% 35% 0%;
+  grid-template-columns: 1fr 3fr 10fr 4fr 1fr;
+  grid-template-rows: 10% 27% 36% 30%;
   height: 25%;
 }
 
@@ -60,7 +60,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 1rem;
+  padding: 1.2rem;
   // padding-top: 0;
   height: 70%;
 }
@@ -77,6 +77,7 @@ body {
   grid-row: 2/3;
   position: relative;
   z-index: 1;
+  width: 100%;
 }
 
 .img-front {
@@ -92,7 +93,7 @@ body {
 
 
 .front-lower {
-  margin-top: 2rem;
+  margin-top: 2.6rem;
 }
 
 .front-logo {
@@ -112,20 +113,33 @@ body {
 
 .card-nr {
   font-size: 1.2rem;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
+}
+
+.cvc-con {
+  position: relative;
+  right: 0;
+  width: 292px;
+  height: 100%;
+  // background: red;
 }
 
 .cvc {
-  right: 40px;
   position: absolute;
-  top: 45%;
+  top: 70px;
+  right: 48px;
   font-size: .8rem;
 }
 
 .card-name-expiry, .cvc {
-  font-size: .7rem;
+  font-size: .6rem;
 }
 
+.card-name {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+// ? KEYDOWN / INPUTRA CSERELNI CARD NUMBERt
 
 // ! FORM // // // // // // // // // // // // // //
 
@@ -143,6 +157,7 @@ body {
 .card__form--section {
   padding: 1.5rem;
   padding-top: 0;
+  padding-bottom: 2rem;
 }
 
 .card__label {
@@ -159,6 +174,14 @@ body {
   display: block;
 }
 
+#name {
+  text-transform: uppercase;
+}
+
+::placeholder {
+  text-transform: none;
+}
+
 .card__form--input {
   padding: .9rem;
   width: 100%;
@@ -170,7 +193,8 @@ body {
 }
 
 .card__form--input::placeholder {
-  color: $brightTurquoise;
+  color: #d5d0d6;
+  // color: $brightTurquoise;
   font-family: $ff;
   font-size: 1.1rem;
 }
@@ -243,28 +267,29 @@ body {
   border: none;
 }
 
+.focus-invalid {
+  outline: 1px solid red;
+}
+
+.card-slash {
+  margin: 0 -.15rem;
+}
+
 // todo: Thank you!
 
 .card__success {
   padding: 1rem;
   text-align: center;
-  display: none;
+  // display: none;
 }
 
 .thank-you {
   text-transform: uppercase;
   letter-spacing: 6px;
   font-size: 2rem;
+  font-weight: 300;
 }
 
 .thank-you-desc {
   color: $amethystSmoke;
-}
-
-.card__form--input {
-  // background: $activeInputBorder;
-}
-
-.focus-invalid {
-  outline: 1px solid red;
 }
