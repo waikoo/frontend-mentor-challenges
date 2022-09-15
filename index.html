@@ -13,7 +13,7 @@
 			<div class="img-white"></div>
 			<div class="card img-back">
 				<div class="cvc-con">
-          <span class="cvc">000</span>
+          <span class="card-cvc">000</span>
         </div>
 			</div>
 			<div class="card img-front">
@@ -45,7 +45,7 @@
         <!-- number -->
         <div class="card__form--number-con">
           <label for="card_number" class="-block card__label">CARD NUMBER</label>
-          <input data-maxlength="19" id="card_number" type="tel" class="card__form--input limit-length" placeholder="e.g. 1234 5678 9123 0000">
+          <input data-maxlength="19" id="card_number" type="tel" class="card__form--input limit-length" placeholder="e.g. 1234 5678 9123 0000" contenteditable="true">
           <p class="error-msg error-number invisible">Wrong format, numbers only</p>
         </div>
         <!-- exp date -->
@@ -76,7 +76,7 @@
     </section>
 
   </main>
-  <script src="app.js"></script>
+  <script src="script/app.js" type="module"></script>
   </div>
 </body>
 </html>

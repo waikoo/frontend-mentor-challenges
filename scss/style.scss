@@ -43,9 +43,9 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   display: grid;
-  grid-template-columns: 1fr 3fr 10fr 4fr 1fr;
-  grid-template-rows: 10% 27% 36% 30%;
-  height: 25%;
+  grid-template-columns: 1fr 2fr 10fr 1fr 1fr;
+  grid-template-rows: 10% 28.5% 36% 30%;
+  height: 27%;
 }
 
 .card {
@@ -61,7 +61,6 @@ body {
   flex-direction: column;
   justify-content: space-between;
   padding: 1.2rem;
-  // padding-top: 0;
   height: 70%;
 }
 
@@ -77,7 +76,7 @@ body {
   grid-row: 2/3;
   position: relative;
   z-index: 1;
-  width: 100%;
+  width: 292px;
 }
 
 .img-front {
@@ -88,7 +87,6 @@ body {
   z-index: 2;
   width: 292px;
   box-shadow: 0 10px 22px 15px #2103331c;
-  // height: 245px;
 }
 
 
@@ -121,17 +119,16 @@ body {
   right: 0;
   width: 292px;
   height: 100%;
-  // background: red;
 }
 
-.cvc {
+.card-cvc {
   position: absolute;
-  top: 70px;
-  right: 48px;
+  top: 73px;
+  right: 38px;
   font-size: .8rem;
 }
 
-.card-name-expiry, .cvc {
+.card-name-expiry, .card-cvc {
   font-size: .6rem;
 }
 
@@ -139,19 +136,14 @@ body {
   text-transform: uppercase;
   letter-spacing: 1px;
 }
-// ? KEYDOWN / INPUTRA CSERELNI CARD NUMBERt
 
 // ! FORM // // // // // // // // // // // // // //
 
 .card__form--input:focus-visible {
-  // outline: none;
-  // border: none;
-  // outline: 2px solid $activeInputBorder;
-  // outline-color: $activeInputBorder !important;
+
   outline: 2px solid $activeInputBorder !important;
   outline: $activeInputBorder auto 1px;
-  // outline-width: 5px;
-  // border-width: 10px;
+
 }
 
 .card__form--section {
@@ -172,10 +164,6 @@ body {
 
 .-block {
   display: block;
-}
-
-#name {
-  text-transform: uppercase;
 }
 
 ::placeholder {
@@ -293,3 +281,91 @@ body {
 .thank-you-desc {
   color: $amethystSmoke;
 }
+
+@media (min-width: 800px) {
+  .main {
+    display: flex;
+    height: 100%;
+
+  }
+  .img-con {
+    width: 50vw;
+    background-image: url("../images/bg-main-desktop.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: grid;
+    grid-template-columns: 12% 10% 36% 45%;
+    grid-template-rows: auto 160px min(30px, 5%) 160px auto;
+    height: 100vh;
+    }
+
+    .img-white {
+      grid-column: 4/5;
+      grid-row: 1/-1;
+    }
+
+    .img-front {
+      grid-column: 2/4;
+      grid-row: 2/3;
+    }
+    .img-back {
+      grid-row: 4/5;
+    }
+
+    .card__form--section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
+
+    .card__form {
+      max-width: 380px;
+      margin: 0 auto;
+    }
+
+    .card__form--date-cvc-con {
+      justify-content: flex-end;
+    }
+
+    .card__form--input {
+      width: 100%;
+      padding: .6rem;
+      font-size: .9rem;
+    }
+
+    .card__form--btn {
+      padding: .8rem;
+      // width: 100%;
+    }
+
+    .card__form--btn:hover {
+      cursor: pointer;
+    }
+
+    .card__success {
+      display: grid;
+      align-content: center;
+      max-width: 400px;
+      grid-template-columns: 400px;
+    }
+
+    .card__success img {
+      justify-self: center;
+    }
+}
+
+// @media (min-width: 1000px) {
+//   .img-con {
+//     grid-template-columns: 15% 12% 30% 45%;
+//     grid-template-rows: auto max(auto, 25%) min(30px, 5%) min(auto, 25%) auto;
+//   }
+
+//   .img-front, .img-back {
+//     box-shadow: 0 10px 22px 15px #21033323;
+//   }
+
+  // .img-white {
+
+  // }
+// }
