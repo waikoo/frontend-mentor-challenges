@@ -93,7 +93,7 @@ const config = {
 const myChart = new Chart(document.getElementById('chart'), config);
 
 // update chart with data.json values
-function updateChart() {
+(function updateChart() {
 	async function fetchData() {
 		const url = './data.json';
 		const response = await fetch(url);
@@ -117,6 +117,4 @@ function updateChart() {
 		myChart.config.data.datasets[0].label = labels;
 		myChart.update();
 	});
-}
-
-updateChart();
+})();
