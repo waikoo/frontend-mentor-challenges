@@ -93,28 +93,47 @@ const config = {
 const myChart = new Chart(document.getElementById('chart'), config);
 
 // update chart with data.json values
-(function updateChart() {
+(async function updateChart() {
 	async function fetchData() {
 		const url = './data.json';
 		const response = await fetch(url);
 		const data = await response.json();
 		return data;
 	}
+	// method 1
+	const data = await fetchData();
 
-	fetchData().then(data => {
-		const days = data.map(day => {
-			return day.day;
-		});
-		const spendingData = data.map(amount => {
-			return amount.amount;
-		});
-		const labels = spendingData.map(amount => {
-			return '$' + amount;
-		});
-
-		myChart.config.data.labels = days;
-		myChart.config.data.datasets[0].data = spendingData;
-		myChart.config.data.datasets[0].label = labels;
-		myChart.update();
+	const days = data.map(day => {
+		return day.day;
 	});
+	const spendingData = data.map(amount => {
+		return amount.amount;
+	});
+	const labels = spendingData.map(amount => {
+		return '$' + amount;
+	});
+
+	myChart.config.data.labels = days;
+	myChart.config.data.datasets[0].data = spendingData;
+	myChart.config.data.datasets[0].label = labels;
+	myChart.update();
+
+	// method 2
+
+	// fetchData().then(data => {
+	//   const days = data.map(day => {
+	//     return day.day;
+	//   });
+	//   const spendingData = data.map(amount => {
+	//     return amount.amount;
+	//   });
+	//   const labels = spendingData.map(amount => {
+	//     return '$' + amount;
+	//   });
+
+	//   myChart.config.data.labels = days;
+	//   myChart.config.data.datasets[0].data = spendingData;
+	//   myChart.config.data.datasets[0].label = labels;
+	//   myChart.update();
+	// }
 })();

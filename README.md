@@ -32,18 +32,9 @@ Users should be able to:
 
 ![](./images/screenshot.png)
 
-Add a screenshot of your solution. The easiest way to do this is to use Firefox to view your project, right-click the page and select "Take a Screenshot". You can choose either a full-height screenshot or a cropped one based on how long the page is. If it's very long, it might be best to crop it.
-
-Alternatively, you can use a tool like [FireShot](https://getfireshot.com/) to take the screenshot. FireShot has a free option, so you don't need to purchase it.
-
-Then crop/optimize/edit your image however you like, add it to your project, and update the file path in the image above.
-
-**Note: Delete this note and the paragraphs above when you add your screenshot. If you prefer not to add a screenshot, feel free to remove this entire section.**
-
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Live Site URL: [Expenses chart component - waikoo](https://expenses-chart-component-olive.vercel.app/)
 
 ## My process
 
@@ -57,48 +48,105 @@ Then crop/optimize/edit your image however you like, add it to your project, and
 
 ### What I learned
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
+#### Chart.js
 
-To see how you can add code snippets, see below:
+I learned to use an external library - Chart.js - for the very first time in this challenge. I found out that the minified version of the CDN results in lower bandwidth. Some resources advise to use the `head`, while others to use it in the `body`. I tested both and decided to go with it being in the body right before the script for my main `*.js` file for clarity, for this project.
 
-```html
-<h1>Some HTML code I'm proud of</h1>
-```
+Customizing the default chart required heavy diving into the documentation, Googleing & (my own) Stack Overflowing (literally).
 
-```css
-.proud-of-this-css {
-	color: papayawhip;
-}
-```
+The provided JSON file being the source for the chart's values, following the journey of these values all the way to displaying those in the chart I came to a better understanding of how JavaScript closures work. This is also due to the fact that I'm trying to organize my logic into functions as much as I can, at least more than before, in order to get a more modular code and to make debugging easier.
+
+This project reinforced what I already knew, and filled in gaps about things I didn't know about objects, methods, return values, callbacks, closures due to the config object's structure you use to instantiate a new chart.
+
+#### Nightmares about returning values from an async function
+
+There was an earlier project I worked on where I was trying to use fetch in a function with premature understanding of closures, and I didn't know that the data it got from the API had to be returned by the function in order for me to use it in my code.
+
+This can be solved with:
+
+##### Method #1
 
 ```js
-const proudOfThisFunc = () => {
-	console.log('🎉');
-};
+async function fetchData() {
+		const url = './data.json';
+		const response = await fetch(url);
+		const data = await response.json();
+		return data;
 ```
 
-If you want more help with writing markdown, we'd recommend checking out [The Markdown Guide](https://www.markdownguide.org/) to learn more.
+But simply storing the return value of `fetchData()` in a variable gives an error. It's because in my case, the wrapper function, `updateChart()` had to be an async function too in order for this syntax to work:
 
-**Note: Delete this note and the content within this section and replace with your own learnings.**
+```js
+const data = await fetchData();
+```
+
+##### Method #2
+
+The other way of using returned data from an async function that I found is by using `.then()` and its callback, in which case the wrapper `updateChart()` function doesn't need to be async:
+
+```js
+fetchData().then(data => {
+	// work with - or display data
+});
+```
+
+So if I understand correctly, **I can only await the return of an async function within the scope of another async function.**
+
+#### Making elements accessible where the content is otherwise unknown
+
+I also found something cool through the documentation that I haven't seen implemented with an example that got the point across:
+
+```html
+<div class="chart-canvas-con">
+	<canvas aria-label="bar chart" role="img" id="chart"></canvas>
+</div>
+```
+
+#### Workflow milestone
+
+I realized it's way faster to:
+
+- Identify, Ctrl + Shift + C, click an element you want to change the CSS of
+- In DevTools you modify your rules by clicking on them, and use Alt + Up Arrow for decimal increase/decrease of value, Up Arrow only for whole unit changes
+- Or with FlexBox for example, you write `justify-content:` and the options immediately pop up for you to go through them with the arrow keys while the elements **change on the page** as you go over the selected values, so you see your changes live
+- Copy it over to VSCode
+- Repeat
+
+Than it is to change everything locally and think about how many increments should I go up or down in VSCode while still having to Ctrl + S to see any changes.
 
 ### Continued development
 
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
+In the future I would like to focus on not writing all the logic in the global scope but to have functions everywhere.
 
-**Note: Delete this note and the content within this section and replace with your own plans for continued development.**
+Where it makes sense I would like to write out helper functions to separate modules and import them as defaults into the main `app.js` file.
+
+```js
+const statement =
+	'This being my first `README.md` edit ever, I liked writing it so much that I might even go back to my previously uploaded FrontendMentor challenges to write a customized README for all of them.';
+
+function lieDetector(statement) {
+	if (statement === true) {
+		return 'All my previous FrontendMentor challenges have got customized README.mds.';
+	} else {
+		return 'I got carried away.';
+	}
+}
+
+const result = lieDetector(statement);
+```
 
 ### Useful resources
 
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
+- [Chart.js YouTube Channel](https://www.youtube.com/c/ChartJS-tutorials) - This channel is a goldmine for anyone wanting to learn Chart.js. The documentation is great, but from an implementation POV, I couldn't have completed this project without his videos.
 
-**Note: Delete this note and replace the list above with resources that helped you during the challenge. These could come in handy for anyone viewing your solution or for yourself when you look back on this project in the future.**
+- [StackOverflow - How to return value from async function](https://stackoverflow.com/questions/49938266/how-to-return-values-from-async-functions-using-async-await-from-function) - This helped me understand the other way of using the return value of an async function. I was getting the same `Promise { <pending> }` response in my console as well when the wrapper function wasn't async too.
+
+- [Chart.js Documentation - Accessibility](https://www.chartjs.org/docs/latest/general/accessibility.html) - This page in the Chart.js documentation helped me understand how could I make a `canvas` element accessible.
 
 ## Author
 
-- Website - [Add your name here](https://www.your-site.com)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
+- Frontend Mentor - [@waikoo](https://www.frontendmentor.io/profile/waikoo)
 
 ## Acknowledgments
 
-This is where you can give a hat tip to anyone who helped you out on this project. Perhaps you worked in a team or got some inspiration from someone else's solution. This is the perfect place to give them some credit.
+My wife.
