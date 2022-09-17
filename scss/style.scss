@@ -6,6 +6,32 @@ $MediumBrown: hsl(28, 10%, 53%);
 $Cream: hsl(27, 66%, 92%);
 $VeryPaleOrange: hsl(33, 100%, 98%);
 
+$fw-bold: 800;
+
+/* lato-regular - latin */
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: local(''),
+    url('../fonts/lato-v23-latin-regular.woff2') format('woff2'),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+    url('../fonts/lato-v23-latin-regular.woff') format('woff');
+  /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/* lato-900 - latin */
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 900;
+  src: local(''),
+    url('../fonts/lato-v23-latin-900.woff2') format('woff2'),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+    url('../fonts/lato-v23-latin-900.woff') format('woff');
+  /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -32,7 +58,7 @@ body {
 .balance-con {
   background: $barRed;
   color: $VeryPaleOrange;
-  padding: 1.5rem 1rem;
+  padding: 1.5rem;
   padding-right: 1.5rem;
   display: flex;
   justify-content: space-between;
@@ -51,7 +77,7 @@ body {
 }
 
 .balance--value {
-  font-weight: 800;
+  font-weight: $fw-bold;
   font-size: 1.2rem;
 }
 
@@ -71,25 +97,32 @@ body {
   height: auto;
 }
 
+.chart-canvas-con {
+  position: relative;
+  margin: 0 auto;
+  max-width: 300px;
+  height: 200px;
+}
+
 .chart-con {
   background: $VeryPaleOrange;
 }
 
 .chart-con {
   margin-top: 1rem;
-  padding: 1rem;
+  padding: 1.5rem;
   border-radius: 10px;
 }
 
 .chart-title {
-  font-size: 1.5rem;
-  font-weight: 800;
+  font-size: 1.4rem;
+  font-weight: $fw-bold;
+  margin: 0 0 2rem;
 }
 
 #chart {
   border-bottom: 1px solid rgba(165, 116, 42, 0.301);
   padding-bottom: 1rem;
-  // height: 200px;
 }
 
 .chart-bottom-con {
@@ -111,16 +144,35 @@ body {
 }
 
 .chart-total-value {
-  font-weight: 800;
+  font-weight: $fw-bold;
   font-size: 1.5rem;
 }
 
-.chart-bottom-con {
-  // align-self: end;
-}
-
 .chart-percentage {
-  font-weight: 800;
+  font-weight: $fw-bold;
   font-size: .8rem;
   align-self: end;
+}
+
+@media (min-width: 600px) {
+  .chart-canvas-con {
+      max-width: 350px;
+      height: 150px;
+    }
+
+    .chart-con {
+      background: $VeryPaleOrange;
+    }
+
+  .chart-total-value {
+    font-size: 2.2rem;
+  }
+
+  .chart-total-label {
+    align-self: flex-start;
+  }
+
+  .balance--value {
+    font-size: 1.3rem;
+  }
 }

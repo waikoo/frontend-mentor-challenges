@@ -1,11 +1,7 @@
-// setup
-// const labelChart = '$';
-
 const data = {
 	labels: [], // DAY
 	datasets: [
 		{
-			label: '',
 			data: [], // AMOUNT
 			backgroundColor: [
 				'hsl(10, 79%, 65%)',
@@ -16,24 +12,27 @@ const data = {
 				'hsl(10, 79%, 65%)',
 				'hsl(10, 79%, 65%)',
 			],
+			hoverBackgroundColor: [
+				'#ff9b87',
+				'#ff9b87',
+				'#b4dfe5',
+				'#ff9b87',
+				'#ff9b87',
+				'#ff9b87',
+				'#ff9b87',
+			],
 			borderWidth: 0,
 			borderRadius: 4,
 		},
 	],
 };
 
-// tooltip
-// const titleTooltip = tooltipItems => {
-// 	return labelTooltip;
-// };
-// const charBeforeLabel = tooltipItems => {
-// 	return labelChart;
-// };
-// config
 const config = {
 	type: 'bar',
 	data,
 	options: {
+		responsive: true,
+		maintainAspectRatio: false,
 		onHover: (event, chartElement) => {
 			if (chartElement.length === 1) {
 				event.native.target.style.cursor = 'pointer';
@@ -49,6 +48,11 @@ const config = {
 					drawOnChartArea: false,
 					drawTicks: false,
 					drawBorder: false,
+				},
+				title: {
+					padding: {
+						top: 20,
+					},
 				},
 			},
 			y: {
@@ -73,7 +77,6 @@ const config = {
 						return '';
 					},
 					label: context => {
-						console.log(context);
 						return `$${context.formattedValue}`;
 					},
 				},
@@ -85,9 +88,11 @@ const config = {
 		},
 	},
 };
+
 // render init
 const myChart = new Chart(document.getElementById('chart'), config);
 
+// update chart with data.json values
 function updateChart() {
 	async function fetchData() {
 		const url = './data.json';
@@ -106,7 +111,7 @@ function updateChart() {
 		const labels = spendingData.map(amount => {
 			return '$' + amount;
 		});
-		console.log(spendingData);
+
 		myChart.config.data.labels = days;
 		myChart.config.data.datasets[0].data = spendingData;
 		myChart.config.data.datasets[0].label = labels;
