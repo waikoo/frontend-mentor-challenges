@@ -56,11 +56,11 @@ Customizing the default chart required heavy diving into the documentation, Goog
 
 The provided JSON file being the source for the chart's values, following the journey of these values all the way to displaying those in the chart I came to a better understanding of how JavaScript closures work. This is also due to the fact that I'm trying to organize my logic into functions as much as I can, at least more than before, in order to get a more modular code and to make debugging easier.
 
-This project reinforced what I already knew, and filled in gaps about things I didn't know about objects, methods, return values, callbacks, closures due to the config object's structure you use to instantiate a new chart.
+This project reinforced what I already knew, and filled in gaps about things I didn't know about objects, methods, return values, callbacks, closures due to the config object's structure you use to instantiate a new chart with Chart.js.
 
 #### Nightmares about returning values from an async function
 
-There was an earlier project I worked on where I was trying to use fetch in a function with premature understanding of closures, and I didn't know that the data it got from the API had to be returned by the function in order for me to use it in my code.
+There was an earlier project I worked on where I was trying to use fetch in a function with a premature understanding of closures, and I didn't know that the data it got from the API had to be returned by the function in order for me to use it in my code.
 
 This can be solved with:
 
@@ -68,10 +68,11 @@ This can be solved with:
 
 ```js
 async function fetchData() {
-		const url = './data.json';
-		const response = await fetch(url);
-		const data = await response.json();
-		return data;
+	const url = './data.json';
+	const response = await fetch(url);
+	const data = await response.json();
+	return data;
+}
 ```
 
 But simply storing the return value of `fetchData()` in a variable gives an error. It's because in my case, the wrapper function, `updateChart()` had to be an async function too in order for this syntax to work:
