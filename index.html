@@ -1,51 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content="A frontendmentor.io challenge" />
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="32x32"
+			href="./images/favicon-32x32.png"
+		/>
+		<link rel="stylesheet" href="css/style.css" />
+		<title>Frontend Mentor | Notifications page</title>
+	</head>
+	<body>
+		<main class="notifications">
+			<header class="header">
+				<div class="header-left">
+					<h1 class="header-title">Notifications</h1>
+					<div class="header-number-con">
+						<span class="header-number">3</span>
+					</div>
+				</div>
+				<div class="header-right">
+					<span class="header-mark-as thin-mid-grey">Mark all as read</span>
+				</div>
+			</header>
+			<div class="body">
+				<!-- ! MARK -->
+				<section class="mark active notification-con">
+					<div class="profile-pic-con">
+						<img
+							class="profile-pic"
+							src="/assets/images/avatar-mark-webber.webp"
+							alt="A man in a beanie shouting with closed eyes"
+						/>
+					</div>
+					<div class="mark right">
+						<p class="mark-p notif-action thin-mid-grey">
+							<span class="mark-name notif-name">Mark Webber</span>
+							reacted to your recent post
+							<span class="notif-post">My first tournament today!</span>
+							<span class="unread-icon"></span>
+						</p>
+						<span class="notif-time">1m ago</span>
+					</div>
+				</section>
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | Notifications page</title>
+				<!-- ! ANGELA -->
+				<section class="angela active notification-con">
+					<div class="profile-pic-con">
+						<img
+							class="profile-pic"
+							src="/assets/images/avatar-angela-gray.webp"
+							alt="A woman in business attire smiling into the camera"
+						/>
+					</div>
+					<div class="angela right">
+						<p class="angela-p notif-action thin-mid-grey">
+							<span class="angela-name notif-name">Angela Gray</span>
+							followed you
+							<span class="unread-icon"></span>
+						</p>
+						<span class="notif-time">5m ago</span>
+					</div>
+				</section>
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
-</head>
-<body>
+				<!-- ! JACOB -->
+				<section class="jacob active notification-con">
+					<div class="profile-pic-con">
+						<img
+							class="profile-pic"
+							src="/assets/images/avatar-jacob-thompson.webp"
+							alt="A man in a white t-shirt with greenery in the background"
+						/>
+					</div>
+					<div class="jacob right">
+						<p class="jacob-p notif-action thin-mid-grey">
+							<span class="jacob-name notif-name">Jacob Gray</span>
+							has joined your group
+							<span class="notif-chess">Chess Club</span>
+							<span class="unread-icon"></span>
+						</p>
+						<span class="notif-time">1 day ago</span>
+					</div>
+				</section>
 
-  Notifications 3
+				<!-- ! RIZKY -->
+				<section class="rizky notification-con">
+					<div class="profile-pic-con">
+						<img
+							class="profile-pic"
+							src="/assets/images/avatar-rizky-hasanuddin.webp"
+							alt="A man in a white t-shirt with greenery in the background"
+						/>
+					</div>
+					<div class="rizky right">
+						<p class="rizky-p notif-action thin-mid-grey">
+							<span class="rizky-name notif-name">Rizky Hasanuddin</span>
+							sent you a private message
+						</p>
+						<span class="notif-time">5 day ago</span>
+						<p class="rizky-message">
+							Hello, thanks for setting up the Chess Club. I've been a member
+							for a few weeks now and I'm already having lots of fun and
+							improving my game.
+						</p>
+					</div>
+				</section>
 
-  Mark all as read
+				<!-- ! KIMBERLY -->
+				<section class="kimberly notification-con">
+					<div class="kimberly-text-con">
+						<div class="profile-pic-con">
+							<img
+								class="profile-pic"
+								src="/assets/images/avatar-kimberly-smith.webp"
+								alt="A woman behind a green blob staring into the camera"
+							/>
+						</div>
+						<div class="kimberly right">
+							<p class="kimberly-p notif-action thin-mid-grey">
+								<span class="kimberly-name notif-name">Kimberly Smith</span>
+								commented on your picture
+							</p>
+							<span class="notif-time">1 week ago</span>
+						</div>
+					</div>
+					<span class="kimberly-img-con">
+						<img
+							class="kimberly-img"
+							src="assets/images/image-chess.webp"
+							alt="A woman supporting herself on the back of her hand looking towards chess pieces"
+						/>
+					</span>
+				</section>
 
-  Mark Webber reacted to your recent post My first tournament today!
-  1m ago
+				<!-- ! NATHAN -->
+				<section class="nathan notification-con">
+					<div class="profile-pic-con">
+						<img
+							class="profile-pic"
+							src="/assets/images/avatar-nathan-peterson.webp"
+							alt="A man with closed eyes in glasses and a turtleneck shirt"
+						/>
+					</div>
+					<div class="nathan right">
+						<p class="nathan-p notif-action thin-mid-grey">
+							<span class="nathan-name notif-name">Nathan Peterson</span>
+							reacted to your recent post
+							<span class="notif-post"
+								>5 end-game strategies to increase your win rate</span
+							>
+						</p>
+						<span class="notif-time">2 weeks ago</span>
+					</div>
+				</section>
 
-  Angela Gray followed you
-  5m ago
+				<!-- ! ANNA -->
+				<section class="anna notification-con">
+					<div class="profile-pic-con">
+						<img
+							class="profile-pic"
+							src="/assets/images/avatar-anna-kim.webp"
+							alt="A woman with closed eyes holding her headphones"
+						/>
+					</div>
+					<div class="anna right">
+						<p class="anna-p notif-action thin-mid-grey">
+							<span class="anna-name notif-name">Anna Kim</span>
+							left the group <span class="notif-chess">Chess Club</span>
+						</p>
+						<span class="notif-time">2 weeks ago</span>
+					</div>
+				</section>
+			</div>
+		</main>
 
-  Jacob Thompson has joined your group Chess Club
-  1 day ago
-
-  Rizky Hasanuddin sent you a private message
-  5 days ago
-  Hello, thanks for setting up the Chess Club. I've been a member for a few weeks now and 
-  I'm already having lots of fun and improving my game.
-
-  Kimberly Smith commented on your picture
-  1 week ago
-
-  Nathan Peterson reacted to your recent post 5 end-game strategies to increase your win rate
-  2 weeks ago
-
-  Anna Kim left the group Chess Club
-  2 weeks ago
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div>
-</body>
+		<script src="app.js" type="module"></script>
+	</body>
 </html>

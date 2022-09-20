@@ -1,0 +1,230 @@
+// Plus Jakarta Sans - 500
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  src: url('/assets/fonts/static/PlusJakartaSans-Medium.ttf') format('truetype');
+  font-weight: 500;
+}
+// Plus Jakarta Sans - 800
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  src: url('/assets/fonts/static/PlusJakartaSans-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+}
+
+$ff: 'Plus Jakarta Sans';
+
+$body: hsl(228, 71%, 99%);
+
+$Carnation: hsl(1, 90%, 64%);
+$CatalinaBlue: hsl(219, 85%, 26%); //
+$White: hsl(0, 0%, 100%);
+$Polar: hsl(210, 60%, 98%);
+$LinkWater: hsl(211, 68%, 94%);
+$Botticelli: hsl(205, 33%, 90%);
+$ShuttleGray: hsl(219, 12%, 42%); //
+$Manatee: hsl(219, 14%, 63%);     //
+$EbonyClay: hsl(224, 21%, 14%);   //
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+height: 100%;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  font-family: $ff;
+  font-size: 16px;
+}
+
+// Typography
+
+.notifications {
+  background: $White;
+}
+
+.header-title {
+  font-size: 1.3rem;
+  color: $EbonyClay;
+}
+
+.header-number {
+  color: white;
+  background: $CatalinaBlue;
+  padding: .12rem .7rem;
+  font-weight: 800;
+  border-radius: 5px;
+}
+
+.notif-name {
+  font-weight: 800;
+  color: $EbonyClay;
+}
+
+.thin-mid-grey {
+  color: $ShuttleGray;
+}
+
+.notif-time {
+  color: $Manatee;
+}
+
+.notif-post {
+  font-weight: 800;
+}
+
+.unread-icon {
+  width: 8px;
+  height: 8px;
+  background: $Carnation;
+  border-radius: 50%;
+}
+
+.notif-chess {
+  color: $CatalinaBlue;
+  font-weight: 800;
+}
+
+.rizky-message {
+  font-weight: 500;
+  color: $ShuttleGray;
+  border: 1px solid $Botticelli;
+  padding: 1rem;
+}
+
+.header-mark-as,
+.rizky-message,
+.notif-time,
+.notif-action {
+  font-size: .9rem;
+}
+
+// Layout
+
+.notifications {
+  padding: .7rem 1rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.header-number {
+  margin-left: .5rem;
+}
+
+.active {
+  background: #f6fafd;
+}
+
+section {
+  border-radius: 5px;
+  margin-top: .7rem;
+  // max-width: 330px;
+}
+
+.notification-con {
+  display: flex;
+  padding: 1rem;
+}
+
+.profile-pic {
+  display: block;
+  width: 40px;
+  height: auto;
+}
+
+.notif-name, .header-mark-as, .notif-post, .notif-chess, .rizky-message, .kimberly-img {
+  cursor: pointer;
+}
+
+.notif-name {
+  margin-right: .2rem;
+}
+
+.notif-action {
+  margin: 0;
+  line-height: 1.2;
+}
+.notif-time, .notif-action {
+  margin-left: 1rem;
+}
+
+.unread-icon {
+  display: inline-block;
+  margin-left: .2rem;
+}
+
+.notif-time {
+  display: block;
+  margin-top: .2rem;
+}
+
+.kimberly-img {
+  display: block;
+  width: 40px;
+  height: auto;
+  margin-left: 1rem;
+}
+
+.rizky-message {
+  margin-bottom: 0;
+  margin-left: 1rem;
+}
+
+.rizky-message:hover {
+  background: $Botticelli;
+  background: $LinkWater;
+}
+
+.invisible {
+  display: none;
+}
+
+.kimberly-text-con {
+  justify-self: flex-start;
+}
+
+.kimberly-img-con {
+  justify-self: flex-end;
+}
+
+.kimberly {
+  align-items: normal;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.kimberly-text-con {
+  display: flex;
+}
+
+@media (min-width: 660px) {
+  body {
+    background: $Polar;
+    display: grid;
+    place-items: center;
+  }
+
+  .notifications {
+    max-width: 660px;
+    border-radius: 10px;
+    padding: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+
+
+}
