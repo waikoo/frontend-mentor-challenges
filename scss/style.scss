@@ -1,0 +1,261 @@
+/* epilogue-500 - latin */
+@font-face {
+  font-family: 'Epilogue';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: local(''),
+  url('../assets/fonts/epilogue-v13-latin-500.woff2') format('woff2'),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+    url('../assets/fonts/epilogue-v13-latin-500.woff') format('woff');
+  /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/* epilogue-700 - latin */
+@font-face {
+  font-family: 'Epilogue';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local(''),
+    url('../assets/fonts/epilogue-v13-latin-700.woff2') format('woff2'),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+    url('../assets/fonts/epilogue-v13-latin-700.woff') format('woff');
+  /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+$ff: 'Epilogue', sans-serif;
+
+$GraniteGray: hsl(0, 0%, 41%);
+$Alabaster: hsl(0, 0%, 98%);
+$EerieBlack: hsl(0, 0%, 8%);
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  // width: 100%;
+}
+
+body {
+  height: 100%;
+  width: 100vw;
+  margin: 0;
+  font-family: $ff;
+  font-size: 18px;
+}
+
+header {
+  // background: $Alabaster;
+  display: flex;
+  flex-grow: 0;
+  justify-content: space-between;
+  color: $GraniteGray;
+  font-weight: 700;
+  padding: 1.5rem 1rem;
+  // position: fixed;
+  // width: 80vw;
+  // height: max-content;
+  // background: red;
+}
+
+.menu-item, .menu-item:focus, .menu-item:active {
+  // color: none;
+  color: inherit;
+  text-decoration: none;
+}
+
+.nav-con {
+  // background: red;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo {
+  // width: 100px;
+  // height: auto;
+}
+
+.hamburger {
+  width: 9vw;
+  height: 2.7vh;
+  cursor: pointer;
+  position: relative;
+  z-index: 1000;
+}
+
+.main-nav {
+  position: fixed;
+  height: 100vh;
+  width: 70vw;
+  background: $Alabaster;
+  top: 0;
+  right: 0;
+  z-index: 999;
+  animation: slide-in 400ms forwards;
+}
+
+.main-nav::backdrop {
+  background:hsla(0, 0%, 8%, 10%);
+}
+
+.company, .features {
+  cursor: pointer;
+}
+
+.features-con {
+  margin-top: 5rem;
+}
+
+.features-con, .company-con {
+  margin-bottom: 1rem;
+}
+
+.features-ul-con, .company-ul-con {
+  margin: 1.5rem 0;
+}
+.features-li-con, .company-li-con {
+  margin-bottom: 1rem;
+}
+.features-li {
+  margin-left: .6rem;
+}
+
+.menu-li {
+  margin-bottom: 1rem;
+}
+
+ul {
+  padding-left: 1.5rem;
+  list-style: none;
+}
+
+.nav-access button {
+  color: $GraniteGray;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 1rem;
+  background: $Alabaster;
+  font-weight: 700;
+}
+
+.nav-access button {
+  cursor: pointer;
+  width: 80%;
+}
+
+.login {
+  border: none;
+}
+
+.register {
+  border: none;
+  border: 2px solid grey;
+  border-radius: 10px;
+  padding: .6rem;
+}
+
+
+main h1 {
+  font-weight: 700;
+}
+
+main p {
+  color: $GraniteGray;
+  text-align: center;
+}
+
+.cta {
+
+  color: $Alabaster;
+  background: $EerieBlack;
+  text-decoration: none;
+  border-radius: 14px;
+  padding: .9rem 1.5rem .75rem;
+  font-size: .98rem;
+  font-weight: 700;
+  margin-top: .5rem;
+}
+
+.main-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+footer {
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
+.companies {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding-left: 0;
+}
+
+.companies li img {
+  width: 4.5rem;
+}
+
+.ft-logo {
+
+}
+
+.invisible {
+  display: none;
+}
+
+.features-con, .company-con {
+  cursor: pointer;
+}
+
+.hero-img {
+  width: 100%;
+}
+
+.main-text h1 {
+  font-size: 2.2rem;
+  margin: 0;
+  margin-top: 1.6rem;
+  margin-bottom: .5rem;
+}
+
+.main-text p {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.main-text {
+  padding: 1rem;
+}
+
+.x-style {
+  width: 20px;
+  height: 20px;
+}
+
+.darken {
+  // box-shadow: 0 100px 500px 300px black;
+  box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.83);
+}
+
+#audiophile {
+  width: 50px;
+  height: auto;
+}
+
+#meet {
+  width: 55px;
+  height: auto;
+}
+
+#maker {
+  width: 53px;
+  height: auto;
+
+}
