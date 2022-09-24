@@ -8,16 +8,158 @@
 			rel="icon"
 			type="image/png"
 			sizes="32x32"
-			href="./images/favicon-32x32.png"
+			href="./assets/images/favicon-32x32.png"
 		/>
 		<link rel="stylesheet" href="css/style.css" />
 		<title>Frontend Mentor | Intro section with dropdown navigation</title>
 	</head>
 	<body>
-		Features Company Careers About Login Register Make remote work Get your
-		team in sync, no matter your location. Streamline processes, create team
-		rituals, and watch productivity soar. Learn more
-
+		<header>
+			<div class="nav-con">
+				<a href="index.html">
+					<img
+						class="logo"
+						src="assets/images/logo.svg"
+						alt="snap company logo"
+						width="84"
+						height="27"
+					/>
+				</a>
+				<img
+					class="hamburger"
+					src="assets/images/icon-menu.svg"
+					alt="hamburger menu"
+				/>
+			</div>
+			<nav class="main-nav invisible">
+				<ul class="main-ul">
+					<li class="main-li">
+						<div class="nav-dropdown">
+							<div class="features-con">
+								<span class="features">Features</span>
+								<img class="arrow" src="assets/images/icon-arrow-down.svg" />
+							</div>
+							<ul class="features-ul-con invisible">
+								<li class="features-li-con">
+									<img src="assets/images/icon-todo.svg" />
+									<span class="features-li">Todo List</span>
+								</li>
+								<li class="features-li-con">
+									<img src="assets/images/icon-calendar.svg" />
+									<span class="features-li">Calendar</span>
+								</li>
+								<li class="features-li-con">
+									<img src="assets/images/icon-reminders.svg" />
+									<span class="features-li">Reminders</span>
+								</li>
+								<li class="features-li-con">
+									<img src="assets/images/icon-planning.svg" />
+									<span class="features-li">Planning</span>
+								</li>
+							</ul>
+						</div>
+					</li>
+					<li class="main-li">
+						<div class="nav-dropdown">
+							<div class="company-con">
+								<span class="company">Company</span>
+								<img class="arrow" src="assets/images/icon-arrow-down.svg" />
+							</div>
+							<ul class="company-ul-con invisible">
+								<li class="company-li-con">
+									<span class="company-li">History</span>
+								</li>
+								<li class="company-li-con">
+									<span class="company-li">Our Team</span>
+								</li>
+								<li class="company-li-con">
+									<span class="company-li">Blog</span>
+								</li>
+							</ul>
+						</div>
+					</li>
+					<li class="menu-li"><a class="menu-item" href="#">Careers</a></li>
+					<li class="menu-li"><a class="menu-item" href="#">About</a></li>
+				</ul>
+				<section class="nav-access">
+					<button class="login">Login</button>
+					<button class="register">Register</button>
+				</section>
+			</nav>
+		</header>
+		<div class="center">
+			<main>
+				<picture>
+					<source
+						srcset="assets/images/image-hero-desktop.webp"
+						media="(min-width: 550px)"
+					/>
+					<source
+						srcset="assets/images/image-hero-desktop.png"
+						media="(min-width: 550px)"
+					/>
+					<source
+						srcset="assets/images/image-hero-mobile.webp"
+						media="(max-width: 549)"
+					/>
+					<img
+						src="assets/images/image-hero-mobile.png"
+						alt="A man looking at and holding a laptop with one hand, his other being on the touchpad"
+						class="hero-img"
+						fetchpriority="high"
+					/>
+				</picture>
+				<div class="main-left">
+					<section class="main-text">
+						<h1>Make <span>remote work</span> </h1>
+						<p
+							>Get your team in sync, no matter your location. Streamline
+							processes, create team rituals, and watch productivity soar.</p
+						>
+						<a class="cta" href="#">Learn more</a>
+						<footer>
+							<ul class="companies">
+								<li
+									><img
+										class="ft-logo"
+										src="assets/images/client-databiz.svg"
+										alt="databiz company logo"
+										width="114"
+										height="20"
+								/></li>
+								<li
+									><img
+										id="audiophile"
+										class="ft-logo"
+										src="assets/images/client-audiophile.svg"
+										alt="audiophile company logo"
+										width="73"
+										height="36"
+								/></li>
+								<li
+									><img
+										id="meet"
+										class="ft-logo"
+										src="assets/images/client-meet.svg"
+										alt="meet company logo"
+										width="90"
+										height="20"
+								/></li>
+								<li
+									><img
+										id="maker"
+										class="ft-logo"
+										src="assets/images/client-maker.svg"
+										alt="maker company logo"
+										width="90"
+										height="20"
+								/></li>
+							</ul>
+						</footer>
+					</section>
+				</div>
+			</main>
+		</div>
 		<script src="app.js"></script>
 	</body>
 </html>
