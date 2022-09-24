@@ -28,11 +28,11 @@ Users should be able to:
 
 ### Screenshot
 
-![](./screenshot.jpg)
+![](./images/screenshot.png)
 
 ### Links
 
-- Live Site URL: [Click here](url)
+- Live Site URL: [Click here](https://advice-generator-app-roan.vercel.app/)
 
 ## My process
 
