@@ -45,7 +45,7 @@ Users should be able to:
 
 ### What I learned
 
-I learned that it's better to check out how to build a working (HTML) structure than nail one on your own without much knowledge.
+I practiced what I already knew and first I duplicated the `fetchAndDisplayAdvice` function to have it as an IIFE as soon as the page loads, then tried out just deleting it and calling the regular function definition, then I ended up deciding to attach an event listener to `DOMContentLoaded`.
 
 ## Author
 
