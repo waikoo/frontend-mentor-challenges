@@ -1,0 +1,95 @@
+$Botticelli: hsl(193, 38%, 86%);
+$ScreaminGreen: hsl(150, 100%, 66%);
+$OxfordBlue: hsl(217, 19%, 24%);
+$BlackCoralPearl:hsl(217, 19%, 38%);
+$EbonyClay: hsl(218, 23%, 16%);
+
+$ff: 'Manrope', sans-serif;
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+height: 100%;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  font-family: $ff;
+  font-size: 28px;
+  background: $EbonyClay;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  border-radius: 10px;
+  color: $Botticelli;
+  font-weight: 800;
+  background: $OxfordBlue;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding: 1.5rem;
+  position: relative;
+  padding-bottom: 2rem;
+  max-width: 400px;
+}
+
+.card-title {
+  color: $ScreaminGreen;
+  font-size: .8rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  padding-top: 1rem;
+}
+
+.dice-con {
+  background: $ScreaminGreen;
+  border-radius: 50%;
+  width: 65px;
+  margin: 0 auto;
+  height: 65px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  // margin: 0 auto;
+  bottom: -2rem;
+  cursor: pointer;
+}
+
+.dice-con:hover {
+  box-shadow: 0 0 20px 10px hsla(150, 100%, 66%, 0.454);
+}
+
+.divider {
+  padding-bottom: 1.5rem;
+}
+
+@media (min-width: 800px) {
+  .card {
+    font-size: 1.2rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .card {
+    max-width: 500px;
+  }
+
+  .card-title {
+    font-size: .8rem;
+  }
+
+  #advice {
+    font-size: 1.8rem;
+  }
+}

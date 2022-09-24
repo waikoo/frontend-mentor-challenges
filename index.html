@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content="A frontendmentor.io challenge" />
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="32x32"
+			href="./images/favicon-32x32.png"
+		/>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Manrope:wght@800&display=swap"
+			rel="stylesheet"
+		/>
+		<title>Frontend Mentor | Advice generator app</title>
+		<link rel="stylesheet" href="css/style.css" />
+	</head>
+	<body>
+		<main class="card">
+			<span class="card-title">Advice #<span id="id"></span></span>
+			<p id="advice"></p>
+			<picture>
+				<source
+					media="(min-width: 800)"
+					srcset="images/pattern-divider-desktop.svg"
+				/>
+				<img class="divider" src="images/pattern-divider-mobile.svg" alt="" />
+			</picture>
+			<div class="dice-con">
+				<img class="dice" src="images/icon-dice.svg" alt="" />
+			</div>
+		</main>
+
+		<script src="app.js"></script>
+	</body>
+</html>
