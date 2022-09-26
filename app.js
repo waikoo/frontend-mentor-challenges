@@ -6,7 +6,7 @@ function $$(classSelector) {
 	return document.getElementsByClassName(classSelector);
 }
 
-function generateWeeklyDataHtml(i) {
+function generateTemplateCardHtml(i) {
 	return `
   <div class="card card${i} card-template">
 					<section class="text">
@@ -23,22 +23,16 @@ function generateWeeklyDataHtml(i) {
   `;
 }
 
-// handle initial draw
 (function () {
+	// draw 6 cards
 	for (let i = 1; i < 7; i++) {
-		$('.cards-con').innerHTML += generateWeeklyDataHtml(i);
+		$('.cards-con').innerHTML += generateTemplateCardHtml(i);
 	}
-
+	// add eventlisteners
 	for (let timespan of $$('timespan')) {
 		timespan.addEventListener('click', function () {
 			selectTimespan(this);
 		});
-
-		if (timespan.dataset.isSelected === '1') {
-			getAllStats().then(allStats => {
-				displayStats(timespan, allStats);
-			});
-		}
 	}
 	$('.weekly').click();
 })();
@@ -48,11 +42,19 @@ async function getAllStats() {
 	return await response.json();
 }
 
+function handleClick(selected) {
+	getAllStats().then(allStats => {
+		console.log(selected);
+		displayController(selected, allStats);
+	});
+}
+
 function selectTimespan(selected) {
 	for (let timespan of $$('timespan')) {
 		if (timespan === selected) {
 			timespan.dataset.isSelected = '1';
 			timespan.classList.add('selected');
+			handleClick(selected);
 		} else {
 			timespan.dataset.isSelected = '0';
 			timespan.classList.remove('selected');
@@ -60,36 +62,54 @@ function selectTimespan(selected) {
 	}
 }
 
-function displayStats(frequency, allStats) {
-	if (frequency.textContent === 'Daily') {
-		console.log(frequency.textContent);
-		// call displayDailyStats(allStats)
+function displayController(selected, allStats) {
+	if (selected.textContent === 'Daily') {
+		displayStats(allStats, 'daily');
 	}
 
-	if (frequency.textContent === 'Weekly') {
-		displayWeeklyStats(allStats);
+	if (selected.textContent === 'Weekly') {
+		displayStats(allStats, 'weekly');
 	}
 
-	if (frequency.textContent === 'Monthly') {
-		// call displayMonthlyStats(allStats)
+	if (selected.textContent === 'Monthly') {
+		displayStats(allStats, 'monthly');
 	}
 }
 
-function displayWeeklyStats(allStats) {
+function displayStats(allStats, selectedString) {
 	for (let card of $$('card-template')) {
 		for (let i = 0; i <= $$('card-template').length; i++) {
 			if (card.classList.contains(`card${i + 1}`)) {
-				outputWeekly(allStats, card, i);
+				outputStats(allStats, card, i, selectedString);
 			}
 		}
 	}
 }
 
-function outputWeekly(allStats, card, i) {
-	console.log(allStats);
+function outputStats(allStats, card, i, selectedString) {
+	console.log(selectedString);
+	console.log(allStats[0]['timeframes']['daily']);
+	console.log(allStats[0].timeframes['daily']);
 
 	card.firstElementChild.firstElementChild.firstElementChild.textContent =
 		allStats[i].title;
-	card.firstElementChild.firstElementChild.lastElementChild.textContent = `${allStats[i].timeframes.weekly.current}hrs`;
-	card.firstElementChild.lastElementChild.lastElementChild.textContent = `Last Week - ${allStats[i].timeframes.weekly.previous}hrs`;
+	card.firstElementChild.firstElementChild.lastElementChild.textContent = `${allStats[i].timeframes[selectedString].current}hrs`;
+	card.firstElementChild.lastElementChild.lastElementChild.textContent = `Last Week - ${allStats[i].timeframes[selectedString].previous}hrs`;
 }
+
+// function outputDaily(allStats, card, i) {
+// 	card.firstElementChild.firstElementChild.firstElementChild.textContent =
+// 		allStats[i].title;
+// 	card.firstElementChild.firstElementChild.lastElementChild.textContent = `${allStats[i].timeframes.daily.current}hrs`;
+// 	card.firstElementChild.lastElementChild.lastElementChild.textContent = `Yesterday - ${allStats[i].timeframes.daily.previous}hrs`;
+// }
+
+// // prefix
+// // timeframes.
+
+// function outputMonthly(allStats, card, i) {
+// 	card.firstElementChild.firstElementChild.firstElementChild.textContent =
+// 		allStats[i].title;
+// 	card.firstElementChild.firstElementChild.lastElementChild.textContent = `${allStats[i].timeframes.monthly.current}hrs`;
+// 	card.firstElementChild.lastElementChild.lastElementChild.textContent = `Last Month - ${allStats[i].timeframes.monthly.previous}hrs`;
+// }
