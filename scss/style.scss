@@ -110,9 +110,6 @@ main {
   height: 100px;
 }
 
-// .card-template:nth-of-type(1) {
-//   margin-top: .5rem;
-// }
 .cards-con {
   margin: .5rem 0rem;
   padding-bottom: 5.4rem;
@@ -212,11 +209,8 @@ main {
   color: white;
 }
 
-// cards-con
-
 .cards-con {
   display: flex;
   flex-flow: column nowrap;
   row-gap: 6rem;
 }
-
