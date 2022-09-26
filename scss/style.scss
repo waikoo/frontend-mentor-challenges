@@ -110,6 +110,14 @@ main {
   height: 100px;
 }
 
+// .card-template:nth-of-type(1) {
+//   margin-top: .5rem;
+// }
+.cards-con {
+  margin: .5rem 0rem;
+  padding-bottom: 5.4rem;
+}
+
 .card-template:nth-of-type(1) {
   background: $Salmon;
   background-image: url("../images/icon-work.svg");
@@ -156,6 +164,7 @@ main {
 .text {
   background: $PortGore;
   display: flex;
+  flex-wrap: nowrap;
   justify-content: space-between;
   align-items: baseline;
   transform: translateY(35%);
@@ -208,6 +217,6 @@ main {
 .cards-con {
   display: flex;
   flex-flow: column nowrap;
-  row-gap: 2.4rem;
+  row-gap: 6rem;
 }
 

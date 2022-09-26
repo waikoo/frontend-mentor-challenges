@@ -6,9 +6,9 @@ function $$(classSelector) {
 	return document.getElementsByClassName(classSelector);
 }
 
-function generateTemplateCardHtml() {
+function generateWeeklyDataHtml(i) {
 	return `
-  <div class="card card-template">
+  <div class="card card${i} card-template">
 					<section class="text">
 						<div class="col text-left">
 							<span class="activity"></span>
@@ -21,17 +21,12 @@ function generateTemplateCardHtml() {
 					</section>
 				</div>
   `;
-
-	// $('.activity').textContent = allStats[0].title;
-	// $('.time').textContent = `${allStats[0].timeframes.weekly.current}hrs`;
-	// $(
-	// 	'.last-time'
-	// ).textContent = `Last Week - ${allStats[0].timeframes.weekly.previous}hrs`;
 }
+
 // handle initial draw
 (function () {
 	for (let i = 1; i < 7; i++) {
-		$('.cards-con').innerHTML += generateTemplateCardHtml();
+		$('.cards-con').innerHTML += generateWeeklyDataHtml(i);
 	}
 
 	for (let timespan of $$('timespan')) {
@@ -80,36 +75,21 @@ function displayStats(frequency, allStats) {
 	}
 }
 
-// testing for 1, applying styles
 function displayWeeklyStats(allStats) {
-	allStats.forEach(category => {});
-	console.log(allStats);
-	// 1 card
-	// $('.activity').textContent = allStats[0].title;
-	// $('.time').textContent = `${allStats[0].timeframes.weekly.current}hrs`;
-	// $(
-	// 	'.last-time'
-	// ).textContent = `Last Week - ${allStats[0].timeframes.weekly.previous}hrs`;
-
-	// ! element will always be the same
-	// ! textContent will be the same
-	// ! prefix changes for .last-time
-	// ! path to data changes
-	// ! suffix will be the same
-
-	// 1. array of objects
-	// 2. each being a category - card
-	// 3. timeframes & title
-	// ! 4. display allStats[i].title on all occasions
-	// allStats[i].timeframes.daily
-	// allStats[i].timeframes.weekly
-	// allStats[i].timeframes.monthly
+	for (let card of $$('card-template')) {
+		for (let i = 0; i <= $$('card-template').length; i++) {
+			if (card.classList.contains(`card${i + 1}`)) {
+				outputWeekly(allStats, card, i);
+			}
+		}
+	}
 }
 
-function getWeekly(allStats, lastTimePrefix) {
-	$('.activity').textContent = allStats[0].title;
-	$('.time').textContent = `${allStats[0].timeframes.weekly.current}hrs`;
-	$(
-		'.last-time'
-	).textContent = `Last Week - ${allStats[0].timeframes.weekly.previous}hrs`;
+function outputWeekly(allStats, card, i) {
+	console.log(allStats);
+
+	card.firstElementChild.firstElementChild.firstElementChild.textContent =
+		allStats[i].title;
+	card.firstElementChild.firstElementChild.lastElementChild.textContent = `${allStats[i].timeframes.weekly.current}hrs`;
+	card.firstElementChild.lastElementChild.lastElementChild.textContent = `Last Week - ${allStats[i].timeframes.weekly.previous}hrs`;
 }
