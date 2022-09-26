@@ -7,6 +7,7 @@ function $$(classSelector) {
 }
 
 function generateTemplateCardHtml(i) {
+	const THREE_DOTS_ICON = `<svg id="dots" width="21" height="5" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm8 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm8 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Z" fill="currentColor" fill-rule="evenodd"/></svg>`;
 	return `
   <div class="card card${i} card-template">
 					<section class="text">
@@ -15,7 +16,7 @@ function generateTemplateCardHtml(i) {
 							<span class="time"></span>
 						</div>
 						<div class="col text-right">
-							<img src="images/icon-ellipsis.svg" alt="" />
+							${THREE_DOTS_ICON}
 							<span class="last-time"></span>
 						</div>
 					</section>
