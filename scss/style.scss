@@ -107,16 +107,44 @@ main {
 
 .card {
   @include border-radius();
+  height: 100px;
 }
 
-
-.card-template {
-  background:hsl(15, 100%, 70%);
-  height: 100px;
-  position: relative;
+.card-template:nth-of-type(1) {
+  background: $Salmon;
   background-image: url("../images/icon-work.svg");
-  background-repeat: no-repeat;
   background-position: top -50% right 5%;
+  background-repeat: no-repeat;
+}
+.card-template:nth-of-type(2) {
+  background: $PictonBlue;
+  background-image: url("../images/icon-play.svg");
+  background-position: top -50% right 5%;
+  background-repeat: no-repeat;
+}
+.card-template:nth-of-type(3) {
+  background:$WildWatermelon;
+  background-image: url("../images/icon-study.svg");
+  background-position: top -50% right 5%;
+  background-repeat: no-repeat;
+}
+.card-template:nth-of-type(4) {
+  background: $Emerald;
+  background-image: url("../images/icon-exercise.svg");
+  background-position: top -50% right 5%;
+  background-repeat: no-repeat;
+}
+.card-template:nth-of-type(5) {
+  background:$PurpleHeart;
+  background-image: url("../images/icon-social.svg");
+  background-position: top -50% right 5%;
+  background-repeat: no-repeat;
+}
+.card-template:nth-of-type(6) {
+  background:$CreamCan;
+  background-image: url("../images/icon-self-care.svg");
+  background-position: top -50% right 5%;
+  background-repeat: no-repeat;
 }
 
 .col {
@@ -174,3 +202,12 @@ main {
 .selected {
   color: white;
 }
+
+// cards-con
+
+.cards-con {
+  display: flex;
+  flex-flow: column nowrap;
+  row-gap: 2.4rem;
+}
+
