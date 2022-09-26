@@ -44,7 +44,6 @@ async function getAllStats() {
 
 function handleClick(selected) {
 	getAllStats().then(allStats => {
-		console.log(selected);
 		displayController(selected, allStats);
 	});
 }
@@ -87,29 +86,22 @@ function displayStats(allStats, selectedString) {
 }
 
 function outputStats(allStats, card, i, selectedString) {
-	console.log(selectedString);
-	console.log(allStats[0]['timeframes']['daily']);
-	console.log(allStats[0].timeframes['daily']);
+	let prefix = '';
+	const prePreFix = 'Last';
+
+	switch (selectedString) {
+		case 'daily':
+			prefix = `Yesterday`;
+			break;
+		case 'monthly':
+			prefix = `${prePreFix} Month`;
+		default:
+			prefix = `${prePreFix} Week`;
+			break;
+	}
 
 	card.firstElementChild.firstElementChild.firstElementChild.textContent =
 		allStats[i].title;
 	card.firstElementChild.firstElementChild.lastElementChild.textContent = `${allStats[i].timeframes[selectedString].current}hrs`;
-	card.firstElementChild.lastElementChild.lastElementChild.textContent = `Last Week - ${allStats[i].timeframes[selectedString].previous}hrs`;
+	card.firstElementChild.lastElementChild.lastElementChild.textContent = `${prefix} - ${allStats[i].timeframes[selectedString].previous}hrs`;
 }
-
-// function outputDaily(allStats, card, i) {
-// 	card.firstElementChild.firstElementChild.firstElementChild.textContent =
-// 		allStats[i].title;
-// 	card.firstElementChild.firstElementChild.lastElementChild.textContent = `${allStats[i].timeframes.daily.current}hrs`;
-// 	card.firstElementChild.lastElementChild.lastElementChild.textContent = `Yesterday - ${allStats[i].timeframes.daily.previous}hrs`;
-// }
-
-// // prefix
-// // timeframes.
-
-// function outputMonthly(allStats, card, i) {
-// 	card.firstElementChild.firstElementChild.firstElementChild.textContent =
-// 		allStats[i].title;
-// 	card.firstElementChild.firstElementChild.lastElementChild.textContent = `${allStats[i].timeframes.monthly.current}hrs`;
-// 	card.firstElementChild.lastElementChild.lastElementChild.textContent = `Last Month - ${allStats[i].timeframes.monthly.previous}hrs`;
-// }
