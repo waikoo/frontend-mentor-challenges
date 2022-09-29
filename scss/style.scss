@@ -1,0 +1,206 @@
+/* space-mono-700 - latin */
+@font-face {
+	font-family: 'Space Mono';
+	font-style: normal;
+	font-weight: 700;
+	src: local(''),
+		url('../fonts/space-mono-v12-latin-700.woff2') format('woff2'),
+		/* Chrome 26+, Opera 23+, Firefox 39+ */
+			url('../fonts/space-mono-v12-latin-700.woff') format('woff');
+	/* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+$input: rgb(243, 248, 251);
+$Java: hsl(172, 67%, 45%);
+$SherpaBlue: hsl(183, 100%, 15%);
+$SteelTeal: hsl(186, 14%, 43%);
+$GrannySmith: hsl(184, 14%, 56%);
+$JaggedIce: hsl(185, 41%, 84%);
+$CatskillWhite: hsl(189, 41%, 97%);
+$White: hsl(0, 0%, 100%);
+
+// form input font-size: 24px;
+
+$ff: 'Space Mono', sans-serif;
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	height: 100%;
+}
+
+body {
+	height: 100%;
+	margin: 0;
+	font-family: $ff;
+	background: $JaggedIce;
+}
+
+.splitter-logo-con {
+	display: flex;
+	place-content: center;
+	padding: 2.2rem;
+}
+
+.splitter-logo-con svg {
+	zoom: 0.9;
+}
+
+.card {
+	background: $White;
+	border-radius: 25px;
+	padding: 1.8rem 1.5rem;
+}
+
+.bill-con {
+	margin-bottom: 1.3rem;
+}
+
+label {
+	color: $SteelTeal;
+	font-size: 0.8rem;
+}
+
+input {
+	border: none;
+	background: $input;
+	display: block;
+	padding: 0.5rem;
+	text-align: right;
+	width: 100%;
+	font-family: $ff;
+	color: $SherpaBlue;
+	font-size: 1.4rem;
+	letter-spacing: 1px;
+}
+
+.tip-label {
+	padding-bottom: 1rem;
+	margin: 2rem 0 1rem;
+}
+
+.tip-con {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: repeat(3, 45px);
+	grid-gap: 1rem;
+	margin-top: 0.5rem;
+}
+
+.percent {
+	background: $SherpaBlue;
+	color: $CatskillWhite;
+	border: none;
+	border-radius: 5px;
+	font-size: 1.3rem;
+	font-family: $ff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.percent:focus-visible,
+input:focus-visible {
+	appearance: none;
+	outline: 3px solid orange;
+}
+
+// input:focus-visible {
+// 	appearance: none;
+// 	outline: inset 15px solid orange;
+// }
+
+.customTip {
+	background: $CatskillWhite;
+	color: $SteelTeal;
+	width: 100%;
+	outline: 1px solid black;
+}
+
+.customTip::placeholder {
+	margin-right: 1.8rem;
+}
+
+.people-con {
+	margin-top: 1rem;
+}
+
+.result {
+	background: $SherpaBlue;
+	color: $CatskillWhite;
+	padding: 1.8rem 1.5rem;
+	border-radius: 15px;
+	margin-top: 2rem;
+}
+
+.result-con {
+	display: flex;
+	justify-content: space-between;
+}
+
+.text-con {
+	display: flex;
+	flex-direction: column;
+}
+
+.tip-total {
+	color: $Java;
+	font-size: 2rem;
+}
+
+.text-con:first-of-type span:first-of-type {
+	font-size: 0.85rem;
+}
+
+.person {
+	color: $GrannySmith;
+	font-size: 0.75rem;
+}
+
+.reset {
+	background: $Java;
+	border: none;
+	color: $SherpaBlue;
+	font-size: 1rem;
+	font-family: $ff;
+	border-radius: 5px;
+	display: block;
+	height: 45px;
+	width: 100%;
+	margin-top: 1rem;
+	font-size: 1.1rem;
+}
+
+label::after {
+	height: 15px;
+	width: 15px;
+	padding-top: 15px;
+	padding-left: 15px;
+	color: $GrannySmith;
+	position: absolute;
+	z-index: 5;
+	display: block;
+}
+
+.bill-label::after {
+	content: url('../images/icon-dollar.svg');
+}
+
+.people-label::after {
+	content: url('../images/icon-person.svg');
+}
+
+.input-icon {
+	position: absolute;
+	top: 20px;
+	height: 20px;
+	width: 20px;
+}
+
+.selected {
+	background: $Java;
+	color: $SherpaBlue;
+}
