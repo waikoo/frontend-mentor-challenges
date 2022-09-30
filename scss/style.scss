@@ -204,3 +204,33 @@ label::after {
 	background: $Java;
 	color: $SherpaBlue;
 }
+
+.validated {
+	outline: 2px solid $Java;
+	border-radius: 5px;
+}
+
+.invalidated {
+	outline: 2px solid red;
+	border-radius: 5px;
+}
+
+#bill::placeholder,
+#people::placeholder {
+	padding-right: 0.5rem;
+	font-family: $ff;
+	font-size: 1.3rem;
+}
+
+.error-msg {
+	color: red;
+	text-align: right;
+	position: relative;
+	top: 1rem;
+	font-size: 0.8rem;
+	display: none;
+}
+
+.visible {
+	display: block;
+}

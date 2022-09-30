@@ -1,76 +1,126 @@
 function $(selector) {
 	return document.querySelector(selector);
 }
-
-function $$(selector) {
-	return document.body.getElementsByClassName(selector);
+function $$(classSelector) {
+	return document.body.getElementsByClassName(classSelector);
 }
+function errorMessage(command) {
+	switch (command) {
+		case 'show':
+			$('#people').classList.add('invalidated');
+			$('.error-msg').classList.add('visible');
+			break;
 
-function getTotalPerPerson(billNoTip, tipValue, numberOfPeople) {
-	return (billNoTip + tipValue) / numberOfPeople;
+		case 'disappear':
+			$('#people').classList.remove('invalidated');
+			$('.error-msg').classList.remove('visible');
+			break;
+
+		default:
+			console.warn('Refactor refactor refactor repeat');
+			break;
+	}
 }
-
-function getTipPercentage(percentage) {
-	console.log(percentage);
-	return percentage;
-}
-
-function tipPercentageHandler(button, billValue) {
-	// if fixTip:
-	for (let fixTip of $$('fixedTip')) {
-		if (button === fixTip) {
-			button.classList.add('selected');
-			const percentage = parseInt(button.textContent);
-			const tipPercentageValue = (billValue * percentage) / 100;
-			return tipPercentageValue;
+function fixTipHandler(button, bill) {
+	if (bill.isCustomTip) {
+		bill.isCustomTip = false;
+		bill.isFixTip = true;
+	} else {
+		for (let fixTip of $$('fixedTip')) {
+			if (button === fixTip) {
+				button.classList.add('selected');
+				const percentage = parseInt(button.textContent);
+				return (bill.total * percentage) / 100;
+			}
 		}
 	}
 }
-
-function sendNumberOfPeople(obj) {
-	const parsedToInt = parseInt(obj);
-	return parsedToInt;
+function getTotalPerPerson(bill, tip, people) {
+	return (bill + tip) / people;
 }
-
-function getBillValue(billEl) {
-	if (Number.isInteger(+billEl.value)) {
-		return parseInt(billEl.value);
-	} else {
-		return parseFloat(billEl.value);
-	}
+function getTipPerPerson(calculatedTip, nrOfPeople) {
+	return calculatedTip / nrOfPeople;
 }
+// function displayResult(obj) {
+// 	console.log(obj);
+// 	bill.result = {};
+// 	bill.result.withTip = getTotalPerPerson(
+// 		bill.total,
+// 		bill.tipValue,
+// 		bill.nrOfPeople
+// 	);
 
-// (function () {
-// 	$('#bill').value = 142.55;
-// 	$('.wtv').click();
-// 	$('#people').value = 5;
-// })();
+// 	bill.result.tipOnly = getTipPerPerson(bill.tipValue, bill.nrOfPeople);
 
-const bill = Object.create(null);
+// 	$('.tip-only').textContent = `$${bill.result.tipOnly.toFixed(2)}`;
+// 	$('.with-tip').textContent = `$${bill.result.withTip.toFixed(2)}`;
+// }
 
 window.addEventListener('DOMContentLoaded', function () {
-	const percentageButtons = document.getElementsByClassName('fixedTip');
+	const bill = {
+		isCustomTip: false,
+		isFixTip: false
+	};
 
-	for (let tip of percentageButtons) {
+	$('#bill').addEventListener('change', e => {
+		let registerString = '';
+		registerString += e.currentTarget.value;
+		bill.valueOnInput = Number(registerString);
+	});
+
+	$('#bill').addEventListener('focusout', () => {
+		bill.valueOnFocusOut = Number($('#bill').value);
+		$('#bill').value && $('#bill').classList.add('validated');
+		if (bill.valueOnInput === bill.valueOnFocusOut) {
+			bill.total = bill.valueOnInput;
+			delete bill.valueOnInput;
+			delete bill.valueOnFocusOut;
+		}
+	});
+
+	$('.customTip').addEventListener('focusout', () => {
+		$('.customTip').value && $('.customTip').classList.add('validated');
+	});
+
+	for (let tip of $$('fixedTip')) {
 		tip.addEventListener('click', function () {
-			bill.billValue = getBillValue($('#bill'));
-			bill.percentageValue = tipPercentageHandler(this, bill.billValue);
+			bill.isFixTip = true;
+			bill.tipValue = fixTipHandler(this, bill);
 		});
 	}
 
-	$('#people').addEventListener('input', function (e) {
-		bill.nrOfPeople = sendNumberOfPeople(e.data);
+	$('.customTip').addEventListener('change', e => {
+		if ($('.customTip').value) {
+			bill.isCustomTip = true;
+			bill.isFixTip = false;
+			let customNum = Number(e.currentTarget.value);
+			bill.tipValue = (bill.total * customNum) / 100;
+		}
+	});
 
-		bill.unformattedResult = getTotalPerPerson(
-			bill.billValue,
-			bill.percentageValue,
+	$('.customTip').addEventListener('focusout', () => {
+		if ($('#people').value.length < 1) {
+			errorMessage('show');
+		}
+	});
+
+	$('#people').addEventListener('input', function (e) {
+		$('#people').value === 0
+			? errorMessage('show')
+			: errorMessage('disappear');
+
+		bill.nrOfPeople = parseInt(e.data);
+
+		bill.result = {};
+		bill.result.withTip = getTotalPerPerson(
+			bill.total,
+			bill.tipValue,
 			bill.nrOfPeople
 		);
 
-		bill.tipOnly = bill.percentageValue / bill.nrOfPeople;
-		bill.tipOnly = Number(bill.tipOnly.toFixed(2));
-		bill.withTip = Number(parseFloat(bill.unformattedResult).toFixed(2));
-		$('.tip-only').textContent = `$${bill.tipOnly}`;
-		$('.with-tip').textContent = `$${bill.withTip}`;
+		bill.result.tipOnly = getTipPerPerson(bill.tipValue, bill.nrOfPeople);
+
+		$('.tip-only').textContent = `$${bill.result.tipOnly.toFixed(2)}`;
+		$('.with-tip').textContent = `$${bill.result.withTip.toFixed(2)}`;
 	});
 });

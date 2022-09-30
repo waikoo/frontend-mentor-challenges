@@ -49,7 +49,8 @@ Users should be able to:
 ### What I learned
 
 - to scale inline svgs using the `zoom` property to modify the size
-- to put a pseudo element (::before, ::after) on the label to make reading in an svg through the `content` prop
+- to put a pseudo element (`::before`, `::after`) on the label to make reading in an svg through the `content` prop
+- to use `setTimeout` when `element.click()` isn't working, even with 1ms, when no other way to dispatch a click event works that I only wanted to use for testing purposes, with an IIFE, to avoid going through the drill of completing the information by hand after every code change
 
 #### Heading
 

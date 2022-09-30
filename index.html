@@ -53,6 +53,7 @@
             id="bill"
             name="bill"
             type="number"
+            placeholder="0"
           />
         </div>
         <!-- tip -->
@@ -71,6 +72,7 @@
         </div>
         <!-- nr of people -->
         <div class="people-con">
+          <div class="error-msg">Can't be empty</div>
           <label
             class="people-label"
             for="people"
@@ -79,6 +81,7 @@
             type="number"
             name="people"
             id="people"
+            placeholder="0"
           >
         </div>
       </div>
@@ -89,14 +92,14 @@
             <span>Tip Amount</span>
             <span class="person">/ person</span>
           </div>
-          <span class="tip-total tip-only"></span>
+          <span class="tip-total tip-only">$0.00</span>
         </div>
         <div class="total-con result-con">
           <div class="text-con">
             <span>Total</span>
             <span class="person">/ person</span>
           </div>
-          <span class="tip-total with-tip"></span>
+          <span class="tip-total with-tip">$0.00</span>
         </div>
         <button class="reset">RESET</button>
       </div>
