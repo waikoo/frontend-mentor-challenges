@@ -41,20 +41,23 @@ function getTotalPerPerson(bill, tip, people) {
 function getTipPerPerson(calculatedTip, nrOfPeople) {
 	return calculatedTip / nrOfPeople;
 }
-// function displayResult(obj) {
-// 	console.log(obj);
-// 	bill.result = {};
-// 	bill.result.withTip = getTotalPerPerson(
-// 		bill.total,
-// 		bill.tipValue,
-// 		bill.nrOfPeople
-// 	);
+function displayResult(obj) {
+	console.log(obj);
+	obj.result = {};
 
-// 	bill.result.tipOnly = getTipPerPerson(bill.tipValue, bill.nrOfPeople);
+	obj.result.withTip = getTotalPerPerson(
+		obj.total,
+		obj.tipValue,
+		obj.nrOfPeople
+	);
 
-// 	$('.tip-only').textContent = `$${bill.result.tipOnly.toFixed(2)}`;
-// 	$('.with-tip').textContent = `$${bill.result.withTip.toFixed(2)}`;
-// }
+	obj.result.tipOnly = getTipPerPerson(obj.tipValue, obj.nrOfPeople);
+
+	console.log(obj.result.tipOnly);
+	console.log(obj.result.withTip);
+	$('.tip-only').textContent = `$${obj.result.tipOnly.toFixed(2)}`;
+	$('.with-tip').textContent = `$${obj.result.withTip.toFixed(2)}`;
+}
 
 window.addEventListener('DOMContentLoaded', function () {
 	const bill = {
@@ -111,16 +114,6 @@ window.addEventListener('DOMContentLoaded', function () {
 
 		bill.nrOfPeople = parseInt(e.data);
 
-		bill.result = {};
-		bill.result.withTip = getTotalPerPerson(
-			bill.total,
-			bill.tipValue,
-			bill.nrOfPeople
-		);
-
-		bill.result.tipOnly = getTipPerPerson(bill.tipValue, bill.nrOfPeople);
-
-		$('.tip-only').textContent = `$${bill.result.tipOnly.toFixed(2)}`;
-		$('.with-tip').textContent = `$${bill.result.withTip.toFixed(2)}`;
+		displayResult(bill);
 	});
 });
