@@ -59,16 +59,31 @@
         <!-- tip -->
         <label class="tip-label">Select Tip %</label>
         <div class="tip-con">
-          <button class="percent fixedTip">5%</button>
-          <button class="percent fixedTip">10%</button>
-          <button class="percent fixedTip wtv">15%</button>
-          <button class="percent fixedTip">25%</button>
-          <button class="percent fixedTip">50%</button>
+          <button
+            data-percent="5"
+            class="percent fixedTip"
+          >5%</button>
+          <button
+            data-percent="10"
+            class="percent fixedTip"
+          >10%</button>
+          <button
+            data-percent="15"
+            class="percent fixedTip wtv"
+          >15%</button>
+          <button
+            data-percent="25"
+            class="percent fixedTip"
+          >25%</button>
+          <button
+            data-percent="50"
+            class="percent fixedTip"
+          >50%</button>
           <input
             type="number"
             placeholder="Custom"
             class="percent customTip"
-          ></input>
+          />
         </div>
         <!-- nr of people -->
         <div class="people-con">
@@ -105,7 +120,10 @@
       </div>
     </div>
   </main>
-  <script src="app.js"></script>
+  <script
+    src="app.js"
+    type="module"
+  ></script>
 </body>
 
 </html>
