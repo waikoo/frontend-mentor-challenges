@@ -5,6 +5,7 @@ function errorMessage(command) {
 		case 'show':
 			$('#people').classList.add('invalidated');
 			$('.error-msg').classList.add('visible');
+			// $('#people::focus-visible').style.outlineColor = '#b48372';
 			break;
 
 		case 'disappear':
@@ -33,11 +34,7 @@ function getTipPerPerson(calculatedTip, nrOfPeople) {
 function displayResult(bill) {
 	bill.tipValue = fixTipHandler(bill);
 	const result = {
-		withTip: getTotalPerPerson(
-			bill.total,
-			bill.tipValue,
-			bill.nrOfPeople
-		).toFixed(2),
+		withTip: getTotalPerPerson(bill.total, bill.tipValue, bill.nrOfPeople).toFixed(2),
 		tipOnly: getTipPerPerson(bill.tipValue, bill.nrOfPeople).toFixed(2)
 	};
 
@@ -97,7 +94,7 @@ customTipEl.addEventListener('focusout', () => {
 });
 
 $('#people').addEventListener('input', function (e) {
-	$('#people').value === 0 ? errorMessage('show') : errorMessage('disappear');
+	Number($('#people').value) === 0 ? errorMessage('show') : errorMessage('disappear');
 
 	bill.nrOfPeople = parseInt(e.data);
 	displayResult(bill);
