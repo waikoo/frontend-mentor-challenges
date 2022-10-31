@@ -1,0 +1,78 @@
+/* barlow-600 - latin */
+@font-face {
+  font-family: "Barlow";
+  font-style: normal;
+  font-weight: 600;
+  src: local(""), url("../assets/fonts/Barlow/barlow-v12-latin-600.woff2") format("woff2"), url("../assets/fonts/barlow-v12-latin-600.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* fraunces-700 - latin */
+@font-face {
+  font-family: "Fraunces";
+  font-style: normal;
+  font-weight: 700;
+  src: local(""), url("../assets/fonts/Fraunces/fraunces-v24-latin-700.woff2") format("woff2"), url("../assets/fonts/fraunces-v24-latin-700.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* fraunces-900 - latin */
+@font-face {
+  font-family: "Fraunces";
+  font-style: normal;
+  font-weight: 900;
+  src: local(""), url("../assets/fonts/Fraunces/fraunces-v24-latin-900.woff2") format("woff2"), url("../assets/fonts/fraunces-v24-latin-900.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+main h1 {
+  color: hsl(0deg, 0%, 100%);
+  font-size: 3rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-size: 18px;
+  background: hsl(7deg, 99%, 70%);
+}
+
+nav {
+  display: none;
+}
+
+.fraunces {
+  font-family: "Fraunces", serif;
+}
+
+img {
+  width: 100%;
+  display: block;
+}
+
+.testimonials img {
+  width: auto;
+}
+
+header {
+  background: #3ebfff;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem 1.5rem 0;
+}
+header .hamburger,
+header .logo {
+  width: auto;
+}
+header .hamburger {
+  height: 80%;
+}
+
+main {
+  position: relative;
+}
+main h1 {
+  position: absolute;
+}
