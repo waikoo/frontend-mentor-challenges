@@ -1,5 +1,19 @@
 @use '../abstracts' as *;
 
+body {
+	font-family: 'Barlow', sans-serif;
+	font-size: 18px;
+	p {
+		color: $ShuttleGray;
+	}
+}
+
+// Fraunces 700, 900
+
+.fraunces {
+	font-family: 'Fraunces', serif;
+}
+
 main {
 	h1 {
 		color: $White;
@@ -7,4 +21,58 @@ main {
 		text-transform: uppercase;
 		letter-spacing: 2px;
 	}
+}
+
+.ads a {
+	display: block;
+}
+
+h1,
+h2,
+h3,
+h4,
+span,
+p {
+	text-align: center;
+}
+
+.ad-separate article {
+	background: $White;
+}
+
+.ads a {
+	display: block;
+	text-align: center;
+	text-transform: uppercase;
+	color: $Black;
+	text-decoration-line: none;
+}
+
+.ad-mixed {
+	p,
+	h3 {
+		color: $EbonyClay;
+	}
+}
+
+.testimonials {
+	background: $White;
+}
+
+h4 {
+	color: $Waterloo;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+}
+
+.person p {
+	color: $EbonyClay;
+}
+
+.name {
+	font-weight: 900;
+}
+
+.title {
+	color: $Waterloo;
 }

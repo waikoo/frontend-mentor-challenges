@@ -1,0 +1,17 @@
+@use '../abstracts' as *;
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	background: red;
+}
+
+img {
+	width: 100%;
+	display: block;
+}
