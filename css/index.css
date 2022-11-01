@@ -21,9 +21,14 @@
 }
 body {
   font-family: "Barlow", sans-serif;
+  font-size: 18px;
 }
 body p {
   color: hsl(213deg, 9%, 39%);
+}
+
+.fraunces {
+  font-family: "Fraunces", serif;
 }
 
 main h1 {
@@ -93,16 +98,7 @@ h4 {
 
 body {
   margin: 0;
-  font-size: 18px;
-  background: hsl(7deg, 99%, 70%);
-}
-
-nav {
-  display: none;
-}
-
-.fraunces {
-  font-family: "Fraunces", serif;
+  background: red;
 }
 
 img {
@@ -110,8 +106,8 @@ img {
   display: block;
 }
 
-.testimonials img {
-  width: auto;
+nav {
+  display: none;
 }
 
 header {
@@ -134,4 +130,13 @@ main {
 }
 main h1 {
   position: absolute;
+}
+
+.testimonials img {
+  width: auto;
+}
+
+footer {
+  background: hsl(168deg, 34%, 41%);
+  background: red;
 }
