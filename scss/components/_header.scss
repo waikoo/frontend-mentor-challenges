@@ -1,15 +1,56 @@
 @use '../abstracts/' as *;
 
-nav {
-	display: none;
-}
-
 header {
-	background: $hero-blue;
+	background: transparent;
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
-	padding: 2rem 1.5rem 0;
+	padding: 2.5rem 1.5rem 0;
+	position: absolute;
+
+	nav {
+		position: absolute;
+		top: 7.5rem;
+		left: 0;
+		right: 0;
+		z-index: 2;
+		background-color: $White;
+		display: flex;
+		flex-direction: column;
+		height: 280px;
+		width: 88%;
+		margin: 0 auto;
+		justify-content: space-evenly;
+		align-items: center;
+		text-align: center;
+
+		&::before {
+			content: '';
+			width: 30px;
+			height: 30px;
+			background-color: $White;
+			position: absolute;
+			border-color: 1px solid black;
+			top: -1.7rem;
+			right: 0;
+			clip-path: polygon(100% 0, 0% 100%, 100% 100%);
+		}
+
+		ul {
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+			justify-content: space-evenly;
+			gap: 2rem;
+		}
+
+		li.fraunces {
+			padding: 1rem 1.7rem 1rem;
+			border-radius: 50px;
+			display: grid;
+			place-items: center;
+		}
+	}
 
 	.hamburger,
 	.logo {
@@ -18,5 +59,58 @@ header {
 
 	.hamburger {
 		height: 80%;
+	}
+
+	.logo {
+		filter: invert(100%) sepia(1%) saturate(329%) hue-rotate(309deg) brightness(119%) contrast(100%);
+	}
+}
+
+@media (min-width: 62em) {
+	header {
+		.logo {
+			aspect-ratio: 31/6;
+			width: 200px;
+		}
+		.hamburger {
+			display: none;
+		}
+
+		nav {
+			height: auto;
+			position: relative;
+			z-index: 3;
+			top: 0;
+			background-color: transparent;
+			margin: 0;
+			flex-direction: row;
+			width: auto;
+			right: 0;
+
+			ul {
+				flex-direction: row;
+				align-items: center;
+			}
+
+			li {
+				color: $White;
+				cursor: pointer;
+			}
+
+			&::before {
+				content: '';
+				width: 0px;
+				height: 0px;
+			}
+		}
+
+		li.fraunces {
+			padding: none;
+			background-color: $White;
+		}
+		li.fraunces:hover {
+			background-color: $hover-contact;
+			color: $White;
+		}
 	}
 }

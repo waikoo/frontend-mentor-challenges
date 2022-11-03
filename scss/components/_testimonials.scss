@@ -1,3 +1,44 @@
-.testimonials img {
-	width: auto;
+.testimonials {
+	padding: 2.2rem 1.7rem 1.5rem;
+
+	img {
+		display: block;
+		max-width: 70px;
+		border-radius: 50%;
+		margin: 0 auto;
+	}
+
+	.person {
+		margin: 3.5rem 0;
+
+		p {
+			margin: 2.2rem 0;
+		}
+	}
+
+	.name,
+	.title {
+		display: block;
+		margin-top: 1rem;
+	}
+
+	.title {
+		margin-top: 0.75rem;
+	}
+}
+
+@media (min-width: 62em) {
+	.testimonials {
+	}
+	.testimonials-people {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-evenly;
+		width: 80%;
+		margin: 0 auto;
+	}
+
+	.person {
+		width: 26%;
+	}
 }

@@ -1,0 +1,17 @@
+.first-two,
+.last-two {
+	display: flex;
+	flex-direction: row;
+}
+
+.pictures {
+	display: flex;
+	flex-direction: column;
+}
+
+@media (min-width: 62em) {
+	.pictures {
+		width: 100%;
+		flex-direction: row;
+	}
+}

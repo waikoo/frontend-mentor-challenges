@@ -3,28 +3,14 @@
 body {
 	font-family: 'Barlow', sans-serif;
 	font-size: 18px;
+
 	p {
 		color: $ShuttleGray;
 	}
 }
 
-// Fraunces 700, 900
-
 .fraunces {
 	font-family: 'Fraunces', serif;
-}
-
-main {
-	h1 {
-		color: $White;
-		font-size: 3rem;
-		text-transform: uppercase;
-		letter-spacing: 2px;
-	}
-}
-
-.ads a {
-	display: block;
 }
 
 h1,
@@ -32,47 +18,172 @@ h2,
 h3,
 h4,
 span,
+a,
 p {
 	text-align: center;
 }
 
-.ad-separate article {
-	background: $White;
+header {
+	li {
+		color: $ShuttleGray;
+	}
+
+	li.fraunces {
+		background: $Gold;
+		color: $Black;
+		font-size: 0.9rem;
+		// font-weight: 900;
+		text-transform: uppercase;
+	}
 }
 
-.ads a {
-	display: block;
-	text-align: center;
-	text-transform: uppercase;
-	color: $Black;
-	text-decoration-line: none;
+main {
+	h1 {
+		color: $White;
+		font-size: 2.5rem;
+		font-weight: 900;
+		text-transform: uppercase;
+		letter-spacing: 7px;
+	}
 }
 
-.ad-mixed {
-	p,
-	h3 {
-		color: $EbonyClay;
+.ads {
+	a {
+		display: block;
+	}
+
+	.ad-separate {
+		article {
+			background: $White;
+
+			p {
+				line-height: 1.6;
+			}
+		}
+
+		h2,
+		a {
+			font-weight: 900;
+		}
+	}
+
+	.separate-1,
+	.separate-2 {
+		a::after {
+			content: '';
+			border-bottom: 3px;
+			margin: 0 auto;
+			width: 145px;
+			height: 10px;
+			border-radius: 5px;
+			display: block;
+			margin-top: -5px;
+		}
+	}
+
+	.separate-1 {
+		a::after {
+			background: $FadedGold;
+			color: $FadedGold;
+		}
+	}
+
+	.separate-2 {
+		a::after {
+			background: $FadedBittersweet;
+			color: $FadedBittersweet;
+		}
+	}
+
+	a {
+		display: block;
+		text-transform: uppercase;
+		color: $Black;
+		text-decoration-line: none;
+	}
+
+	.ad-mixed {
+		p,
+		h3 {
+			color: $EbonyClay;
+		}
+
+		.inside {
+			h3 {
+				font-weight: 900;
+				font-size: 1.5rem;
+				text-transform: capitalize;
+			}
+
+			p {
+				line-height: 1.6;
+				font-size: 1rem;
+			}
+		}
 	}
 }
 
 .testimonials {
 	background: $White;
+
+	h4 {
+		color: $Waterloo;
+		text-transform: uppercase;
+		letter-spacing: 2px;
+		font-weight: 900;
+		font-size: 1rem;
+		letter-spacing: 4px;
+	}
+
+	.person p {
+		color: $EbonyClay;
+		line-height: 1.6;
+		font-size: 1rem;
+	}
+
+	.name {
+		font-weight: 900;
+	}
+
+	.title {
+		color: $Waterloo;
+		font-size: 0.9rem;
+	}
 }
 
-h4 {
-	color: $Waterloo;
-	text-transform: uppercase;
-	letter-spacing: 2px;
+footer {
+	.info span {
+		font-size: 1.1rem;
+		color: $Jade;
+	}
+
+	.footer-logo {
+		scale: 1.4;
+	}
+
+	.footer-logo path {
+		fill: $FooterFg;
+	}
 }
 
-.person p {
-	color: $EbonyClay;
-}
-
-.name {
-	font-weight: 900;
-}
-
-.title {
-	color: $Waterloo;
+@media (min-width: 62em) {
+	.ads {
+		.separate-1,
+		.separate-2 {
+			a::after {
+				content: '';
+				margin: 0;
+				margin-top: -5px;
+				margin-right: 5rem;
+				left: -6px;
+				position: relative;
+			}
+		}
+		.separate-1 a:hover:after {
+			background-color: $Gold;
+		}
+		.separate-2 a:hover:after {
+			background-color: $Bittersweet;
+		}
+	}
 }

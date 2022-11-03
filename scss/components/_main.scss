@@ -1,7 +1,37 @@
+@use '../abstracts' as *;
+
 main {
+	top: 0;
 	position: relative;
+	// height: 92vh;
+	background-color: $Gold;
 
 	h1 {
+		width: 100%;
 		position: absolute;
+		margin: 0 auto;
+		top: 15rem;
+	}
+
+	.arrow {
+		position: absolute;
+		display: flex;
+		justify-content: center;
+		width: 100%;
+		bottom: 25%;
+	}
+}
+
+@media (min-width: 62em) {
+	.arrow {
+		// bottom: 40%;
+	}
+
+	main img {
+		// height: 100vh;
+		// object-fit: cover;
+		// object-position: 0 -50%;
+		// height: auto;
+		display: block;
 	}
 }

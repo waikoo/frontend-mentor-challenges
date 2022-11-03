@@ -1,0 +1,113 @@
+.ad-separate {
+	display: flex;
+	flex-direction: column;
+
+	h2 {
+		width: 90%;
+		margin: 0 auto;
+		font-size: 2rem;
+	}
+
+	article {
+		order: 2;
+		padding: 1rem;
+	}
+
+	.separate-1 {
+		padding: 4rem 1rem;
+	}
+
+	.separate-2 {
+		padding: 4rem 1.5rem;
+	}
+
+	a {
+		margin-top: 2rem;
+	}
+
+	img {
+		order: 1;
+	}
+}
+
+@media (min-width: 62em) {
+	.ads {
+		.ad-separate {
+			display: flex;
+			flex-direction: row-reverse;
+		}
+		.ad-separate:nth-of-type(2) {
+			flex-direction: row;
+		}
+
+		.ad-separate {
+			img {
+				display: block;
+				width: 50vw;
+			}
+			article {
+				width: 50vw;
+				text-align: left;
+			}
+
+			.separate-1,
+			.separate-2 {
+				text-align: left;
+				width: auto;
+				display: flex;
+				justify-content: center;
+				flex-direction: column;
+				padding: 11rem;
+				gap: 3rem;
+			}
+
+			h2,
+			p,
+			a {
+				text-align: left;
+				margin: 0;
+			}
+
+			h2 {
+				margin: 0;
+			}
+		}
+	}
+}
+
+.ad-mixed {
+	position: relative;
+	z-index: 1;
+
+	.inside {
+		position: absolute;
+		z-index: 2;
+		bottom: 15px;
+		padding: 2rem 1rem;
+	}
+}
+
+@media (min-width: 62em) {
+	.ad-mixed {
+		.inside {
+			left: 0;
+			right: 0;
+			// margin: 0 auto;
+			display: flex;
+			flex-direction: column;
+			bottom: 3rem;
+
+			p {
+				width: 43%;
+				margin: 0 auto;
+			}
+		}
+
+		img {
+			width: 50vw;
+		}
+	}
+	.ad-mixed-con {
+		display: flex;
+	}
+}

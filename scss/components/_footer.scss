@@ -1,6 +1,51 @@
 @use '../abstracts' as *;
 
-footer {
-	background: $Jade;
-	background: red;
+.content {
+	padding: 4rem 0 4.5rem;
+	background: $FooterBg;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	row-gap: 3rem;
+
+	.info {
+		color: $Plantation;
+		margin: 0 auto;
+		display: flex;
+		justify-content: space-around;
+		width: 100%;
+	}
+
+	.socials {
+		margin-top: 2.5rem;
+		display: flex;
+		width: 55%;
+		justify-content: space-evenly;
+	}
+
+	path {
+		fill: $Plantation;
+	}
+}
+
+@media (min-width: 62em) {
+	footer {
+		background: $FooterBg;
+		.content {
+			width: 20%;
+			margin: 0 auto;
+		}
+		.info span:hover {
+			cursor: pointer;
+			color: $White;
+		}
+		.socials {
+			svg:hover {
+				cursor: pointer;
+			}
+		}
+		.social:hover path {
+			fill: $White;
+		}
+	}
 }
