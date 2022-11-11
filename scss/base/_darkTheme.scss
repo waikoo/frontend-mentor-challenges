@@ -1,0 +1,48 @@
+@use '../abstracts/_abstracts' as *;
+$s1Gray: 1px solid $BrightGray;
+
+@media (prefers-color-scheme: dark) {
+	body {
+		background-color: $Cinder;
+	}
+
+	main,
+	.new-todo,
+	.new-con,
+	.show {
+		background: $EbonyClay;
+	}
+
+	.empty-circle,
+	.checked-circle {
+		border: $s1Gray;
+	}
+
+	li {
+		border-bottom: $s1Gray;
+	}
+
+	main,
+	.new-todo,
+	.new-todo::placeholder {
+		color: $Periwinkle;
+	}
+
+	.new-todo::placeholder {
+		color: $BrightGray;
+	}
+
+	.summary,
+	.done-todo-text,
+	.drag-n-drop-con {
+		color: $Trout;
+	}
+
+	.logo {
+		color: $White;
+	}
+
+	.show span {
+		color: $Waterloo;
+	}
+}

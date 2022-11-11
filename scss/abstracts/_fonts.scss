@@ -1,0 +1,15 @@
+/* JosefinSans-400 - latin */
+@font-face {
+	font-family: 'Josefin Sans';
+	font-style: normal;
+	font-weight: 400;
+	src: local('Josefin Sans'), local('JosefinSans') url('../../assets/fonts/JosefinSans-Regular.woff2') format('woff2'), url('../../assets/fonts/JosefinSans-Regular.ttf') format('ttf');
+}
+
+/* JosefinSans-700 - latin */
+@font-face {
+	font-family: 'Josefin Sans';
+	font-style: normal;
+	font-weight: 700;
+	src: local('Josefin Sans'), local('JosefinSans'), url('../../assets/fonts/JosefinSans-Bold.woff2') format('woff2'), url('../../assets/fonts/JosefinSans-Bold.ttf') format('ttf');
+}

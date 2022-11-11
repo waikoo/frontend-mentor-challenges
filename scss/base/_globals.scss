@@ -1,0 +1,32 @@
+@use '../abstracts/_abstracts' as *;
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+ul {
+	padding: 0;
+}
+
+li {
+	list-style: none;
+}
+
+body {
+	padding: 0;
+	margin: 0;
+}
+
+h1 {
+	margin: 0;
+}
+
+.periwinkle::placeholder {
+	color: hsl(234, 39%, 85%);
+}
+
+.mulledwine::placeholder {
+	color: hsl(235, 19%, 35%);
+}

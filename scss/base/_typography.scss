@@ -1,0 +1,42 @@
+@use '../abstracts/_abstracts' as *;
+
+$main: 0.7rem;
+
+span,
+.new-todo::placeholder,
+.drag-n-drop-con {
+	font-size: $main;
+}
+
+body {
+	font-size: 18px;
+	font-weight: 400;
+}
+
+body,
+.new-todo,
+.new-todo::placeholder {
+	font-family: 'Josefin Sans', sans-serif;
+}
+
+.logo {
+	font-size: 1.5rem;
+	letter-spacing: 9px;
+}
+
+.show span,
+.logo {
+	font-weight: 700;
+}
+
+.done-todo-text {
+	text-decoration: line-through;
+}
+
+.show span {
+	font-size: 0.9rem;
+}
+
+.drag-n-drop-con {
+	text-align: center;
+}

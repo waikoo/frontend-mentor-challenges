@@ -1,0 +1,30 @@
+header {
+	position: relative;
+	padding: 3rem 1.2rem;
+	// background: red;
+}
+
+.bg {
+	top: 0;
+	left: 0;
+	right: 0;
+	position: absolute;
+	z-index: -1;
+	width: 100%;
+}
+
+.header-con {
+	display: flex;
+	justify-content: space-between;
+	top: -3.5rem;
+	position: relative;
+}
+
+.theme-dark {
+	display: none;
+}
+
+.theme-light,
+.theme-dark {
+	scale: 0.7;
+}
