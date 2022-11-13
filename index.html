@@ -71,11 +71,13 @@
     <main>
       <div class="new-con icon-text">
         <div class="empty-circle"></div>
-        <input
-          type="text"
-          class="new-todo"
-          placeholder="Create a new todo..."
-        ></input>
+        <form class="form">
+          <input
+            type="text"
+            class="new-todo"
+            placeholder="Create a new todo..."
+          ></input>
+        </form>
       </div>
       <ul class="todos-con">
         <li class="done">
@@ -114,9 +116,9 @@
       </div>
       <div class="show">
         <div class="inner-show">
-          <span class="all">All</span>
-          <span class="active">Active</span>
-          <span class="completed">Completed</span>
+          <span class="tabs all">All</span>
+          <span class="tabs active">Active</span>
+          <span class="tabs completed">Completed</span>
         </div>
       </div>
       <div class="drag-n-drop-con"><span class="drag-n-drop">Drag and drop to reorder list</span></div>
