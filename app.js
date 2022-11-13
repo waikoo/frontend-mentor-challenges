@@ -2,17 +2,22 @@ const themeToggle = document.querySelector('.theme-con');
 const lightIcon = document.querySelector('.theme-light');
 const darkIcon = document.querySelector('.theme-dark');
 const body = document.body;
+const darkTheme = window.matchMedia('(prefers-color-scheme: dark)');
+let currentTheme = null;
 
 function $(selector) {
 	return document.querySelector(selector);
 }
 
-function handleThemeToggler() {
-	if (body.classList.contains('dark-theme')) changeThemeTo('light');
-	if (body.classList.contains('light-theme')) changeThemeTo('dark');
+function setPreferredColorScheme() {
+	darkTheme.matches ? changeThemeTo('dark') : changeThemeTo('light');
 }
 
-// handleThemeToggler();
+setPreferredColorScheme();
+
+function handleThemeToggler() {
+	currentTheme === 'light' ? changeThemeTo('dark') : changeThemeTo('light');
+}
 
 function changeBgOfElementTo(element, color) {
 	// light theme
@@ -58,7 +63,31 @@ function changeColorOfElementTo(element, color) {
 	$(element).style.color = localColor;
 }
 
+function changeBorderBottomOfElementsTo(element, color) {
+	let innerColor;
+
+	if (color === 'mischka') innerColor = 'hsl(233, 11%, 84%)';
+	if (color === 'brightgray') innerColor = 'hsl(237, 14%, 26%)';
+
+	document.querySelectorAll(`${element}`).forEach(el => {
+		el.style.borderBottom = `1px solid ${innerColor}`;
+	});
+}
+
+function changeBorderOfElementTo(element, color) {
+	let innerColor;
+
+	if (color === 'mischka') innerColor = 'hsl(233, 11%, 84%)';
+	if (color === 'brightgray') innerColor = 'hsl(237, 14%, 26%)';
+
+	document.querySelectorAll(`${element}`).forEach(el => {
+		el.style.border = `1px solid ${innerColor}`;
+	});
+}
+
 function makeElementsLight() {
+	currentTheme = 'light';
+
 	changeBgOfElementTo('main', 'alabaster');
 	changeBgOfElementTo('.new-todo', 'alabaster');
 	changeBgOfElementTo('.new-con', 'alabaster');
@@ -67,17 +96,21 @@ function makeElementsLight() {
 	changeColorOfElementTo('main', 'mulledwine');
 	changeColorOfElementTo('.new-todo', 'mulledwine');
 
-	$('.new-todo').classList.add('mulledwine');
-	$('.new-todo').classList.remove('periwinkle');
+	$('.new-todo').style.setProperty('--c', 'hsl(236, 9%, 61%)');
 
 	changeColorOfElementTo('.summary', 'manatee');
 	changeColorOfElementTo('.show span', 'manatee');
 	changeColorOfElementTo('.drag-n-drop-con', 'manatee');
-	changeColorOfElementTo('.done-todo-text', 'mischka');
 	changeColorOfElementTo('.logo', 'white');
+	changeColorOfElementTo('.done-todo-text', 'mischka');
+
+	changeBorderBottomOfElementsTo('li', 'mischka');
+	changeBorderOfElementTo('.empty-circle', 'mischka');
 }
 
 function makeElementsDark() {
+	currentTheme = 'dark';
+
 	changeBgOfElementTo('main', 'ebonyclay');
 	changeBgOfElementTo('.new-todo', 'ebonyclay');
 	changeBgOfElementTo('.new-con', 'ebonyclay');
@@ -86,8 +119,7 @@ function makeElementsDark() {
 	changeColorOfElementTo('main', 'periwinkle');
 	changeColorOfElementTo('.new-todo', 'periwinkle');
 
-	$('.new-todo').classList.remove('mulledwine');
-	$('.new-todo').classList.add('periwinkle');
+	$('.new-todo').style.setProperty('--c', 'hsl(237, 14%, 26%)');
 
 	changeColorOfElementTo('.summary', 'trout');
 	changeColorOfElementTo('.done-todo-text', 'trout');
@@ -95,54 +127,67 @@ function makeElementsDark() {
 	changeColorOfElementTo('.show span', 'waterloo');
 	changeColorOfElementTo('.logo', 'white');
 	changeColorOfElementTo('body', 'cinder');
+
+	changeBorderOfElementTo('.empty-circle', 'brightgray');
+	changeBorderBottomOfElementsTo('li', 'brightgray');
 }
 
-function showLightIcon() {
+function showSun() {
 	lightIcon.style.display = 'block';
 	darkIcon.style.display = 'none';
 }
 
-function showDarkIcon() {
+function showMoon() {
 	lightIcon.style.display = 'none';
 	darkIcon.style.display = 'block';
 }
 
 function changeThemeTo(lightOrDark) {
 	if (lightOrDark === 'light') {
-		showDarkIcon();
-		changeBackgroundImage();
-		console.log('light is chosen');
-
-		body.className = 'light-theme';
+		showMoon();
 		makeElementsLight();
+		changeBackgroundImage();
 	}
 	if (lightOrDark === 'dark') {
-		showLightIcon();
-		changeBackgroundImage();
-		console.log('dark is chosen');
-		body.className = 'dark-theme';
+		showSun();
 		makeElementsDark();
+		changeBackgroundImage();
 	}
 }
 
 function changeBackgroundImage() {
-	if (isDesktopViewport() && isDarkMode()) setBackgroundPhoto('desktop', 'dark');
-	if (isDesktopViewport() && !isDarkMode()) setBackgroundPhoto('desktop', 'light');
-	if (!isDesktopViewport() && isDarkMode()) setBackgroundPhoto('mobile', 'dark');
-	if (!isDesktopViewport() && !isDarkMode()) setBackgroundPhoto('mobile', 'light');
+	// if (isDesktopViewport() && isThemeDark()) {
+	// 	setBackgroundPhoto('desktop', 'dark');
+	// 	console.log('1');
+	// }
+	// if (isDesktopViewport() && !isThemeDark()) {
+	// 	setBackgroundPhoto('desktop', 'light');
+	// 	console.log('2');
+	// }
+	//
+
+	// works in mobile view
+	if (!isDesktopViewport() && isThemeDark()) {
+		setBackgroundPhoto('mobile', 'dark');
+	}
+	if (!isDesktopViewport() && !isThemeDark()) {
+		setBackgroundPhoto('mobile', 'light');
+	}
 }
 
 function isDesktopViewport() {
 	const mediaQuery = window.matchMedia('(min-width: 62em)');
+
 	return mediaQuery.matches;
 }
 
-function isDarkMode() {
-	return body.classList.contains('dark-theme');
+function isThemeDark() {
+	return currentTheme === 'dark';
 }
 
 function setBackgroundPhoto(desktopOrMobile, lightOrDark) {
 	$('header img').src = `assets/images/bg-${desktopOrMobile}-${lightOrDark}.jpg`;
 }
 
-themeToggle.addEventListener('click', handleThemeToggler);
+themeToggle.addEventListener('click', handleThemeToggler, false);
+window.addEventListener('change', setPreferredColorScheme);

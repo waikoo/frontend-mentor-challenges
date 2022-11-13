@@ -1,46 +1,49 @@
-@use '../abstracts/_abstracts' as *;
-$s1Mischka: 1px solid $Mischka;
+// @use '../abstracts/_abstracts' as *;
+// $s1Mischka: 1px solid $Mischka;
 
-@media (prefers-color-scheme: light) {
-	body {
-		background: $Snuff;
-	}
+// @media (prefers-color-scheme: light) {
+// 	body {
+// 		background: $Snuff;
+// 	}
 
-	main,
-	.new-todo,
-	.new-con,
-	.show {
-		background: $Alabaster;
-	}
+// 	main,
+// 	.new-todo,
+// 	.new-con,
+// 	.show {
+// 		background: $Alabaster;
+// 	}
 
-	// ! ???????????????????????????????????
-	.empty-circle,
-	.checked-circle {
-		border: $s1Mischka;
-	}
+// 	// ! ???????????????????????????????????
+// 	.empty-circle,
+// 	.checked-circle {
+// 		border: $s1Mischka;
+// 	}
 
-	li {
-		border-bottom: $s1Mischka;
-	}
-	// ! ???????????????????????????????????
+// 	li {
+// 		border-bottom: $s1Mischka;
+// 	}
+// 	// ! ???????????????????????????????????
 
-	main,
-	.new-todo,
-	.new-todo::placeholder {
-		color: $MulledWine;
-	}
+// 	main,
+// 	.new-todo {
+// 		color: $MulledWine;
+// 	}
 
-	.summary,
-	.show span,
-	.drag-n-drop-con {
-		color: $Manatee;
-	}
+// 	.new-todo::placeholder {
+// 		color: $Manatee;
+// 	}
 
-	.done-todo-text {
-		color: $Mischka;
-	}
+// 	.summary,
+// 	.show span,
+// 	.drag-n-drop-con {
+// 		color: $Manatee;
+// 	}
 
-	.logo {
-		color: $White;
-	}
-}
+// 	.done-todo-text {
+// 		color: $Mischka;
+// 	}
+
+// 	.logo {
+// 		color: $White;
+// 	}
+// }
