@@ -16,6 +16,8 @@ let allDeleteButtons = document.querySelectorAll('.delete');
 
 const uncheckedTodos = $$('.empty-circle');
 
+const clearAllTodosButton = $('.clear');
+
 function $(selector) {
 	return document.querySelector(selector);
 }
@@ -113,13 +115,14 @@ function makeElementsLight() {
 	setColorOfElementTo('main', 'mulledwine');
 	setColorOfElementTo('.new-todo', 'mulledwine');
 
-	$('.new-todo').style.setProperty('--c', 'hsl(236, 9%, 61%)');
+	$('.new-todo').style.setProperty('--c', 'hsl(233, 11%, 84%)');
 
 	setColorOfElementTo('.summary', 'manatee');
 	setColorOfElementTo('.show span', 'manatee');
 	setColorOfElementTo('.drag-n-drop-con', 'manatee');
 	setColorOfElementTo('.logo', 'white');
-	setColorOfElementTo('.done-todo-text', 'mischka');
+	// setColorOfElementTo('.done-todo-text', 'mischka');
+	// setColorOfElementTo('.undone-todo-text', 'mulledwine');
 	setColorOfElementTo('.tabs', 'waterloo', true);
 
 	setBorderBottomOfElementsTo('li', 'mischka');
@@ -141,7 +144,8 @@ function makeElementsDark() {
 	$('.new-todo').style.setProperty('--c', 'hsl(237, 14%, 26%)');
 
 	setColorOfElementTo('.summary', 'trout');
-	setColorOfElementTo('.done-todo-text', 'trout');
+	// setColorOfElementTo('.done-todo-text', 'trout');
+	// setColorOfElementTo('.undone-todo-text', 'trout');
 	setColorOfElementTo('.drag-n-drop-con', 'trout');
 	setColorOfElementTo('.show span', 'waterloo');
 	setColorOfElementTo('.logo', 'white');
@@ -173,6 +177,7 @@ function changeThemeTo(lightOrDark) {
 		makeElementsDark();
 		changeBackgroundImage();
 	}
+	$('.all').click();
 }
 
 function changeBackgroundImage() {
@@ -224,9 +229,11 @@ function handleTabSelection(e) {
 function createNewTodo(e) {
 	e.preventDefault();
 	const todoText = $('input').value;
+	if (!todoText) return;
 	todosContainer.insertBefore(createNewLi(todoText), todosContainer.firstChild);
 	$('.delete').addEventListener('click', deleteTodo);
-	$('.empty-circle').addEventListener('click', toggleTodoComplete);
+	$('.empty-circle').addEventListener('click', addCheckToTodo);
+	$('.checked-circle').addEventListener('click', removeCheckFromTodo);
 	$('input').value = '';
 	$('.number').textContent = totalNumberOfTodos;
 }
@@ -247,8 +254,13 @@ function createNewLi(text) {
   `;
 	li.style.borderBottom = `1px solid ${color}`;
 	li.innerHTML = `
-          <div class="icon-text">
-            <div class="empty-circle" style="${circle}"></div>
+          <div class="todo-icon-text">
+            <div class="check-status">
+              <div class="empty-circle" style="${circle}"></div>
+              <div class="checked-circle" style="display: none">
+                <img src="assets/images/icon-check.svg" alt>
+              </div>
+            </div>
             <span class="undone-todo-text">${text}</span>
           </div>
           <div class="delete">
@@ -265,27 +277,49 @@ function createNewLi(text) {
 function deleteTodo(e) {
 	$$('.delete').forEach(deleteButton => {
 		if (deleteButton === e.currentTarget) {
-			console.log('takony');
-
 			todosContainer.removeChild(deleteButton.closest('li'));
+			totalNumberOfTodos--;
+			$('.number').textContent = totalNumberOfTodos;
 		}
 	});
 }
 
-function toggleTodoComplete(e) {
-	console.log('click');
-	const parent = e.target.parentElement;
-	parent.removeChild(e.target);
-	parent.insertBefore(todoCheckedHtml(), parent.firstChild);
+function addCheckToTodo(e) {
+	$$('.check-status').forEach(el => {
+		if (el.closest('li') === e.target.closest('li')) {
+			const parent = e.target.parentElement;
+			const uncle = e.currentTarget.parentElement.nextElementSibling;
+
+			e.target.style.display = 'none';
+			parent.querySelector('.checked-circle').style.display = 'grid';
+
+			if (uncle.className === 'undone-todo-text') uncle.className = 'done-todo-text';
+
+			let localColor;
+			if (currentTheme === 'light') localColor = 'rgb(210, 211, 219)';
+			if (currentTheme === 'dark') localColor = 'rgb(77, 80, 102)';
+			uncle.style.color = localColor;
+		}
+	});
 }
 
-function todoCheckedHtml() {
-	const checked = document.createElement('div');
-	checked.className = 'checked-circle';
-	checked.innerHTML = `
-  <img src="assets/images/icon-check.svg" alt>
-  `;
-	return checked;
+function removeCheckFromTodo(e) {
+	let localColor;
+	if (currentTheme === 'light') localColor = 'rgb(72, 75, 106)';
+	if (currentTheme === 'dark') localColor = 'rgb(202, 205, 232)';
+
+	$$('.check-status').forEach(el => {
+		if (el.closest('li') === e.target.closest('li')) {
+			const todoText = e.currentTarget.parentElement.querySelector('.empty-circle');
+			e.currentTarget.style.display = 'none';
+			todoText.style.display = 'block';
+
+			const crossedTodo = e.currentTarget.parentElement.nextElementSibling;
+
+			crossedTodo.className = 'undone-todo-text';
+			crossedTodo.style.color = localColor;
+		}
+	});
 }
 
 themeToggle.addEventListener('click', handleThemeToggler, false);
@@ -293,7 +327,5 @@ window.addEventListener('change', setPreferredColorScheme);
 
 tabs.forEach(tab => tab.addEventListener('click', handleTabSelection));
 form.addEventListener('submit', createNewTodo);
-// uncheckedTodos.forEach(uncheckedTodo => uncheckedTodo.addEventListener('click', toggleTodoComplete));
 
 setPreferredColorScheme();
-$('.all').click();
