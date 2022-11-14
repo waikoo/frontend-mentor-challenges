@@ -322,10 +322,17 @@ function removeCheckFromTodo(e) {
 	});
 }
 
+function deleteCompletedTodos() {
+	$$('li').forEach(todo => {
+		if (todo.contains($('.done-todo-text'))) todosContainer.removeChild(todo);
+	});
+}
+
 themeToggle.addEventListener('click', handleThemeToggler, false);
 window.addEventListener('change', setPreferredColorScheme);
 
 tabs.forEach(tab => tab.addEventListener('click', handleTabSelection));
 form.addEventListener('submit', createNewTodo);
+clearAllTodosButton.addEventListener('click', deleteCompletedTodos);
 
 setPreferredColorScheme();
