@@ -12,6 +12,8 @@ main {
 }
 
 .delete {
+	display: flex;
+	align-items: center;
 	svg {
 		scale: 0.7;
 	}
@@ -24,7 +26,8 @@ main {
 }
 
 .empty-circle,
-.checked-circle {
+.checked-circle,
+.circle {
 	width: 1.3rem;
 	height: 1.3rem;
 	border-radius: 50%;

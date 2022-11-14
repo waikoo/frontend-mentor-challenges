@@ -10,8 +10,17 @@ const form = document.querySelector('form');
 const todoText = document.querySelector('input');
 const todosContainer = document.querySelector('.todos-con');
 
+let totalNumberOfTodos = 0;
+let todoID = `todo${totalNumberOfTodos}`;
+let allDeleteButtons = document.querySelectorAll('.delete');
+
+const uncheckedTodos = $$('.empty-circle');
+
 function $(selector) {
 	return document.querySelector(selector);
+}
+function $$(selector) {
+	return document.querySelectorAll(selector);
 }
 
 function setPreferredColorScheme() {
@@ -115,6 +124,7 @@ function makeElementsLight() {
 
 	setBorderBottomOfElementsTo('li', 'mischka');
 	setBorderOfElementTo('.empty-circle', 'mischka');
+	setBorderOfElementTo('.circle', 'mischka');
 }
 
 function makeElementsDark() {
@@ -138,6 +148,7 @@ function makeElementsDark() {
 	setColorOfElementTo('body', 'cinder');
 
 	setBorderOfElementTo('.empty-circle', 'brightgray');
+	setBorderOfElementTo('.circle', 'brightgray');
 	setBorderBottomOfElementsTo('li', 'brightgray');
 }
 
@@ -212,14 +223,19 @@ function handleTabSelection(e) {
 
 function createNewTodo(e) {
 	e.preventDefault();
-	// new li gets created with $('input').value as text content
 	const todoText = $('input').value;
-	todosContainer.insertBefore(newLi(todoText), todosContainer.firstChild);
+	todosContainer.insertBefore(createNewLi(todoText), todosContainer.firstChild);
+	$('.delete').addEventListener('click', deleteTodo);
+	$('.empty-circle').addEventListener('click', toggleTodoComplete);
+	$('input').value = '';
+	$('.number').textContent = totalNumberOfTodos;
 }
 
-function newLi(text) {
+function createNewLi(text) {
+	totalNumberOfTodos++;
+
 	const li = document.createElement('li');
-	li.className = 'undone-todo-text';
+	li.className = `undone-todo-text ${todoID}`;
 
 	let color;
 	currentTheme === 'light' ? (color = 'rgb(210, 211, 219)') : (color = 'rgb(57, 58, 76)');
@@ -246,10 +262,38 @@ function newLi(text) {
 	return li;
 }
 
-setPreferredColorScheme();
+function deleteTodo(e) {
+	$$('.delete').forEach(deleteButton => {
+		if (deleteButton === e.currentTarget) {
+			console.log('takony');
+
+			todosContainer.removeChild(deleteButton.closest('li'));
+		}
+	});
+}
+
+function toggleTodoComplete(e) {
+	console.log('click');
+	const parent = e.target.parentElement;
+	parent.removeChild(e.target);
+	parent.insertBefore(todoCheckedHtml(), parent.firstChild);
+}
+
+function todoCheckedHtml() {
+	const checked = document.createElement('div');
+	checked.className = 'checked-circle';
+	checked.innerHTML = `
+  <img src="assets/images/icon-check.svg" alt>
+  `;
+	return checked;
+}
 
 themeToggle.addEventListener('click', handleThemeToggler, false);
 window.addEventListener('change', setPreferredColorScheme);
 
 tabs.forEach(tab => tab.addEventListener('click', handleTabSelection));
 form.addEventListener('submit', createNewTodo);
+// uncheckedTodos.forEach(uncheckedTodo => uncheckedTodo.addEventListener('click', toggleTodoComplete));
+
+setPreferredColorScheme();
+$('.all').click();
