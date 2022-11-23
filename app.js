@@ -10,13 +10,15 @@ const form = document.querySelector('form');
 const todoText = document.querySelector('input');
 const todosContainer = document.querySelector('.todos-con');
 
-let totalNumberOfTodos = 0;
-let todoID = `todo${totalNumberOfTodos}`;
+let todoTotal = 0;
+let todoId = 0;
 let allDeleteButtons = document.querySelectorAll('.delete');
 
 const uncheckedTodos = $$('.empty-circle');
 
 const clearAllTodosButton = $('.clear');
+
+let allTodos = [];
 
 function $(selector) {
 	return document.querySelector(selector);
@@ -230,20 +232,26 @@ function createNewTodo(e) {
 	e.preventDefault();
 	const todoText = $('input').value;
 	if (!todoText) return;
+
 	todosContainer.insertBefore(createNewLi(todoText), todosContainer.firstChild);
 	$('.delete').addEventListener('click', deleteTodo);
 	$('.empty-circle').addEventListener('click', addCheckToTodo);
 	$('.checked-circle').addEventListener('click', removeCheckFromTodo);
 	$('input').value = '';
-	$('.number').textContent = totalNumberOfTodos;
+	$('.number').textContent = todoTotal;
+
+	setNewTodoLocally(todoId, todoText);
+	saveTodoObjectToLocalStorage();
 }
 
 function createNewLi(text) {
-	totalNumberOfTodos++;
-
+	todoTotal++;
+	todoId++;
 	const li = document.createElement('li');
-	li.className = `undone-todo-text ${todoID}`;
-
+	// ! change todoID
+	li.className = `undone-todo-text ${todoId}`;
+	console.log(li.className);
+	console.log(todoTotal);
 	let color;
 	currentTheme === 'light' ? (color = 'rgb(210, 211, 219)') : (color = 'rgb(57, 58, 76)');
 	const circle = `
@@ -278,8 +286,9 @@ function deleteTodo(e) {
 	$$('.delete').forEach(deleteButton => {
 		if (deleteButton === e.currentTarget) {
 			todosContainer.removeChild(deleteButton.closest('li'));
-			totalNumberOfTodos--;
-			$('.number').textContent = totalNumberOfTodos;
+			todoTotal--;
+			todoId--;
+			updateTodoCounter();
 		}
 	});
 }
@@ -326,6 +335,66 @@ function deleteCompletedTodos() {
 	$$('li').forEach(todo => {
 		if (todo.contains($('.done-todo-text'))) todosContainer.removeChild(todo);
 	});
+	updateTodoCounter();
+}
+
+function updateTodoCounter() {
+	todoTotal = $('.todos-con').children.length;
+	$('.number').textContent = todoTotal;
+}
+
+function saveTodoObjectToLocalStorage(object) {
+	localStorage.setItem('savedTodos', JSON.stringify(object));
+}
+
+function setNewTodoLocally(todoId, todoText) {
+	todoId++;
+	// allTodos = [...allTodos, { id: id, text: text }];
+	allTodos.push({
+		id: todoId,
+		text: todoText
+	});
+}
+
+function getTodosFromLocalStorage() {
+	const savedTodoObject = JSON.parse(localStorage.getItem('savedTodos')) || '';
+	console.log(savedTodoObject);
+	if (savedTodoObject) return savedTodoObject;
+	if (!savedTodoObject) return;
+	// return savedTodoObject;
+}
+
+function displayTodosFromLocalStorage() {
+	const savedTodos = getTodosFromLocalStorage();
+	console.warn({ savedTodos });
+	if (!savedTodos) {
+		return;
+	} else {
+		console.warn({ savedTodos });
+		todosContainer.innerHTML = savedTodos
+			.map(todo => {
+				return `
+        <li class="undone-todo-text" style="border-bottom: 1px solid rgb(210, 211, 219);">
+          <div class="todo-icon-text">
+            <div class="check-status">
+              <div class="empty-circle" style="
+	border-radius: 50%;
+  border: 1px solid rgb(210, 211, 219);
+  "></div>
+              <div class="checked-circle" style="display: none">
+                <img src="assets/images/icon-check.svg" alt="">
+              </div>
+            </div>
+            <span class="undone-todo-text">${todo.text}</span>
+          </div>
+          <div class="delete">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"><path fill="#494C6B" fill-rule="evenodd" d="M16.97 0l.708.707L9.546 8.84l8.132 8.132-.707.707-8.132-8.132-8.132 8.132L0 16.97l8.132-8.132L0 .707.707 0 8.84 8.132 16.971 0z"></path></svg>
+          </div>
+  </li>
+      `;
+			})
+			.join('');
+	}
 }
 
 themeToggle.addEventListener('click', handleThemeToggler, false);
@@ -336,3 +405,6 @@ form.addEventListener('submit', createNewTodo);
 clearAllTodosButton.addEventListener('click', deleteCompletedTodos);
 
 setPreferredColorScheme();
+// console.log(localStorage.getItem(JSON.parse('savedTodos')));
+
+// displayTodosFromLocalStorage();
