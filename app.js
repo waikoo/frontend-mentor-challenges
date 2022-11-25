@@ -12,13 +12,16 @@ const todosContainer = document.querySelector('.todos-con');
 
 let todoTotal = 0;
 let todoId = 0;
-let allDeleteButtons = document.querySelectorAll('.delete');
-
-const uncheckedTodos = $$('.empty-circle');
+// let allDeleteButtons = document.querySelectorAll('.delete');
 
 const clearAllTodosButton = $('.clear');
 
 let allTodos = [];
+
+const SELECTED_BLUE = 'hsl(220, 98%, 61%)';
+const UNSELECTED_GREY = 'rgb(119, 122, 146)';
+
+let sourceTodo;
 
 function $(selector) {
 	return document.querySelector(selector);
@@ -219,39 +222,67 @@ function setBackgroundPhoto(desktopOrMobile, lightOrDark) {
 function handleTabSelection(e) {
 	tabs.forEach(tab => {
 		if (tab === e.target) {
-			// tab.classList.add('selected');
-			tab.style.color = 'hsl(220, 98%, 61%)';
+			tab.style.color = SELECTED_BLUE;
+			showTodosController(e.target.textContent);
 		} else {
-			tab.style.color = 'rgb(119, 122, 146)';
-			// tab.classList.remove('selected');
+			tab.style.color = UNSELECTED_GREY;
 		}
 	});
+}
+
+function showTodosController(tabName) {
+	switch (tabName) {
+		case 'Active':
+			showActive();
+			break;
+		case 'Completed':
+			displayTodosFromLocalStorage();
+			showCompleted();
+			break;
+
+		default:
+			// showAll()
+			displayTodosFromLocalStorage();
+			break;
+	}
 }
 
 function createNewTodo(e) {
 	e.preventDefault();
 	const todoText = $('input').value;
 	if (!todoText) return;
-
 	todosContainer.insertBefore(createNewLi(todoText), todosContainer.firstChild);
+	$('input').value = '';
+
+	addTodoEventListeners();
+	updateUICounter();
+
+	const todosCount = $('.todos-con').children.length;
+
+	if (todosCount === 0) setNewTodoLocally(todosCount + 1, todoText);
+	if (todosCount > 0) setNewTodoLocally(todosCount, todoText);
+
+	saveTodosToLocalStorage(allTodos);
+}
+
+function addTodoEventListeners() {
+	$('li').addEventListener('dragstart', onDragStart);
+	$('li').addEventListener('dragenter', onDragEnter);
+	$('li').addEventListener('dragover', onDragOver);
+	$('li').addEventListener('drop', onDrop);
+	$('li').addEventListener('dragend', onDragEnd);
+	$('li').addEventListener('mouseenter', onMouseEnter);
 	$('.delete').addEventListener('click', deleteTodo);
 	$('.empty-circle').addEventListener('click', addCheckToTodo);
 	$('.checked-circle').addEventListener('click', removeCheckFromTodo);
-	$('input').value = '';
-	$('.number').textContent = todoTotal;
-
-	setNewTodoLocally(todoId, todoText);
-	saveTodoObjectToLocalStorage();
 }
 
 function createNewLi(text) {
 	todoTotal++;
 	todoId++;
 	const li = document.createElement('li');
-	// ! change todoID
 	li.className = `undone-todo-text ${todoId}`;
-	console.log(li.className);
-	console.log(todoTotal);
+	li.draggable = true;
 	let color;
 	currentTheme === 'light' ? (color = 'rgb(210, 211, 219)') : (color = 'rgb(57, 58, 76)');
 	const circle = `
@@ -279,123 +310,204 @@ function createNewLi(text) {
             ><path fill="#494C6B" fill-rule="evenodd" d="M16.97 0l.708.707L9.546 8.84l8.132 8.132-.707.707-8.132-8.132-8.132 8.132L0 16.97l8.132-8.132L0 .707.707 0 8.84 8.132 16.971 0z"/></svg>
           </div>
   `;
+
 	return li;
+}
+
+function deleteFromUI(todo) {
+	todosContainer.removeChild(todo);
+	todoTotal--;
+	todoId--;
+}
+
+function deleteFromLocalStorage(todo) {
+	const todoText = todo.firstElementChild.lastElementChild.textContent;
+	allTodos = allTodos.filter(todo => todo.text !== todoText);
+	saveTodosToLocalStorage(allTodos);
 }
 
 function deleteTodo(e) {
 	$$('.delete').forEach(deleteButton => {
 		if (deleteButton === e.currentTarget) {
-			todosContainer.removeChild(deleteButton.closest('li'));
-			todoTotal--;
-			todoId--;
-			updateTodoCounter();
+			const todo = deleteButton.closest('li');
+			deleteFromUI(todo);
+			deleteFromLocalStorage(todo);
+			updateUICounter();
 		}
 	});
+	updateLocalTodos();
+	saveTodosToLocalStorage(allTodos);
+}
+
+function setIsCompleted(trueOrFalse, element) {
+	let todoNr = element.className.split(' ')[1];
+	let id = Number(todoNr[todoNr.length - 1]);
+
+	allTodos.forEach(todo => {
+		if (todo.id === id) todo.isCompleted = trueOrFalse;
+	});
+
+	saveTodosToLocalStorage(allTodos);
 }
 
 function addCheckToTodo(e) {
+	const todo = e.target.closest('li');
+
 	$$('.check-status').forEach(el => {
 		if (el.closest('li') === e.target.closest('li')) {
-			const parent = e.target.parentElement;
-			const uncle = e.currentTarget.parentElement.nextElementSibling;
-
-			e.target.style.display = 'none';
-			parent.querySelector('.checked-circle').style.display = 'grid';
-
-			if (uncle.className === 'undone-todo-text') uncle.className = 'done-todo-text';
-
-			let localColor;
-			if (currentTheme === 'light') localColor = 'rgb(210, 211, 219)';
-			if (currentTheme === 'dark') localColor = 'rgb(77, 80, 102)';
-			uncle.style.color = localColor;
+			setIsCompleted(true, todo);
+			addCheckmark(e);
+			setCheckedClassName(e);
+			setCheckedColor(e);
 		}
 	});
 }
 
-function removeCheckFromTodo(e) {
+function setCheckedClassName(e) {
+	const uncle = e.currentTarget.parentElement.nextElementSibling;
+	if (uncle.className === 'undone-todo-text') uncle.className = 'done-todo-text';
+}
+
+function setCheckedColor(e) {
 	let localColor;
-	if (currentTheme === 'light') localColor = 'rgb(72, 75, 106)';
-	if (currentTheme === 'dark') localColor = 'rgb(202, 205, 232)';
+	if (currentTheme === 'light') localColor = 'rgb(210, 211, 219)';
+	if (currentTheme === 'dark') localColor = 'rgb(77, 80, 102)';
+	uncle.style.color = localColor;
+}
+
+function addCheckmark(e) {
+	const parent = e.target.parentElement;
+	const emptyCircle = e.target;
+	const checkedCircle = parent.querySelector('.checked-circle');
+	emptyCircle.style.display = 'none';
+	checkedCircle.style.display = 'grid';
+}
+
+function removeCheckFromTodo(e) {
+	// TODO:
+	const todo = e.target.closest('li');
 
 	$$('.check-status').forEach(el => {
 		if (el.closest('li') === e.target.closest('li')) {
+			setIsCompleted(false, todo);
+
+			/*
+      TODO;
+			addCheckmark(e);
+      setCheckedClassName(e)
+      setCheckedColor(e);
+      */
+
+			// TODO: segment:
+
+			// ---
 			const todoText = e.currentTarget.parentElement.querySelector('.empty-circle');
 			e.currentTarget.style.display = 'none';
 			todoText.style.display = 'block';
+			// ---
 
+			// ---
 			const crossedTodo = e.currentTarget.parentElement.nextElementSibling;
-
 			crossedTodo.className = 'undone-todo-text';
+			// ---
+
+			// ---
+			// const crossedTodo = e.currentTarget.parentElement.nextElementSibling;
+			let localColor;
+			if (currentTheme === 'light') localColor = 'rgb(72, 75, 106)';
+			if (currentTheme === 'dark') localColor = 'rgb(202, 205, 232)';
 			crossedTodo.style.color = localColor;
+			// ---
 		}
 	});
 }
 
 function deleteCompletedTodos() {
 	$$('li').forEach(todo => {
-		if (todo.contains($('.done-todo-text'))) todosContainer.removeChild(todo);
+		if (todo.contains($('.done-todo-text'))) {
+			todosContainer.removeChild(todo);
+		}
 	});
-	updateTodoCounter();
+
+	allTodos = allTodos.filter(todo => todo.isCompleted === false);
+	saveTodosToLocalStorage(allTodos);
+	updateUICounter();
 }
 
-function updateTodoCounter() {
+function updateUICounter() {
 	todoTotal = $('.todos-con').children.length;
 	$('.number').textContent = todoTotal;
 }
 
-function saveTodoObjectToLocalStorage(object) {
+function saveTodosToLocalStorage(object) {
 	localStorage.setItem('savedTodos', JSON.stringify(object));
 }
 
-function setNewTodoLocally(todoId, todoText) {
-	todoId++;
-	// allTodos = [...allTodos, { id: id, text: text }];
+function setNewTodoLocally(id, text) {
 	allTodos.push({
-		id: todoId,
-		text: todoText
+		id,
+		text,
+		isCompleted: false
 	});
 }
 
 function getTodosFromLocalStorage() {
-	const savedTodoObject = JSON.parse(localStorage.getItem('savedTodos')) || '';
-	console.log(savedTodoObject);
-	if (savedTodoObject) return savedTodoObject;
-	if (!savedTodoObject) return;
-	// return savedTodoObject;
+	const savedTodosObject = localStorage.getItem('savedTodos');
+	if (!savedTodosObject) return;
+	return JSON.parse(savedTodosObject);
 }
 
 function displayTodosFromLocalStorage() {
 	const savedTodos = getTodosFromLocalStorage();
-	console.warn({ savedTodos });
-	if (!savedTodos) {
-		return;
-	} else {
-		console.warn({ savedTodos });
-		todosContainer.innerHTML = savedTodos
-			.map(todo => {
-				return `
-        <li class="undone-todo-text" style="border-bottom: 1px solid rgb(210, 211, 219);">
+	if (!savedTodos) return;
+
+	allTodos = savedTodos;
+
+	todosContainer.innerHTML = allTodos
+		.map(todo => {
+			const done = todo.isCompleted;
+			const text = todo.text;
+			const id = todo.id;
+			// createNewLi(todo.text)
+			return `
+        <li class="${done ? 'done' : 'undone'}-todo-text todo${id}" draggable="true" style="border-bottom: 1px solid rgb(210, 211, 219);">
           <div class="todo-icon-text">
             <div class="check-status">
-              <div class="empty-circle" style="
-	border-radius: 50%;
-  border: 1px solid rgb(210, 211, 219);
-  "></div>
-              <div class="checked-circle" style="display: none">
+              <div class="empty-circle" style="border-radius: 50%; display: ${done ? 'none' : 'flex'}; ${done ? '' : 'border: 1px solid rgb(210, 211, 219)'}"></div>
+              <div class="checked-circle" style="display: ${done ? 'grid' : 'none'}">
                 <img src="assets/images/icon-check.svg" alt="">
               </div>
             </div>
-            <span class="undone-todo-text">${todo.text}</span>
+            <span class="${done ? 'done' : 'undone'}-todo-text">${text}</span>
           </div>
           <div class="delete">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"><path fill="#494C6B" fill-rule="evenodd" d="M16.97 0l.708.707L9.546 8.84l8.132 8.132-.707.707-8.132-8.132-8.132 8.132L0 16.97l8.132-8.132L0 .707.707 0 8.84 8.132 16.971 0z"></path></svg>
           </div>
   </li>
-      `;
-			})
-			.join('');
-	}
+  `;
+		})
+		.join('');
+
+	document.querySelectorAll('li').forEach(li => {
+		li.addEventListener('dragstart', onDragStart);
+		li.addEventListener('dragenter', onDragEnter);
+		li.addEventListener('dragover', onDragOver);
+		li.addEventListener('drop', onDrop);
+		li.addEventListener('dragend', onDragEnd);
+		li.addEventListener('mouseenter', onMouseEnter);
+	});
+
+	$$('.delete').forEach(deleteButton => deleteButton.addEventListener('click', deleteTodo));
+	$$('.empty-circle').forEach(deleteButton => deleteButton.addEventListener('click', addCheckToTodo));
+	$$('.checked-circle').forEach(deleteButton => deleteButton.addEventListener('click', removeCheckFromTodo));
+
+	updateUICounter();
+	updateLocalTodos();
+	console.log(allTodos);
 }
+
+// dropzone -> $('.todos-con)
+// $('.todos-con).addEventListener('drop', onDrop)
 
 themeToggle.addEventListener('click', handleThemeToggler, false);
 window.addEventListener('change', setPreferredColorScheme);
@@ -404,7 +516,71 @@ tabs.forEach(tab => tab.addEventListener('click', handleTabSelection));
 form.addEventListener('submit', createNewTodo);
 clearAllTodosButton.addEventListener('click', deleteCompletedTodos);
 
-setPreferredColorScheme();
-// console.log(localStorage.getItem(JSON.parse('savedTodos')));
+// todosContainer.addEventListener('drop', onDrop);
 
+setPreferredColorScheme();
+
+function onDragStart(e) {
+	this.style.opacity = 0.4;
+
+	sourceTodo = this;
+	e.dataTransfer.effectAllowed = 'move';
+	e.dataTransfer.setData('text/html', e.target.innerHTML);
+}
+
+function onDragEnter(e) {
+	$$('li').forEach(draggedOverTodo => {
+		e.target === draggedOverTodo ? draggedOverTodo.classList.add('hint') : draggedOverTodo.classList.remove('hint');
+	});
+}
+
+function onDragOver(e) {
+	e.preventDefault();
+}
+
+function onDragEnd(e) {
+	e.target.style.opacity = 1;
+
+	updateLocalTodos();
+
+	saveTodosToLocalStorage(allTodos);
+}
+
+function onDrop(e) {
+	e.stopPropagation();
+
+	this.classList.remove('hint');
+	if (sourceTodo !== e.target) {
+		$$('li').forEach(sourceTodoElement => {
+			if (sourceTodoElement === sourceTodo) {
+				sourceTodoElement.innerHTML = e.target.innerHTML;
+				e.target.innerHTML = e.dataTransfer.getData('text/html');
+			}
+		});
+	}
+
+	e.preventDefault();
+}
+
+function onMouseEnter(e) {
+	$$('li').forEach(li => {
+		if (e.target === li) {
+			e.target.style.cursor = 'pointer';
+		}
+	});
+}
 // displayTodosFromLocalStorage();
+
+function updateLocalTodos() {
+	[...$$('li')].forEach((todo, i) => {
+		allTodos[i].id = i + 1;
+		allTodos[i].text = todo.children[0].children[1].textContent;
+		allTodos[i].isCompleted = todo.children[0].children[1].classList.contains('done');
+	});
+}
+
+// TODO: a check id alapjan mukodjon ne textContent alapjan
+/*
+  ? addCheckToTodo
+  ? removeCheckFromTodo
+*/
