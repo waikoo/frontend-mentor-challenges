@@ -1,0 +1,9 @@
+.overview-section:nth-of-type(2),
+.overview-section:nth-of-type(4) {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.overview {
+  margin-top: 3rem;
+}

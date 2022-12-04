@@ -1,0 +1,21 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+h1 {
+  font-size: 1.6rem;
+}
+
+hr {
+  margin: 1rem 0;
+}
+
+.total {
+  font-weight: 700;
+}
+
+header {
+  padding-bottom: 1.5rem;
+}

@@ -1,0 +1,113 @@
+html {
+  --positive: hsl(163, 72%, 41%);
+  --negative: hsl(356, 69%, 56%);
+
+  --fb: hsl(208, 92%, 53%);
+  --twt: hsl(203, 89%, 53%);
+  --ig: linear-gradient(hsl(37, 97%, 70%) to hsl(329, 70%, 58%));
+  --yt: hsl(348, 97%, 39%);
+
+  --transition: .15s linear;
+
+  --bg: hsl(0, 0%, 100%);
+  --toggle-circle: hsl(0, 0%, 100%);
+  --toggle-bg: hsl(230, 22%, 74%);
+  --heading: hsl(0, 0%, 0%);
+  --header-text: hsl(228, 12%, 44%);
+  --WTV: hsl(225, 100%, 98%);
+  --card: hsl(227, 47%, 96%);
+  --txt-1: hsl(227, 47%, 96%);
+  --txt-2: hsl(228, 12%, 44%);
+  --txt-overview-num: hsl(0, 0%, 0%);
+  --txt-overview-title: hsl(228, 12%, 44%);
+  --txt-followers: hsl(228, 34%, 66%);
+}
+
+html[data-theme="dark"] {
+  --bg: hsl(232, 19%, 15%);
+  /* --toggle-circle: hsl(228, 28%, 20%); */
+  --toggle-circle: hsl(230, 17%, 14%);
+  --toggle-bg-backup: rgba(62, 218, 130, 1);
+  --toggle-bg: linear-gradient(31deg, rgba(62, 218, 130, 1) 0%, rgba(55, 143, 230, 1) 100%);
+  --heading: hsl(0, 0%, 100%);
+  --header-text: hsl(228, 34%, 66%);
+  --WTV: hsl(230, 17%, 14%);
+  --card: hsl(228, 28%, 20%);
+  --txt-1: hsl(228, 34%, 66%);
+  --txt-2: hsl(0, 0%, 100%);
+  --txt-overview-num: hsl(0, 0%, 100%);
+  --txt-overview-title: hsl(228, 34%, 66%);
+  --txt-followers: hsl(228, 34%, 66%);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  transition: var(--transition);
+}
+
+.App {
+  background: var(--bg);
+  padding: 1.5rem;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  transition: .15s linear;
+}
+
+h1 {
+  margin: 0;
+  margin-bottom: 0.5rem;
+  color: var(--heading);
+}
+
+.mode,
+.total {
+  color: var(--header-text);
+}
+
+.ball {
+  background: var(--toggle-circle);
+}
+
+header h1 {
+  color: var(--heading);
+}
+
+#checkbox+label {
+  background: var(--toggle-bg-backup);
+  background: var(--toggle-bg);
+}
+
+.social,
+.overview-item {
+  background: var(--card);
+}
+
+
+.handle,
+.followers {
+  color: var(--txt-followers);
+}
+
+.number {
+  color: var(--heading);
+}
+
+h2 {
+  color: var(--txt-2);
+}
+
+.ov-title {
+  color: var(--txt-overview-title);
+}
+
+.ov-number {
+  color: var(--txt-2);
+  /* color: var(--txt-overview-title); */
+}

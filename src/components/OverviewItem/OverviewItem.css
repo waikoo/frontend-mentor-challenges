@@ -1,0 +1,42 @@
+.overview-item {
+  display: flex;
+  justify-content: space-between;
+  border-radius: 5px;
+  padding: 1.3rem 1rem;
+  margin-top: 2rem;
+  width: 100%;
+  font-weight: 700;
+}
+
+.ov-right,
+.ov-left {
+  display: flex;
+  flex-direction: column;
+  gap: 1.9rem;
+  justify-content: space-between;
+}
+
+.ov-right,
+.i-con {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.i-con {
+  width: 50px;
+  height: auto;
+}
+
+.ov-number {
+  font-size: 2rem;
+}
+
+.ov-growth-con {
+  display: flex;
+  align-items: center;
+}
+
+.ov-ico {
+  margin-right: .3rem;
+}
