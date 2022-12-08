@@ -1,21 +1,9 @@
-// import { ThemeContext } from '../../App';
 import React, { useEffect } from 'react';
-import { useState } from 'react';
 import './ThemeSwitch.css';
 
 const HTML = document.documentElement;
 
 const ThemeSwitch = ({ theme, changeTheme }) => {
-	// console.log(props);
-	// console.log(changeDarkOrLight);
-	// };
-	// const [theme, setTheme] = useState(false);
-
-	// const changeTheme = (e) => {
-	// 	setTheme(e.currentTarget.checked);
-	// 	changeDarkOrLight();
-	// };
-
 	useEffect(() => {
 		theme ? (HTML.dataset.theme = 'dark') : HTML.removeAttribute('data-theme');
 	}, [theme]);

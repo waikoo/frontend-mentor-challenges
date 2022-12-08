@@ -18,3 +18,30 @@
 .today:first-of-type {
   color: white;
 }
+
+@media (min-width: 1440px) {
+  .socials {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    gap: 2rem;
+  }
+
+  .social {
+    max-width: 40%;
+    width: 400px;
+    margin-top: 0;
+  }
+
+  .social:nth-of-type(1) {
+    margin-top: 0;
+  }
+
+  hr {
+    display: none;
+  }
+
+  .toggler-con {
+    flex-direction: row;
+  }
+}

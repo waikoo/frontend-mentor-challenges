@@ -1,11 +1,29 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import up from '/src/assets/icon-up.svg';
 import down from '/src/assets/icon-down.svg';
 import colors from '../../assets/colors';
 import './Social.css';
 
 function Social({ src, handle, followers, today, borderTop, theme, id }) {
+	const getWindowSize = () => {
+		const { innerWidth, innerHeight } = window;
+		return { innerWidth, innerHeight };
+	};
+
+	const [windowSize, setWindowSize] = useState(getWindowSize());
 	const { positive, negative, neutral } = colors;
+
+	useEffect(() => {
+		const handleWindowResize = () => {
+			setWindowSize(getWindowSize());
+		};
+
+		window.addEventListener('resize', handleWindowResize);
+
+		return () => {
+			window.removeEventListener('resize', handleWindowResize);
+		};
+	}, []);
 
 	let isDark = theme;
 
@@ -16,8 +34,12 @@ function Social({ src, handle, followers, today, borderTop, theme, id }) {
 	};
 	const colorTodayEl = () => {
 		let color;
-		if (id === 1) isDark ? (color = neutral) : (color = positive);
-		else if (id === 4) color = negative;
+		if (id === 1) {
+			if (windowSize.innerWidth < 1440) isDark ? (color = neutral) : (color = positive);
+			else {
+				color = positive;
+			}
+		} else if (id === 4) color = negative;
 		else color = positive;
 		return { color: color };
 	};
@@ -35,7 +57,7 @@ function Social({ src, handle, followers, today, borderTop, theme, id }) {
 			</div>
 			<div className='followers-con'>
 				<span className='number'>{followers}</span>
-				<span className='followers'>Followers</span>
+				<span className='followers'>{src === path.yt ? 'Subscribers' : 'Followers'}</span>
 			</div>
 			<div className='fx-row today'>
 				<img

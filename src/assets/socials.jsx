@@ -33,7 +33,7 @@ export const socials = [
 		id: 4,
 		src: yt,
 		handle: 'Nathan F.',
-		followers: '8249',
+		followers: '8239',
 		today: '144',
 		borderTop: 'hsl(348, 97%, 39%)'
 	}

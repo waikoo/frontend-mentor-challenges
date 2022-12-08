@@ -24,14 +24,13 @@ html {
 }
 
 html[data-theme="dark"] {
-  --bg: hsl(232, 19%, 15%);
-  /* --toggle-circle: hsl(228, 28%, 20%); */
+  --bg: hsl(230, 17%, 14%);
   --toggle-circle: hsl(230, 17%, 14%);
   --toggle-bg-backup: rgba(62, 218, 130, 1);
   --toggle-bg: linear-gradient(31deg, rgba(62, 218, 130, 1) 0%, rgba(55, 143, 230, 1) 100%);
   --heading: hsl(0, 0%, 100%);
   --header-text: hsl(228, 34%, 66%);
-  --WTV: hsl(230, 17%, 14%);
+  --WTV: hsl(232, 19%, 15%);
   --card: hsl(228, 28%, 20%);
   --txt-1: hsl(228, 34%, 66%);
   --txt-2: hsl(0, 0%, 100%);
@@ -109,5 +108,83 @@ h2 {
 
 .ov-number {
   color: var(--txt-2);
-  /* color: var(--txt-overview-title); */
+}
+
+@media (min-width: 1440px) {
+  .App {
+    max-width: 80vw;
+    margin: 0 auto;
+  }
+
+  .header-left {
+    display: flex;
+    flex-direction: column;
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 2rem;
+  }
+
+  .toggler {
+    margin-left: 1rem;
+  }
+
+  .toggler-con {
+    align-items: center;
+  }
+
+  h1 {
+    margin-bottom: .4rem;
+  }
+
+  header {
+    padding-top: .8rem;
+    margin-bottom: .9rem;
+  }
+
+  .bg {
+    width: 100vw;
+    height: 25vh;
+    background-color: var(--WTV);
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 1;
+  }
+
+  .social,
+  h1,
+  .total,
+  .mode,
+  .toggler {
+    position: relative;
+    z-index: 5;
+  }
+
+  .followers {
+    font-size: .7rem;
+    margin-top: .3rem;
+    margin-bottom: .5rem;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+  }
+
+  .total {
+    font-size: 1.05rem;
+  }
+
+  h2 {
+    font-size: 1.95rem;
+  }
+}
+
+.social:nth-of-type(3)::before {
+  height: 5px;
+  border-radius: 5px 5px 0 0;
 }

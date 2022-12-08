@@ -40,3 +40,15 @@
 .ov-ico {
   margin-right: .3rem;
 }
+
+@media (min-width: 1440px) {
+  .overview-item {
+    margin-top: 0;
+    padding: 1.5rem;
+  }
+
+  .ov-right,
+  .ov-left {
+    gap: 1rem;
+  }
+}

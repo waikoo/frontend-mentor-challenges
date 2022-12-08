@@ -5,10 +5,13 @@ import './Header.css';
 function Header({ theme, changeTheme, darkOrLight, changeDarkOrLight }) {
 	return (
 		<header>
-			<h1>Social Media Dashboard</h1>
-			<span className='total'>Total Followers: 23,004</span>
+			<div className='header-left'>
+				<h1>Social Media Dashboard</h1>
+				<span className='total'>Total Followers: 23,004</span>
+			</div>
 			<hr />
 			<ThemeToggle {...{ theme, changeTheme, darkOrLight, changeDarkOrLight }} />
+			<div className='bg'></div>
 		</header>
 	);
 }

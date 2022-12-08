@@ -7,3 +7,30 @@
 .overview {
   margin-top: 3rem;
 }
+
+@media (min-width: 1440px) {
+  .overview-con {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .overview-section:first-of-type,
+  .overview-section:nth-of-type(2),
+  .overview-section:nth-of-type(3),
+  .overview-section:nth-of-type(4) {
+    display: flex;
+    flex-direction: row;
+    align-self: flex-start;
+    gap: 2rem;
+    width: 48.5%;
+  }
+
+  .overview-section:nth-of-type(2),
+  .overview-section:nth-of-type(4) {
+    flex-direction: row-reverse;
+  }
+
+
+}
