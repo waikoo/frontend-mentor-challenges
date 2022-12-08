@@ -16,6 +16,10 @@
     flex-wrap: wrap;
   }
 
+  .overview-con {
+    justify-content: space-between;
+  }
+
   .overview-section:first-of-type,
   .overview-section:nth-of-type(2),
   .overview-section:nth-of-type(3),
@@ -24,7 +28,7 @@
     flex-direction: row;
     align-self: flex-start;
     gap: 2rem;
-    width: 48.5%;
+    width: 48.8%;
   }
 
   .overview-section:nth-of-type(2),
