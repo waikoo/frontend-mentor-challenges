@@ -120,6 +120,7 @@ const Filters = ({ params, setParams, url, setUrl, showAll, role, level, languag
 		});
 		setParams(paramsCopy);
 		setCount((prevCount) => prevCount - 1);
+		if (!hasParam(params)) setShowFilters(false);
 	};
 
 	const handleClearFilters = () => {
@@ -129,6 +130,7 @@ const Filters = ({ params, setParams, url, setUrl, showAll, role, level, languag
 			if (isSet(prop)) prop.forEach((el) => prop.delete(el));
 			else paramsCopy[prop] = null;
 		}
+		setUrl(`http://localhost:3000/jobs`);
 		setParams(paramsCopy);
 	};
 
