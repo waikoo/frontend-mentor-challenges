@@ -1,0 +1,21 @@
+/* Variables and mixins declared here will be available in all other SCSS files */
+
+$Blue: hsl(243, 100%, 62%);
+$Zircon: hsl(217, 100%, 97%);
+$GreenVogue: hsl(213, 96%, 18%);
+$FrenchPass: hsl(206, 94%, 87%);
+$White: hsl(0, 0%, 100%);
+$Melrose: hsl(228, 100%, 84%);
+$SalmonPearl: hsl(354, 84%, 57%);
+$Manatee: hsl(231, 11%, 63%);
+$Mischka: hsl(229, 24%, 87%);
+$ff: 'Ubuntu', monospace;
+$fs: 16px;
+$fw-400: 400;
+$fw-500: 500;
+$fw-700: 700;
+
+@mixin size($value) {
+	width: $value;
+	height: $value;
+}
