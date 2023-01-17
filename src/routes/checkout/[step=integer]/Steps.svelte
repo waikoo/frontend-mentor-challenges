@@ -6,7 +6,7 @@
 	<div class:active={activeStep === 1} class="circle">1</div>
 	<div class:active={activeStep === 2} class="circle">2</div>
 	<div class:active={activeStep === 3} class="circle">3</div>
-	<div class:active={activeStep === 5} class="circle">4</div>
+	<div class:active={activeStep === 4} class="circle">4</div>
 </div>
 
 <style lang="scss">

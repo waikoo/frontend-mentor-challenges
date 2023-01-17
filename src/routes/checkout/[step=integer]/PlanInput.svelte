@@ -49,18 +49,13 @@
 
 <style lang="scss">
 	button {
-		font-family: $ff;
-		border: 2px solid $Mischka;
-		background: $White;
-		border-radius: 12px;
-		padding: 1rem;
+		@include buttonize();
 		display: flex;
 		align-items: flex-start;
 		gap: 1rem;
 
 		&:focus {
-			border-color: $Blue;
-			background: $Zircon;
+			@include selected();
 		}
 
 		&:hover {

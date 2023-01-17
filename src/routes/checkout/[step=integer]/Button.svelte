@@ -2,8 +2,6 @@
 	export let step,
 		forward = false,
 		backward = false;
-
-	console.warn(step);
 </script>
 
 {#if forward}

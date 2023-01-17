@@ -1,18 +1,13 @@
 <script>
 	import Header from './Header.svelte';
-	import AddonInput from './AddonInput.svelte';
 
-	export let general, header, input, isYearly;
+	export let header, isYearly;
 	// console.log(input);
 </script>
 
 <div class="card">
 	<Header {header} />
-	<div class="inputs">
-		{#each input as { description, name, price }, i}
-			<AddonInput {general} {description} {name} {price} {isYearly} {i} />
-		{/each}
-	</div>
+	<!-- <div class="inputs" /> -->
 </div>
 
 <style lang="scss">

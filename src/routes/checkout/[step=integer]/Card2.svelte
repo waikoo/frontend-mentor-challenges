@@ -3,14 +3,7 @@
 	import PlanInput from './PlanInput.svelte';
 	import Toggle from './Toggle.svelte';
 
-	export let general, header, input;
-	console.log(input);
-
-	$: isYearly = false;
-	const togglePlan = () => {
-		isYearly = !isYearly;
-		console.log(isYearly);
-	};
+	export let general, header, input, isYearly, togglePlan;
 </script>
 
 <div class="card">

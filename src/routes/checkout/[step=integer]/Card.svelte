@@ -3,7 +3,6 @@
 	import NameInput from './NameInput.svelte';
 
 	export let header, input;
-	console.log(header, input);
 </script>
 
 <div class="card">

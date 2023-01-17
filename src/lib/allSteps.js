@@ -100,7 +100,7 @@ export default {
 		},
 		{
 			step: 4,
-			headers: {
+			header: {
 				title: 'Finishing up',
 				description: 'Double-check everything looks OK before confirming.'
 			}
