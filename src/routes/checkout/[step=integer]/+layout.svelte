@@ -1,15 +1,12 @@
 <script>
 	import mobile_bg from '$lib/images/bg-sidebar-mobile.svg';
 	import Button from './Button.svelte';
-	import Card from './Card.svelte';
-	import Header from './Header.svelte';
-	import Input from './Input.svelte';
 	import Steps from './Steps.svelte';
 
 	export let data;
-	const {
-		step: { header, input, step }
-	} = data;
+	$: ({
+		step: { step }
+	} = data);
 </script>
 
 <div class="background">
@@ -20,9 +17,7 @@
 		<slot />
 
 		<footer>
-			{#if step > 1}
-				<Button {step} backward />
-			{/if}
+			<Button {step} backward />
 			<Button {step} forward />
 		</footer>
 	</main>
@@ -54,14 +49,5 @@
 		justify-content: flex-end;
 		display: flex;
 		justify-content: space-between;
-	}
-
-	button {
-		background: $White;
-		font-family: $ff;
-		color: $Manatee;
-		font-size: 1.4rem;
-		border: none;
-		font-weight: $fw-500;
 	}
 </style>

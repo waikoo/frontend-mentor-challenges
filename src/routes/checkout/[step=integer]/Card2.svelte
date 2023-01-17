@@ -1,17 +1,25 @@
 <script>
 	import Header from './Header.svelte';
-	import NameInput from './NameInput.svelte';
+	import PlanInput from './PlanInput.svelte';
+	import Toggle from './Toggle.svelte';
 
-	export let header, input;
-	console.log(header, input);
+	export let general, header, input;
+	console.log(input);
+
+	$: isYearly = false;
+	const togglePlan = () => {
+		isYearly = !isYearly;
+		console.log(isYearly);
+	};
 </script>
 
 <div class="card">
 	<Header {header} />
 	<div class="inputs">
-		{#each input as { type, label, placeholder }}
-			<NameInput {type} {label} {placeholder} />
+		{#each input as { price, type }}
+			<PlanInput {isYearly} {price} {type} {general} />
 		{/each}
+		<Toggle {isYearly} {togglePlan} />
 	</div>
 </div>
 

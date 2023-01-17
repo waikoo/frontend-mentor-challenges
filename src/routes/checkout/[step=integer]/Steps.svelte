@@ -1,13 +1,12 @@
 <script>
 	export let activeStep;
-	console.log(typeof activeStep, activeStep);
 </script>
 
 <div class="steps">
-	<div class:activeStep class="circle">1</div>
-	<div class:activeStep class="circle">2</div>
-	<div class:activeStep class="circle">3</div>
-	<div class:activeStep class="circle">4</div>
+	<div class:active={activeStep === 1} class="circle">1</div>
+	<div class:active={activeStep === 2} class="circle">2</div>
+	<div class:active={activeStep === 3} class="circle">3</div>
+	<div class:active={activeStep === 5} class="circle">4</div>
 </div>
 
 <style lang="scss">

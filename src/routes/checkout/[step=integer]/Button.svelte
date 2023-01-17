@@ -3,16 +3,15 @@
 		forward = false,
 		backward = false;
 
-	// window.location =
+	console.warn(step);
 </script>
 
 {#if forward}
 	<a href="/checkout/{step + 1}">{step < 4 ? 'Next Step' : 'Confirm'}</a>
 {:else if backward}
-	<a href="/checkout/{step - 1}">Go Back</a>
+	<a href="/checkout/{step - 1}" class:back={backward} class:hidden={!backward}>Go Back</a>
 {/if}
 
-<!-- differentiate by class -->
 <style lang="scss">
 	a {
 		background: $GreenVogue;
@@ -22,6 +21,9 @@
 		padding: 1rem 1.5rem;
 		border-radius: 5px;
 		font-size: 1.4rem;
+		justify-self: flex-end;
+		text-decoration: none;
+		cursor: pointer;
 	}
 
 	.back {
@@ -30,7 +32,11 @@
 		display: block;
 	}
 
-	#hide {
-		display: none;
+	.hidden {
+		visibility: hidden;
+	}
+
+	a[forward='true'] {
+		margin-left: auto;
 	}
 </style>
