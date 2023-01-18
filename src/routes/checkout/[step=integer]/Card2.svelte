@@ -2,6 +2,9 @@
 	import Header from './Header.svelte';
 	import PlanInput from './PlanInput.svelte';
 	import Toggle from './Toggle.svelte';
+	import { info } from '$lib/stores.js';
+
+	info.subscribe((info) => console.table(info.plan));
 
 	export let general, header, input, isYearly, togglePlan;
 </script>

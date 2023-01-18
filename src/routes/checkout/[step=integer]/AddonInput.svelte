@@ -1,6 +1,8 @@
 <script>
 	import checkmark from '$lib/images/icon-checkmark.svg';
-	export let general, description, name, price, isYearly, i;
+	import { info } from '$lib/stores.js';
+
+	export let general, description, name, price, isYearly, i, isAddonChecked;
 	const {
 		currency,
 		suffix: { monthly, yearly }
@@ -8,11 +10,27 @@
 	const { monthly: monthlyPrice, yearly: yearlyPrice } = price;
 
 	const id = i === 1 ? 'addon1' : i === 2 ? 'addon2' : 'addon3';
+	const addon = name.toLowerCase().split(' ').join('_');
+
+	const updateStore = () => {
+		info.update((info) => {
+			info.addons[addon].wants = isAddonChecked[addon];
+			if (!info.addons[addon].wants) info.addons[addon].price = 0;
+			else info.addons[addon].price = !isYearly ? monthlyPrice : yearlyPrice;
+			return info;
+		});
+	};
 </script>
 
 <label for={id}>
 	<div class="input-con">
-		<input type="checkbox" name="addon" {id} />
+		<input
+			type="checkbox"
+			name="addon"
+			{id}
+			bind:checked={isAddonChecked[addon]}
+			on:change={updateStore}
+		/>
 		<img src={checkmark} alt="" />
 	</div>
 	<div class="text">

@@ -1,16 +1,24 @@
 <script>
 	import Header from './Header.svelte';
 	import AddonInput from './AddonInput.svelte';
+	import { info } from '$lib/stores.js';
 
 	export let general, header, input, isYearly;
-	// console.log(input);
+
+	info.subscribe((info) => console.table(info.addons));
+
+	$: isAddonChecked = {
+		online_service: false,
+		larger_storage: false,
+		customizable_profile: false
+	};
 </script>
 
 <div class="card">
 	<Header {header} />
 	<div class="inputs">
 		{#each input as { description, name, price }, i}
-			<AddonInput {general} {description} {name} {price} {isYearly} {i} />
+			<AddonInput {general} {description} {name} {price} {isYearly} {i} {isAddonChecked} />
 		{/each}
 	</div>
 </div>

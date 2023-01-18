@@ -1,11 +1,14 @@
 <script>
+	import { info } from '$lib/stores.js';
+
 	export let type, label, placeholder;
-	console.log(type, label, placeholder);
+
+	const typeAction = (node) => (node.type = type);
 </script>
 
 <label for={type}
 	>{label}
-	<input {type} {placeholder} id={type} />
+	<input use:typeAction {placeholder} id={type} bind:value={$info.info[type]} />
 </label>
 
 <style lang="scss">

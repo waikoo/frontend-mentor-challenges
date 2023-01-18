@@ -1,8 +1,11 @@
 <script>
 	import Header from './Header.svelte';
 	import NameInput from './NameInput.svelte';
+	import { info } from '$lib/stores.js';
 
 	export let header, input;
+
+	info.subscribe((val) => console.log(val.info));
 </script>
 
 <div class="card">

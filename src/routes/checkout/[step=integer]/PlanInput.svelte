@@ -2,8 +2,12 @@
 	import plan1 from '$lib/images/icon-arcade.svg';
 	import plan2 from '$lib/images/icon-advanced.svg';
 	import plan3 from '$lib/images/icon-pro.svg';
+	import { info } from '$lib/stores.js';
 
-	export let price, type, general, isYearly;
+	export let price = 0,
+		type = null,
+		general = null,
+		isYearly = null;
 	const {
 		plan_discount,
 		currency,
@@ -27,9 +31,21 @@
 		throw new Error('Arg is not a string');
 	};
 	let src = setImage(type);
+
+	const updateStore = () => {
+		// updates store as expected on 1st click
+		info.update((info) => {
+			console.log(info); // logs undefined on 2nd click
+			info.plan.type = type; // throws error
+			info.plan.price = !isYearly ? priceMonthly : priceYearly;
+			info.plan.timespan = !isYearly ? 'monthly' : 'yearly';
+			info.plan.currency = currency;
+			return info;
+		});
+	};
 </script>
 
-<button>
+<button on:click={updateStore}>
 	<img {src} alt="" />
 	<div class="text">
 		<h2>{type}</h2>

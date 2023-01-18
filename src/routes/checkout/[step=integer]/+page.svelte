@@ -5,12 +5,10 @@
 	import Card4 from './Card4.svelte';
 
 	export let data;
-	// console.log(data);
 	$: ({
 		general,
 		step: { step, header, input }
 	} = data);
-	console.log(step);
 
 	$: isYearly = false;
 	const togglePlan = () => {
@@ -25,7 +23,7 @@
 {:else if step === 3}
 	<Card3 {general} {header} {input} {isYearly} />
 {:else if step === 4}
-	<Card4 {header} {isYearly} />
+	<Card4 {header} {general} {isYearly} />
 {:else}
 	<p>ERROR</p>
 {/if}
