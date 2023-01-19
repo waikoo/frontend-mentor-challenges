@@ -7,7 +7,9 @@
 	export let price = 0,
 		type = null,
 		general = null,
-		isYearly = null;
+		isYearly = null,
+		i;
+
 	const {
 		plan_discount,
 		currency,
@@ -15,37 +17,53 @@
 	} = general;
 	const { monthly: priceMonthly, yearly: priceYearly } = price;
 
-	const setImage = (str) => {
-		if (typeof str === 'string') {
-			switch (str) {
-				case 'Arcade':
-					return plan1;
-				case 'Advanced':
-					return plan2;
-				case 'Pro':
-					return plan3;
-				default:
-					throw new Error("Type doesn't match expected values");
-			}
-		}
-		throw new Error('Arg is not a string');
+	const setImage = (planType) => {
+		const imageMap = {
+			Arcade: plan1,
+			Advanced: plan2,
+			Pro: plan3
+		};
+		return imageMap[planType];
 	};
 	let src = setImage(type);
 
 	const updateStore = () => {
-		// updates store as expected on 1st click
 		info.update((info) => {
-			console.log(info); // logs undefined on 2nd click
-			info.plan.type = type; // throws error
+			console.log(info);
+			info.plan.type = type;
 			info.plan.price = !isYearly ? priceMonthly : priceYearly;
 			info.plan.timespan = !isYearly ? 'monthly' : 'yearly';
 			info.plan.currency = currency;
 			return info;
 		});
 	};
+
+	function handleKeydown(e) {
+		if (e.key === 'Enter' || e.key === ' ') {
+			updateStore();
+			this.click();
+			setTimeout(() => this.focus(), 0);
+		}
+	}
+
+	const setBorderColor = (i) => {
+		const colors = ['#ffaf7e', '#f9818e', '#483eff'];
+		return colors[i];
+	};
+	let border = setBorderColor(i);
 </script>
 
-<button on:click={updateStore}>
+<label
+	role="button"
+	on:click={updateStore}
+	on:keydown={handleKeydown}
+	aria-label={`Choose ${type} plan`}
+	for="plan{i}"
+	aria-hidden="false"
+	tabindex="0"
+	data-border={border}
+>
+	<input type="radio" name="plan" id="plan{i}" tabindex="-1" />
 	<img {src} alt="" />
 	<div class="text">
 		<h2>{type}</h2>
@@ -61,10 +79,26 @@
 			{/if}
 		</div>
 	</div>
-</button>
+</label>
 
 <style lang="scss">
-	button {
+	label[data-border='#ffaf7e']:has(input:checked) {
+		border: 3px solid #ffaf7e;
+	}
+	label[data-border='#f9818e']:has(input:checked) {
+		border: 3px solid #f9818e;
+	}
+	label[data-border='#483eff']:has(input:checked) {
+		border: 3px solid #483eff;
+	}
+
+	input {
+		position: fixed;
+		pointer-events: none;
+		opacity: 0;
+	}
+
+	label {
 		@include buttonize();
 		display: flex;
 		align-items: flex-start;

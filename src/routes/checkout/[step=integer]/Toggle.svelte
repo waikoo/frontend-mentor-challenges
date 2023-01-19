@@ -1,17 +1,33 @@
 <script>
 	export let isYearly, togglePlan;
+
+	const timespanHandler = (e) => {
+		if (e.key === 'Enter' || e.key === ' ') {
+			togglePlan();
+		} else if (e.key === 'Tab' && e.shiftKey) {
+			document.querySelectorAll('label')[2].focus();
+		} else if (e.key === 'Tab') {
+			document.querySelector('a').focus();
+		}
+	};
 </script>
 
-<div class="toggle-container">
+<button
+	class="toggle-container"
+	on:keydown|preventDefault={timespanHandler}
+	role="switch"
+	aria-checked={isYearly}
+	aria-label="Choose between monthly or yearly billing"
+>
 	<span class:blue={!isYearly}>Monthly</span>
-	<label>
-		<input type="checkbox" bind:checked={isYearly} on:click={togglePlan} />
+	<label for="checkbox">
+		<input type="checkbox" bind:checked={isYearly} on:click={togglePlan} id="checkbox" />
 		<div class="toggle-switch">
 			<div class="toggle-handle" />
 		</div>
 	</label>
 	<span class:rose={isYearly}>Yearly</span>
-</div>
+</button>
 
 <style lang="scss">
 	span {
@@ -32,6 +48,8 @@
 		background: $Zircon;
 		padding: 1rem;
 		border-radius: 10px;
+		border: none;
+		font-size: 1rem;
 	}
 
 	.toggle-switch {

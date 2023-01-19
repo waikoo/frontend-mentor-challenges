@@ -11,12 +11,12 @@
 
 <div class="card">
 	<Header {header} />
-	<div class="inputs">
-		{#each input as { price, type }}
-			<PlanInput {isYearly} {price} {type} {general} />
+	<form class="inputs">
+		{#each input as { price, type }, i}
+			<PlanInput {isYearly} {price} {type} {general} {i} />
 		{/each}
 		<Toggle {isYearly} {togglePlan} />
-	</div>
+	</form>
 </div>
 
 <style lang="scss">

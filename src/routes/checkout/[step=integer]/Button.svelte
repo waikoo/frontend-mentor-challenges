@@ -5,9 +5,11 @@
 </script>
 
 {#if forward}
-	<a href="/checkout/{step < 4 ? step + 1 : 1}">{step < 4 ? 'Next Step' : 'Confirm'}</a>
+	<a href="/checkout/{step < 4 ? step + 1 : 1}">{step < 4 ? 'Next Step' : 'Confirm'} </a>
 {:else if backward}
-	<a href="/checkout/{step - 1}" class:back={backward} class:hidden={!backward}>Go Back</a>
+	<a href="/checkout/{step - 1}" class:back={backward} class:hidden={!backward} tabindex="0"
+		>Go Back</a
+	>
 {/if}
 
 <style lang="scss">
