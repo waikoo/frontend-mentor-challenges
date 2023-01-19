@@ -9,7 +9,9 @@
 	} = general;
 	const { monthly: monthlyPrice, yearly: yearlyPrice } = price;
 
-	const id = i === 1 ? 'addon1' : i === 2 ? 'addon2' : 'addon3';
+	let inputRef;
+	const id = `addon${i + 1}`;
+
 	const addon = name.toLowerCase().split(' ').join('_');
 
 	const updateStore = () => {
@@ -20,9 +22,16 @@
 			return info;
 		});
 	};
+	const handleOnKeydown = (e) => (e.key === ' ' || e.key === 'Enter' ? inputRef.click() : null);
 </script>
 
-<label for={id}>
+<label
+	role="checkbox"
+	aria-checked={isAddonChecked[addon]}
+	for={id}
+	tabindex="0"
+	on:keydown={handleOnKeydown}
+>
 	<div class="input-con">
 		<input
 			type="checkbox"
@@ -30,6 +39,8 @@
 			{id}
 			bind:checked={isAddonChecked[addon]}
 			on:change={updateStore}
+			bind:this={inputRef}
+			tabindex="-1"
 		/>
 		<img src={checkmark} alt="" />
 	</div>
@@ -118,9 +129,4 @@
 		padding: 0.5rem;
 		background: $Blue;
 	}
-
-	/* input:checked::before {
-		content: url('/src/lib/images/icon-checkmark.svg');
-		@include size(20px);
-	} */
 </style>
