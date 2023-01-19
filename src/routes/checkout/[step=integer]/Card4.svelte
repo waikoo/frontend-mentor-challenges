@@ -6,18 +6,22 @@
 	export let header, general, isYearly;
 
 	info.subscribe((info) => console.log(info));
+
+	$info.calculateTotal();
 </script>
 
 <div class="card">
 	<Header {header} />
 	<div class="summary-con">
-		<SummaryInput {general} {isYearly} text="Change" isTop />
+		<SummaryInput {general} {isYearly} text="Change" isTop price={$info.plan.price} />
 
-		<SummaryInput {general} {isYearly} text="Online service" />
-		<SummaryInput {general} {isYearly} text="Larger storage" />
-
-		<SummaryInput {general} {isYearly} text="Total (per month)" isLast />
+		{#each $info.addons as { name, wants, price }}
+			{#if wants}
+				<SummaryInput {general} {isYearly} {name} {price} />
+			{/if}
+		{/each}
 	</div>
+	<SummaryInput {general} {isYearly} text="Total (per month)" isLast price={$info.total} />
 </div>
 
 <style lang="scss">
@@ -28,11 +32,17 @@
 		border-radius: 10px;
 	}
 
+	.card:last-child {
+		padding: 2rem;
+		margin: 1rem;
+	}
+
 	.summary-con {
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
 		background: $Zircon;
 		padding: 1rem;
+		border-radius: 12px;
 	}
 </style>

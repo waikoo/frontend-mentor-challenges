@@ -8,23 +8,38 @@ export let info = writable({
 	},
 	plan: {
 		type: '',
-		price: '',
+		price: 0,
 		timespan: '',
 		currency: ''
 	},
-	addons: {
-		online_service: {
+	addons: [
+		{
+			name: 'Online service',
 			wants: false,
 			price: 0
 		},
-		larger_storage: {
+		{
+			name: 'Larger storage',
 			wants: false,
 			price: 0
 		},
-		customizable_profile: {
+		{
+			name: 'Customizable profile',
 			wants: false,
 			price: 0
 		}
-	},
-	total: 0
+	],
+	total: 0,
+	calculateTotal: function () {
+		let total = 0;
+		if (this.plan.price) {
+			total += this.plan.price;
+			for (const addon of this.addons) {
+				if (addon.wants) {
+					total += addon.price;
+				}
+			}
+		}
+		this.total = total;
+	}
 });

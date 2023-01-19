@@ -15,13 +15,14 @@
 <button
 	class="toggle-container"
 	on:keydown|preventDefault={timespanHandler}
+	on:click={togglePlan}
 	role="switch"
 	aria-checked={isYearly}
 	aria-label="Choose between monthly or yearly billing"
 >
 	<span class:blue={!isYearly}>Monthly</span>
 	<label for="checkbox">
-		<input type="checkbox" bind:checked={isYearly} on:click={togglePlan} id="checkbox" />
+		<input type="checkbox" bind:checked={isYearly} id="checkbox" />
 		<div class="toggle-switch">
 			<div class="toggle-handle" />
 		</div>
@@ -30,6 +31,10 @@
 </button>
 
 <style lang="scss">
+	button * {
+		cursor: pointer;
+	}
+
 	span {
 		color: $Manatee;
 		font-weight: $fw-700;

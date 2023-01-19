@@ -8,9 +8,9 @@
 	info.subscribe((info) => console.table(info.addons));
 
 	$: isAddonChecked = {
-		online_service: false,
-		larger_storage: false,
-		customizable_profile: false
+		'Online service': false,
+		'Larger storage': false,
+		'Customizable profile': false
 	};
 </script>
 

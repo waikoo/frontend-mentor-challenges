@@ -3,19 +3,22 @@
 </script>
 
 <div class="steps">
-	<div class:active={activeStep === 1} class="circle">1</div>
-	<div class:active={activeStep === 2} class="circle">2</div>
-	<div class:active={activeStep === 3} class="circle">3</div>
-	<div class:active={activeStep === 4} class="circle">4</div>
+	<a href="/checkout/1" class:active={activeStep === 1} class="circle">1</a>
+	<a href="/checkout/2" class:active={activeStep === 2} class="circle">2</a>
+	<a href="/checkout/3" class:active={activeStep === 3} class="circle">3</a>
+	<a href="/checkout/4" class:active={activeStep === 4} class="circle">4</a>
 </div>
 
 <style lang="scss">
+	a {
+		text-decoration: none;
+		color: white;
+	}
 	.steps {
 		position: absolute;
 		top: -3rem;
 		left: 0;
 		right: 0;
-		color: white;
 		display: flex;
 		width: 50%;
 		margin: 0 auto;

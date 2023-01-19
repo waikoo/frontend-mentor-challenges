@@ -12,22 +12,24 @@
 	let inputRef;
 	const id = `addon${i + 1}`;
 
-	const addon = name.toLowerCase().split(' ').join('_');
-
 	const updateStore = () => {
 		info.update((info) => {
-			info.addons[addon].wants = isAddonChecked[addon];
-			if (!info.addons[addon].wants) info.addons[addon].price = 0;
-			else info.addons[addon].price = !isYearly ? monthlyPrice : yearlyPrice;
+			info.addons.forEach((addon) => {
+				if (addon.name === name) addon.wants = isAddonChecked[name];
+				if (!addon.wants) addon.price = 0;
+				else addon.price = !isYearly ? monthlyPrice : yearlyPrice;
+				return info;
+			});
 			return info;
 		});
 	};
+
 	const handleOnKeydown = (e) => (e.key === ' ' || e.key === 'Enter' ? inputRef.click() : null);
 </script>
 
 <label
 	role="checkbox"
-	aria-checked={isAddonChecked[addon]}
+	aria-checked={isAddonChecked[name]}
 	for={id}
 	tabindex="0"
 	on:keydown={handleOnKeydown}
@@ -37,7 +39,7 @@
 			type="checkbox"
 			name="addon"
 			{id}
-			bind:checked={isAddonChecked[addon]}
+			bind:checked={isAddonChecked[name]}
 			on:change={updateStore}
 			bind:this={inputRef}
 			tabindex="-1"
