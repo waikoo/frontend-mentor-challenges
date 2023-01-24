@@ -1,6 +1,8 @@
 import { writable } from 'svelte/store';
+import { browser } from '$app/environment';
+import { persistStore } from './persistStore';
 
-export let info = writable({
+const inputTemplate = {
 	info: {
 		name: '',
 		email: '',
@@ -42,4 +44,6 @@ export let info = writable({
 		}
 		this.total = total;
 	}
-});
+};
+
+export let info = persistStore('user', inputTemplate);

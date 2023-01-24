@@ -5,8 +5,9 @@
 
 	export let general, header, input, isYearly;
 
-	info.subscribe((info) => console.table(info.addons));
+	// info.subscribe((info) => console.table(info.addons));
 
+	console.log($info.plan.type);
 	$: isAddonChecked = {
 		'Online service': false,
 		'Larger storage': false,

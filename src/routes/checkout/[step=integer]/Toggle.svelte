@@ -2,6 +2,7 @@
 	export let isYearly, togglePlan;
 
 	const timespanHandler = (e) => {
+		console.log(e.target);
 		if (e.key === 'Enter' || e.key === ' ') {
 			togglePlan();
 		} else if (e.key === 'Tab' && e.shiftKey) {

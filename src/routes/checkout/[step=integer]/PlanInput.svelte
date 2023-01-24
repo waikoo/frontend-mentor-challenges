@@ -8,7 +8,8 @@
 		type = null,
 		general = null,
 		isYearly = null,
-		i;
+		i,
+		getStoredPlan = null;
 
 	const {
 		plan_discount,
@@ -29,6 +30,7 @@
 
 	const updateStore = () => {
 		info.update((info) => {
+			// TODO: ran 2 times
 			console.log(info);
 			info.plan.type = type;
 			info.plan.price = !isYearly ? priceMonthly : priceYearly;
@@ -40,7 +42,7 @@
 
 	function handleKeydown(e) {
 		if (e.key === 'Enter' || e.key === ' ') {
-			updateStore();
+			// updateStore();
 			this.click();
 			setTimeout(() => this.focus(), 0);
 		}
@@ -51,6 +53,17 @@
 		return colors[i];
 	};
 	let border = setBorderColor(i);
+
+	// console.log(type);
+	// console.log(getStoredPlan());
+
+	let storedPlan = type === getStoredPlan();
+	// console.log(storedPlan);
+	$: isChecked = type === getStoredPlan();
+	// if (type === getStoredPlan()) {
+	// 	console.warn('true');
+	// 	document.querySelector('label[data-saved="true"]').click();
+	// }
 </script>
 
 <label
@@ -62,8 +75,9 @@
 	aria-hidden="false"
 	tabindex="0"
 	data-border={border}
+	data-saved={storedPlan}
 >
-	<input type="radio" name="plan" id="plan{i}" tabindex="-1" />
+	<input type="radio" name="plan" id="plan{i}" tabindex="-1" class:checked={isChecked} />
 	<img {src} alt="" />
 	<div class="text">
 		<h2>{type}</h2>
@@ -82,12 +96,15 @@
 </label>
 
 <style lang="scss">
-	label[data-border='#ffaf7e']:has(input:checked) {
+	label[data-border='#ffaf7e']:has(input:checked),
+	label[data-border='#ffaf7e']:has(input.checked) {
 		border: 3px solid #ffaf7e;
 	}
-	label[data-border='#f9818e']:has(input:checked) {
+	label[data-border='#f9818e']:has(input:checked),
+	label[data-border='#f9818e']:has(input.checked) {
 		border: 3px solid #f9818e;
 	}
+	label[data-border='#483eff']:has(input:checked),
 	label[data-border='#483eff']:has(input:checked) {
 		border: 3px solid #483eff;
 	}

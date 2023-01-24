@@ -13,7 +13,22 @@ const config = {
 				prependData: '@use "src/variables.scss" as *;'
 			}
 		})
-	]
+	],
+
+	vitePlugin: {
+		experimental: {
+			inspector: {
+				// change shortcut
+				toggleKeyCombo: 'shift-z', // 'meta-shift', --> original
+				// hold and release key to toggle inspector mode
+				holdMode: false,
+				// show or hide the inspector option
+				showToggleButton: 'never',
+				// inspector position
+				toggleButtonPos: 'top-right'
+			}
+		}
+	}
 };
 
 export default config;

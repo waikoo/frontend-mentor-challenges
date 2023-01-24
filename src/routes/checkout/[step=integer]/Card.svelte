@@ -4,8 +4,6 @@
 	import { info } from '$lib/stores.js';
 
 	export let header, input;
-
-	info.subscribe((val) => console.log(val.info));
 </script>
 
 <div class="card">
