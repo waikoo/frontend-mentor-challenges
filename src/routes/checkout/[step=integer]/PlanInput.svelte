@@ -2,14 +2,13 @@
 	import plan1 from '$lib/images/icon-arcade.svg';
 	import plan2 from '$lib/images/icon-advanced.svg';
 	import plan3 from '$lib/images/icon-pro.svg';
-	import { info } from '$lib/stores.js';
+	import { info, isYearly } from '$lib/stores.js';
+	import { browser } from '$app/environment';
 
 	export let price = 0,
 		type = null,
 		general = null,
-		isYearly = null,
-		i,
-		getStoredPlan = null;
+		i;
 
 	const {
 		plan_discount,
@@ -17,6 +16,14 @@
 		suffix: { monthly, yearly }
 	} = general;
 	const { monthly: priceMonthly, yearly: priceYearly } = price;
+
+	const getStoredPlan = () => {
+		if (browser) {
+			const storedInputValues = JSON.parse(localStorage.getItem('user'));
+			// console.log(storedInputValues);
+			return storedInputValues ? storedInputValues.plan.type : null;
+		}
+	};
 
 	const setImage = (planType) => {
 		const imageMap = {
@@ -31,10 +38,9 @@
 	const updateStore = () => {
 		info.update((info) => {
 			// TODO: ran 2 times
-			console.log(info);
 			info.plan.type = type;
-			info.plan.price = !isYearly ? priceMonthly : priceYearly;
-			info.plan.timespan = !isYearly ? 'monthly' : 'yearly';
+			info.plan.price = !$isYearly ? priceMonthly : priceYearly;
+			info.plan.timespan = !$isYearly ? 'monthly' : 'yearly';
 			info.plan.currency = currency;
 			return info;
 		});

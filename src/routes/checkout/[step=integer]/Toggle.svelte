@@ -1,34 +1,42 @@
 <script>
-	export let isYearly, togglePlan;
+	import { isYearly, info } from '$lib/stores';
 
-	const timespanHandler = (e) => {
-		console.log(e.target);
+	const keydownHandler = (e) => {
 		if (e.key === 'Enter' || e.key === ' ') {
-			togglePlan();
+			togglePlan(isYearly);
 		} else if (e.key === 'Tab' && e.shiftKey) {
 			document.querySelectorAll('label')[2].focus();
 		} else if (e.key === 'Tab') {
 			document.querySelector('a').focus();
 		}
 	};
+
+	const togglePlan = () => {
+		isYearly.update((curr) => !curr);
+
+		info.update((info) => {
+			info.plan.timespan = $isYearly ? 'yearly' : 'monthly';
+			return info;
+		});
+	};
 </script>
 
 <button
 	class="toggle-container"
-	on:keydown|preventDefault={timespanHandler}
-	on:click={togglePlan}
+	on:keydown|preventDefault={keydownHandler}
+	on:click={() => togglePlan()}
 	role="switch"
-	aria-checked={isYearly}
+	aria-checked={$isYearly}
 	aria-label="Choose between monthly or yearly billing"
 >
-	<span class:blue={!isYearly}>Monthly</span>
+	<span class:blue={!$isYearly}>Monthly</span>
 	<label for="checkbox">
-		<input type="checkbox" bind:checked={isYearly} id="checkbox" />
+		<input type="checkbox" bind:checked={$isYearly} id="checkbox" />
 		<div class="toggle-switch">
 			<div class="toggle-handle" />
 		</div>
 	</label>
-	<span class:rose={isYearly}>Yearly</span>
+	<span class:rose={$isYearly}>Yearly</span>
 </button>
 
 <style lang="scss">

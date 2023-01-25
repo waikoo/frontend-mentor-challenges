@@ -3,7 +3,7 @@
 	import AddonInput from './AddonInput.svelte';
 	import { info } from '$lib/stores.js';
 
-	export let general, header, input, isYearly;
+	export let general, header, input;
 
 	// info.subscribe((info) => console.table(info.addons));
 
@@ -19,7 +19,7 @@
 	<Header {header} />
 	<div class="inputs">
 		{#each input as { description, name, price }, i}
-			<AddonInput {general} {description} {name} {price} {isYearly} {i} {isAddonChecked} />
+			<AddonInput {general} {description} {name} {price} {i} {isAddonChecked} />
 		{/each}
 	</div>
 </div>

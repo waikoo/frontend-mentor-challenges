@@ -1,27 +1,26 @@
 <script>
 	import Header from './Header.svelte';
 	import SummaryInput from './SummaryInput.svelte';
-	import { info } from '$lib/stores.js';
+	import { info } from '$lib/stores';
+	import calculateTotal from '$lib/utils/calculateTotal';
 
-	export let header, general, isYearly;
+	export let header, general;
 
-	info.subscribe((info) => console.log(info));
-
-	$info.calculateTotal();
+	const total = calculateTotal($info);
 </script>
 
 <div class="card">
 	<Header {header} />
 	<div class="summary-con">
-		<SummaryInput {general} {isYearly} text="Change" isTop price={$info.plan.price} />
+		<SummaryInput {general} text="Change" isTop price={$info.plan.price} />
 
 		{#each $info.addons as { name, wants, price }}
 			{#if wants}
-				<SummaryInput {general} {isYearly} {name} {price} />
+				<SummaryInput {general} {name} {price} />
 			{/if}
 		{/each}
 	</div>
-	<SummaryInput {general} {isYearly} text="Total (per month)" isLast price={$info.total} />
+	<SummaryInput {general} text="Total (per month)" isLast price={total} />
 </div>
 
 <style lang="scss">

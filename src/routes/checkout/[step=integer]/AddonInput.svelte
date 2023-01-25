@@ -1,8 +1,8 @@
 <script>
 	import checkmark from '$lib/images/icon-checkmark.svg';
-	import { info } from '$lib/stores.js';
+	import { info, isYearly } from '$lib/stores.js';
 
-	export let general, description, name, price, isYearly, i, isAddonChecked;
+	export let general, description, name, price, i, isAddonChecked;
 	const {
 		currency,
 		suffix: { monthly, yearly }
@@ -17,7 +17,7 @@
 			info.addons.forEach((addon) => {
 				if (addon.name === name) addon.wants = isAddonChecked[name];
 				if (!addon.wants) addon.price = 0;
-				else addon.price = !isYearly ? monthlyPrice : yearlyPrice;
+				else addon.price = !$isYearly ? monthlyPrice : yearlyPrice;
 				return info;
 			});
 			return info;
@@ -53,9 +53,9 @@
 	<div class="price-con">
 		+
 		<span class="currency">{currency}</span>
-		<span class="price">{!isYearly ? monthlyPrice : yearlyPrice}</span>
+		<span class="price">{!$isYearly ? monthlyPrice : yearlyPrice}</span>
 		/
-		<span class="timespan">{!isYearly ? monthly : yearly}</span>
+		<span class="timespan">{!$isYearly ? monthly : yearly}</span>
 	</div>
 </label>
 

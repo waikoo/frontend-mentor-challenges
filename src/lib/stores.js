@@ -1,6 +1,6 @@
 import { writable } from 'svelte/store';
-import { browser } from '$app/environment';
 import { persistStore } from './persistStore';
+import { browser } from '$app/environment';
 
 const inputTemplate = {
 	info: {
@@ -31,19 +31,16 @@ const inputTemplate = {
 			price: 0
 		}
 	],
-	total: 0,
-	calculateTotal: function () {
-		let total = 0;
-		if (this.plan.price) {
-			total += this.plan.price;
-			for (const addon of this.addons) {
-				if (addon.wants) {
-					total += addon.price;
-				}
-			}
-		}
-		this.total = total;
+	total: 0
+};
+
+const getPaymentCyclePreference = () => {
+	if (browser) {
+		const isValueStored = localStorage.getItem('isYearly');
+		return Boolean(isValueStored) ? isValueStored : false;
 	}
 };
 
+export let isYearly = persistStore('isYearly', getPaymentCyclePreference());
+// export let isYearly = persistStore('isYearly', false);
 export let info = persistStore('user', inputTemplate);

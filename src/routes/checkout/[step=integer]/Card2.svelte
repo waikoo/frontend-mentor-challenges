@@ -5,26 +5,17 @@
 	import { info } from '$lib/stores.js';
 	import { browser } from '$app/environment';
 
-	export let general, header, input, isYearly, togglePlan;
-
-	// console.log($info.info.name);
-
-	const getStoredPlan = () => {
-		if (browser) {
-			const storedInputValues = JSON.parse(localStorage.getItem('user'));
-			// console.log(storedInputValues);
-			return storedInputValues ? storedInputValues.plan.type : null;
-		}
-	};
+	export let general, header, input;
+	// console.log($info.plan);
 </script>
 
 <div class="card">
 	<Header {header} />
 	<form class="inputs">
 		{#each input as { price, type }, i}
-			<PlanInput {isYearly} {price} {type} {general} {i} {getStoredPlan} />
+			<PlanInput {price} {type} {general} {i} />
 		{/each}
-		<Toggle {isYearly} {togglePlan} />
+		<Toggle />
 	</form>
 </div>
 

@@ -1,9 +1,8 @@
 <script>
-	import { info } from '$lib/stores.js';
+	import { info, isYearly } from '$lib/stores.js';
 	// info.subscribe((val) => console.log(val.info));
 
 	export let general,
-		isYearly,
 		text = '',
 		name = '',
 		price = 0,
@@ -27,7 +26,7 @@
 	<div class="left">
 		{#if isTop}
 			<span class="type"
-				>{$info.plan.type}<span class="t">({!isYearly ? 'Monthly' : 'Yearly'})</span></span
+				>{$info.plan.type}<span class="t">({!$isYearly ? 'Monthly' : 'Yearly'})</span></span
 			>
 		{/if}
 
@@ -47,7 +46,7 @@
 			<span class="currency">{currency}</span>
 			<span class="price">{price}</span>
 			/
-			<span class="timespan">{!isYearly ? monthly : yearly}</span>
+			<span class="timespan">{!$isYearly ? monthly : yearly}</span>
 		</span>
 	</div>
 </div>
