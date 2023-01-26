@@ -1,5 +1,14 @@
 <script>
 	export let activeStep;
+	import { afterNavigate } from '$app/navigation';
+
+	afterNavigate(() => {
+		document.querySelectorAll('a').forEach((a) => {
+			if (+a.textContent === activeStep) {
+				a.focus();
+			}
+		});
+	});
 </script>
 
 <div class="steps">
