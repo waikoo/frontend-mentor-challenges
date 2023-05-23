@@ -16,14 +16,14 @@ $ff: 'Plus Jakarta Sans';
 $body: hsl(228, 71%, 99%);
 
 $Carnation: hsl(1, 90%, 64%);
-$CatalinaBlue: hsl(219, 85%, 26%); //
+$CatalinaBlue: hsl(219, 85%, 26%);
 $White: hsl(0, 0%, 100%);
 $Polar: hsl(210, 60%, 98%);
 $LinkWater: hsl(211, 68%, 94%);
 $Botticelli: hsl(205, 33%, 90%);
-$ShuttleGray: hsl(219, 12%, 42%); //
-$Manatee: hsl(219, 14%, 63%);     //
-$EbonyClay: hsl(224, 21%, 14%);   //
+$ShuttleGray: hsl(219, 12%, 42%);
+$Manatee: hsl(219, 14%, 63%);
+$EbonyClay: hsl(224, 21%, 14%);
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -130,7 +130,6 @@ body {
 section {
   border-radius: 5px;
   margin-top: .7rem;
-  // max-width: 330px;
 }
 
 .notification-con {
@@ -224,7 +223,4 @@ section {
     padding-top: 1rem;
     padding-bottom: 1rem;
   }
-
-
-
 }

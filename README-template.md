@@ -29,12 +29,11 @@ Users should be able to:
 
 ### Screenshot
 
-![](./screenshot.jpg)
+![](./screenshot.png)
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Live Site URL: [https://notifications-page-ruby.vercel.app/](https://notifications-page-ruby.vercel.app/)
 
 ## My process
 
@@ -43,7 +42,6 @@ Users should be able to:
 - Semantic HTML5 markup
 - CSS custom properties
 - Flexbox
-- CSS Grid
 - Mobile-first workflow
 - Vanilla JavaScript
 
@@ -51,14 +49,15 @@ Users should be able to:
 
 I have a better understanding of how to manually set up `@font-face` imports in my CSS, for different font weights for the same font-family.
 
+I'm still in the process of optimizing classes to be able to batch-select elements based on styling intentions and not leaving any unused.
+
+I'm getting more comfortable with JavaScript. There was a time when I would've written out individual styling in JS, instead of using group selectors and iterating over them.
+
 ### Continued development
 
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
+I will continue to try out different ways of grouping and naming my classes in HTML/CSS to make it easy to style the elements.
 
-### Useful resources
-
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
+I will search for better ways of selecting/storing my variables than the way it is now, just hanging in the global scope.
 
 ## Author
 
