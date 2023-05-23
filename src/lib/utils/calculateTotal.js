@@ -1,5 +1,3 @@
-// import { info } from '$lib/stores';
-
 const calculateTotal = (info) => {
 	let total = 0;
 

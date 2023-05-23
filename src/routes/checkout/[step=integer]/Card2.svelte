@@ -6,7 +6,6 @@
 	import { browser } from '$app/environment';
 
 	export let general, header, input;
-	// console.log($info.plan);
 </script>
 
 <div class="card">

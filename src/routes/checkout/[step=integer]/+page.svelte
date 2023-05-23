@@ -11,7 +11,7 @@
 	// console.log(data);
 	// $: ({ subscription } = data);
 	// console.log(data.subscription);
-	console.log(data);
+	// console.log(data);
 	$: ({
 		general,
 		step: { step, header, input }

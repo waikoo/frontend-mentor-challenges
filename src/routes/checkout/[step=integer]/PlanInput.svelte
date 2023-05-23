@@ -2,8 +2,9 @@
 	import plan1 from '$lib/images/icon-arcade.svg';
 	import plan2 from '$lib/images/icon-advanced.svg';
 	import plan3 from '$lib/images/icon-pro.svg';
-	import { info, isYearly } from '$lib/stores.js';
+	import { info, isYearly } from '$lib/stores';
 	import { browser } from '$app/environment';
+	import { onMount } from 'svelte';
 
 	export let price = 0,
 		type = null,
@@ -17,10 +18,12 @@
 	} = general;
 	const { monthly: priceMonthly, yearly: priceYearly } = price;
 
-	const getStoredPlan = () => {
+	let labelRef;
+	console.log(labelRef);
+	const getStoredPlanType = () => {
+		// returns Arcade | Advanced | Pro
 		if (browser) {
 			const storedInputValues = JSON.parse(localStorage.getItem('user'));
-			// console.log(storedInputValues);
 			return storedInputValues ? storedInputValues.plan.type : null;
 		}
 	};
@@ -35,9 +38,21 @@
 	};
 	let src = setImage(type);
 
+	const handleClick = (e) => {
+		updateStore();
+		// e.target.style.border = `3px solid ${setBorderColor(i)}`;
+		document.querySelectorAll('label').forEach((label) => {
+			label.classList.remove('stored');
+			if (label === e.target) {
+				label.classList.add(`border-color-${i}`);
+			} else {
+				label.classList.remove(`border-color-${i}`);
+			}
+		});
+	};
+
 	const updateStore = () => {
 		info.update((info) => {
-			// TODO: ran 2 times
 			info.plan.type = type;
 			info.plan.price = !$isYearly ? priceMonthly : priceYearly;
 			info.plan.timespan = !$isYearly ? 'monthly' : 'yearly';
@@ -46,44 +61,59 @@
 		});
 	};
 
-	function handleKeydown(e) {
+	function handleKeyup(e) {
 		if (e.key === 'Enter' || e.key === ' ') {
-			// updateStore();
 			this.click();
 			setTimeout(() => this.focus(), 0);
 		}
 	}
 
+	// const setBorderColor = (i) => {
+	// 	const colors = ['#ffaf7e', '#f9818e', '#483eff'];
+	// 	return colors[i];
+	// };
+	// sets a different border-color for each
+	// let borderColor = setBorderColor(i);
+
+	// will be true for 1 element:
+	let storedPlan = type === getStoredPlanType();
+	$: isChecked = type === getStoredPlanType();
+
 	const setBorderColor = (i) => {
 		const colors = ['#ffaf7e', '#f9818e', '#483eff'];
 		return colors[i];
 	};
-	let border = setBorderColor(i);
+	// highlightStoredPlan();
 
-	// console.log(type);
-	// console.log(getStoredPlan());
+	onMount(() => {
+		// if (getStoredPlanType()) {
+		// 	if (type === getStoredPlanType()) {
+		// 		labelRef.classList.add(`border-color-${i}`);
+		// 	}
+		// }
+	});
 
-	let storedPlan = type === getStoredPlan();
-	// console.log(storedPlan);
-	$: isChecked = type === getStoredPlan();
-	// if (type === getStoredPlan()) {
-	// 	console.warn('true');
-	// 	document.querySelector('label[data-saved="true"]').click();
-	// }
+	// const highlightStoredPlan = () => {
+	// 	if (getStoredPlanType() === type) {
+	// 		labelRef.classList.add('stored');
+	// 	}
+	// };
 </script>
 
 <label
 	role="button"
-	on:click={updateStore}
-	on:keydown={handleKeydown}
+	on:click={handleClick}
+	on:keyup={handleKeyup}
+	bind:this={labelRef}
 	aria-label={`Choose ${type} plan`}
 	for="plan{i}"
 	aria-hidden="false"
 	tabindex="0"
-	data-border={border}
 	data-saved={storedPlan}
+	class:checked={isChecked}
 >
-	<input type="radio" name="plan" id="plan{i}" tabindex="-1" class:checked={isChecked} />
+	<!-- data-border-color={borderColor} -->
+	<input type="radio" name="plan" id="plan{i}" tabindex="-1" />
 	<img {src} alt="" />
 	<div class="text">
 		<h2>{type}</h2>
@@ -102,17 +132,50 @@
 </label>
 
 <style lang="scss">
-	label[data-border='#ffaf7e']:has(input:checked),
-	label[data-border='#ffaf7e']:has(input.checked) {
+	.stored[data-border-color='#ffaf7e'] {
+		border: 3px solid #ffaf7e !important;
+	}
+	.stored[data-border-color='#f9818e'] {
+		border: 3px solid #f9818e !important;
+	}
+	.stored[data-border-color='#483eff'] {
+		border: 3px solid #483eff !important;
+	}
+	/* label.checked[data-saved='true']:has(input:checked) {
 		border: 3px solid #ffaf7e;
 	}
-	label[data-border='#f9818e']:has(input:checked),
-	label[data-border='#f9818e']:has(input.checked) {
+	label.checked[data-saved='true']:has(input:checked) {
 		border: 3px solid #f9818e;
 	}
-	label[data-border='#483eff']:has(input:checked),
-	label[data-border='#483eff']:has(input:checked) {
+
+	label.checked[data-saved='true']:has(input:checked) {
 		border: 3px solid #483eff;
+	} */
+
+	/* label.selected[data-border-color='#ffaf7e']:has(input:checked) {
+		border: 3px solid #ffaf7e;
+	}
+
+	label.selected[data-border-color='#f9818e']:has(input:checked) {
+		border: 3px solid #f9818e;
+	}
+
+	label.selected[data-border-color='#483eff']:has(input:checked) {
+		border: 3px solid #483eff;
+	} */
+
+	.border-color-0 {
+		border: 3px solid #ffaf7e !important;
+	}
+
+	.border-color-1 {
+		border: 3px solid #f9818e !important;
+	}
+	.border-color-2 {
+		border: 3px solid #483eff !important;
+	}
+
+	.stored {
 	}
 
 	input {
