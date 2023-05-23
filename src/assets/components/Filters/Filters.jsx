@@ -4,7 +4,9 @@ import images from '../../images';
 import { Tag } from '../Job/JobStyles';
 import { ActiveFilter, ActiveFilters, Clear, CloseCon, Image, SFilters, FiltersCon } from './FiltersStyles';
 
-const Filters = ({ params, setParams, url, setUrl, showAll, role, level, languages, tools, showFilters, setShowFilters }) => {
+const Filters = (props) => {
+	const { params, setParams, url, setUrl, showAll, role, level, languages, tools, showFilters, setShowFilters } = props;
+	console.log(setShowFilters);
 	const [count, setCount] = useState(0);
 
 	const hasParam = (params) => {
@@ -120,7 +122,6 @@ const Filters = ({ params, setParams, url, setUrl, showAll, role, level, languag
 		});
 		setParams(paramsCopy);
 		setCount((prevCount) => prevCount - 1);
-		if (!hasParam(params)) setShowFilters(false);
 	};
 
 	const handleClearFilters = () => {

@@ -15,7 +15,7 @@ function App() {
 		languages: new Set(),
 		tools: new Set()
 	});
-
+	console.log(setShowFilters());
 	return (
 		<div className='App'>
 			<GlobalStyle />
