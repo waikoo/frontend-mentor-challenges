@@ -28,7 +28,6 @@
     flex-direction: row;
     align-self: flex-start;
     gap: 2rem;
-    width: 48.8%;
   }
 
   .overview-section:nth-of-type(2),

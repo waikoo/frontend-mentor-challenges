@@ -182,6 +182,13 @@ h2 {
   h2 {
     font-size: 1.95rem;
   }
+
+  .overview-item,
+  .social,
+  .toggler,
+  label {
+    cursor: pointer;
+  }
 }
 
 .social:nth-of-type(3)::before {
