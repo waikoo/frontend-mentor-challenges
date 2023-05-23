@@ -1,8 +1,41 @@
+// update chart with data.json values
+async function updateChart() {
+	async function fetchData() {
+		const url = './data.json';
+		const response = await fetch(url);
+		const data = await response.json();
+		return data;
+	}
+	// method 1
+	const data = await fetchData();
+
+	const days = data.map(day => {
+		return day.day;
+	});
+	const spendingData = data.map(amount => {
+		return amount.amount;
+	});
+	const labels = spendingData.map(amount => {
+		return '$' + amount;
+	});
+
+	const fetchedData = [days, spendingData, labels];
+	return fetchedData;
+
+	// myChart.config.data.labels = days;
+	// myChart.config.data.datasets[0].data = spendingData;
+	// myChart.config.data.datasets[0].label = labels;
+	// myChart.update();
+}
+
+const fetchedData = await updateChart();
+console.log(fetchedData);
+
 const data = {
-	labels: [], // DAY
+	labels: fetchedData[0], // DAY
 	datasets: [
 		{
-			data: [], // AMOUNT
+			data: fetchedData[1], //  AMOUNT
 			backgroundColor: [
 				'hsl(10, 79%, 65%)',
 				'hsl(10, 79%, 65%)',
@@ -25,6 +58,23 @@ const data = {
 			borderRadius: 4,
 		},
 	],
+};
+
+const xScalePadding = {
+	id: 'xScalePadding',
+	beforeDatasetsDraw(chart, args, pluginOptions) {
+		const {
+			ctx,
+			data,
+			scales: { x, y },
+		} = chart;
+		console.log(x._labelItems);
+		console.log(x._labelItems[0].textBaseline);
+		x._labelItems.forEach((label, index) => {
+			label.textBaseline = 'top';
+			label.textOffset = 8;
+		});
+	},
 };
 
 const config = {
@@ -53,6 +103,10 @@ const config = {
 					padding: {
 						top: 20,
 					},
+				},
+				afterFit: context => {
+					// adds height
+					context.height += 20;
 				},
 			},
 			y: {
@@ -86,54 +140,33 @@ const config = {
 				display: false,
 			},
 		},
+		layout: {
+			padding: {
+				// bottom: 30, // controls height
+			},
+		},
 	},
+	plugins: [xScalePadding],
 };
 
 // render init
 const myChart = new Chart(document.getElementById('chart'), config);
 
-// update chart with data.json values
-(async function updateChart() {
-	async function fetchData() {
-		const url = './data.json';
-		const response = await fetch(url);
-		const data = await response.json();
-		return data;
-	}
-	// method 1
-	const data = await fetchData();
+// method 2
 
-	const days = data.map(day => {
-		return day.day;
-	});
-	const spendingData = data.map(amount => {
-		return amount.amount;
-	});
-	const labels = spendingData.map(amount => {
-		return '$' + amount;
-	});
+// fetchData().then(data => {
+//   const days = data.map(day => {
+//     return day.day;
+//   });
+//   const spendingData = data.map(amount => {
+//     return amount.amount;
+//   });
+//   const labels = spendingData.map(amount => {
+//     return '$' + amount;
+//   });
 
-	myChart.config.data.labels = days;
-	myChart.config.data.datasets[0].data = spendingData;
-	myChart.config.data.datasets[0].label = labels;
-	myChart.update();
-
-	// method 2
-
-	// fetchData().then(data => {
-	//   const days = data.map(day => {
-	//     return day.day;
-	//   });
-	//   const spendingData = data.map(amount => {
-	//     return amount.amount;
-	//   });
-	//   const labels = spendingData.map(amount => {
-	//     return '$' + amount;
-	//   });
-
-	//   myChart.config.data.labels = days;
-	//   myChart.config.data.datasets[0].data = spendingData;
-	//   myChart.config.data.datasets[0].label = labels;
-	//   myChart.update();
-	// }
-})();
+//   myChart.config.data.labels = days;
+//   myChart.config.data.datasets[0].data = spendingData;
+//   myChart.config.data.datasets[0].label = labels;
+//   myChart.update();
+// }
