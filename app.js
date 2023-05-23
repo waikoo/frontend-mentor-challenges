@@ -78,7 +78,6 @@ function setColorOfElementTo(element, color, multiple = false) {
 	if (color === 'brightgray') localColor = 'hsl(237, 14%, 26%)';
 	if (color === 'ebonyclay') localColor = 'hsl(235, 24%, 19%)';
 	if (color === 'cinder') localColor = 'hsl(235, 21%, 11%)';
-	// console.log($(element));
 
 	multiple
 		? document.querySelectorAll(`${element}`).forEach(el => {
@@ -126,8 +125,16 @@ function makeElementsLight() {
 	setColorOfElementTo('.show span', 'manatee');
 	setColorOfElementTo('.drag-n-drop-con', 'manatee');
 	setColorOfElementTo('.logo', 'white');
+	// ! ! ! ---> DIES ZWEI
+	// ! :
+	// ! :
+	// ! :
 	// setColorOfElementTo('.done-todo-text', 'mischka');
 	// setColorOfElementTo('.undone-todo-text', 'mulledwine');
+	// ! ^
+	// ! ^
+	// ! ^
+	// ! ! ! ---> DIES ZWEI
 	setColorOfElementTo('.tabs', 'waterloo', true);
 
 	setBorderBottomOfElementsTo('li', 'mischka');
@@ -250,14 +257,14 @@ function showTodosController(tabName) {
 function createNewTodo(e) {
 	e.preventDefault();
 	const todoText = $('input').value;
+	$('input').value = '';
 	if (!todoText) return;
 	todosContainer.insertBefore(createNewLi(todoText), todosContainer.firstChild);
-	$('input').value = '';
-
-	addTodoEventListeners();
-	updateUICounter();
 
 	const todosCount = $('.todos-con').children.length;
+
+	addTodoEventListeners();
+	updateUICounter(todosCount);
 
 	if (todosCount === 0) setNewTodoLocally(todosCount + 1, todoText);
 	if (todosCount > 0) setNewTodoLocally(todosCount, todoText);
@@ -273,18 +280,18 @@ function addTodoEventListeners() {
 	$('li').addEventListener('dragend', onDragEnd);
 	$('li').addEventListener('mouseenter', onMouseEnter);
 	$('.delete').addEventListener('click', deleteTodo);
-	$('.empty-circle').addEventListener('click', addCheckToTodo);
-	$('.checked-circle').addEventListener('click', removeCheckFromTodo);
+	// $('.empty-circle').addEventListener('click', toggleTodoState);
+	// $('.checked-circle').addEventListener('click', toggleTodoState);
+	$('.check-status').addEventListener('click', toggleTodoState);
 }
 
 function createNewLi(text) {
 	todoTotal++;
 	todoId++;
 	const li = document.createElement('li');
-	li.className = `undone-todo-text ${todoId}`;
+	li.className = `undone-todo ${todoId}`;
 	li.draggable = true;
-	let color;
-	currentTheme === 'light' ? (color = 'rgb(210, 211, 219)') : (color = 'rgb(57, 58, 76)');
+	let color = currentTheme === 'light' ? 'rgb(210, 211, 219)' : 'rgb(57, 58, 76)';
 	const circle = `
   width: 1.3rem;
 	height: 1.3rem;
@@ -310,6 +317,7 @@ function createNewLi(text) {
             ><path fill="#494C6B" fill-rule="evenodd" d="M16.97 0l.708.707L9.546 8.84l8.132 8.132-.707.707-8.132-8.132-8.132 8.132L0 16.97l8.132-8.132L0 .707.707 0 8.84 8.132 16.971 0z"/></svg>
           </div>
   `;
+	li.dataset.isCompleted = 'false';
 
 	return li;
 }
@@ -339,88 +347,138 @@ function deleteTodo(e) {
 	saveTodosToLocalStorage(allTodos);
 }
 
-function setIsCompleted(trueOrFalse, element) {
-	let todoNr = element.className.split(' ')[1];
-	let id = Number(todoNr[todoNr.length - 1]);
+function updateLocalTodoCompletion(e) {
+	const li = e.currentTarget.closest('li');
+	const isTodoCompleted = Boolean(li.dataset.isCompleted);
+
+	let idd = li.className.split(' ')[1];
+	let id = Number(idd[idd.length - 1]);
 
 	allTodos.forEach(todo => {
-		if (todo.id === id) todo.isCompleted = trueOrFalse;
+		// console.log('bingo');
+		// console.log(todo.id);
+		// console.log(id);
+		if (todo.id === id) todo.isCompleted = isTodoCompleted;
+		// console.log(todo);
 	});
-
 	saveTodosToLocalStorage(allTodos);
 }
 
-function addCheckToTodo(e) {
-	const todo = e.target.closest('li');
+function toggleTodoState(e) {
+	// console.warn(e.currentTarget); // check-status
+	// console.warn(e.target); // empty-circle
+	const todoText = e.currentTarget.parentElement.nextElementSibling;
 
 	$$('.check-status').forEach(el => {
 		if (el.closest('li') === e.target.closest('li')) {
-			setIsCompleted(true, todo);
-			addCheckmark(e);
-			setCheckedClassName(e);
-			setCheckedColor(e);
+			// ? doesn't do its job:
+			// updateLocalTodoCompletion(e); // 1
+			toggleTodoDataStatus(e); // 2 - ok
+
+			// toggleUICheckmark(e); // 3 -
+			addRemoveCheckmark(e);
+
+			// ^--------------------->
+			toggleTodoClass(todoText);
+			toggleTodoColor(todoText);
 		}
 	});
+	updateLocalTodos();
+	saveTodosToLocalStorage(allTodos);
 }
 
-function setCheckedClassName(e) {
-	const uncle = e.currentTarget.parentElement.nextElementSibling;
-	if (uncle.className === 'undone-todo-text') uncle.className = 'done-todo-text';
+function addRemoveCheckmark(e) {
+	const checkStatus = e.currentTarget;
+	if (checkStatus.className === 'check-status') {
+		e.currentTarget.children[0].style === 'none' ? addCheckmark(e) : removeCheckmark(e);
+		console.log(checkStatus.children[0].style.display);
+		// 1. empty
+		// 2. checked
+		console.log(checkStatus.children[1].style.display);
+		console.log(checkStatus);
+	}
 }
 
-function setCheckedColor(e) {
-	let localColor;
-	if (currentTheme === 'light') localColor = 'rgb(210, 211, 219)';
-	if (currentTheme === 'dark') localColor = 'rgb(77, 80, 102)';
-	uncle.style.color = localColor;
+function toggleTodoDataStatus(e) {
+	// console.log('RAN');
+	const li = e.target.closest('li');
+	const completionStatus = e.currentTarget.parentElement.nextElementSibling.className.split('-')[0];
+	// const id = li.className.split(' ')[1];
+
+	li.dataset.isCompleted = completionStatus === 'done';
+
+	// allTodos.forEach(todo => {
+	// 	if (todo.id === Number(id[id.length - 1])) {
+	// 		// console.error(completionStatus === 'done');
+	// 		todo.isCompleted = li.dataset.isCompleted;
+	// 	}
+	// });
+}
+
+function toggleTodoClass(el) {
+	el.className = el.className === 'undone-todo-text' ? 'done-todo-text' : 'undone-todo-text';
+}
+
+function toggleTodoColor(el) {
+	// if (currentTheme === 'light') {
+	// 	if ($('.done-todo-text')) setColorOfElementTo('done-todo-text', 'mischka');
+	// 	if ($('.undone-todo-text')) setColorOfElementTo('undone-todo-text', 'mulledwine');
+	// }
+	if (el.className === 'done-todo-text') {
+		el.style.color = currentTheme === 'light' ? 'rgb(210, 211, 219)' : 'rgb(77, 80, 102)';
+	}
+
+	if (el.className === 'undone-todo-text') {
+		el.style.color = currentTheme === 'light' ? 'rgb(72, 75, 106)' : (localColor = 'rgb(202, 205, 232)');
+	}
 }
 
 function addCheckmark(e) {
-	const parent = e.target.parentElement;
-	const emptyCircle = e.target;
-	const checkedCircle = parent.querySelector('.checked-circle');
+	const checkStatus = e.currentTarget;
+	const emptyCircle = checkStatus.children[0];
+	const checkedCircle = checkStatus.children[1];
+
 	emptyCircle.style.display = 'none';
 	checkedCircle.style.display = 'grid';
 }
 
-function removeCheckFromTodo(e) {
-	// TODO:
-	const todo = e.target.closest('li');
+function removeCheckmark(e) {
+	const checkStatus = e.currentTarget;
+	const emptyCircle = checkStatus.children[0];
+	const checkedCircle = checkStatus.children[1];
 
-	$$('.check-status').forEach(el => {
-		if (el.closest('li') === e.target.closest('li')) {
-			setIsCompleted(false, todo);
-
-			/*
-      TODO;
-			addCheckmark(e);
-      setCheckedClassName(e)
-      setCheckedColor(e);
-      */
-
-			// TODO: segment:
-
-			// ---
-			const todoText = e.currentTarget.parentElement.querySelector('.empty-circle');
-			e.currentTarget.style.display = 'none';
-			todoText.style.display = 'block';
-			// ---
-
-			// ---
-			const crossedTodo = e.currentTarget.parentElement.nextElementSibling;
-			crossedTodo.className = 'undone-todo-text';
-			// ---
-
-			// ---
-			// const crossedTodo = e.currentTarget.parentElement.nextElementSibling;
-			let localColor;
-			if (currentTheme === 'light') localColor = 'rgb(72, 75, 106)';
-			if (currentTheme === 'dark') localColor = 'rgb(202, 205, 232)';
-			crossedTodo.style.color = localColor;
-			// ---
-		}
-	});
+	emptyCircle.style.display = 'block';
+	checkedCircle.style.display = 'none';
 }
+
+// function toggleUICheckmark(e) {
+// 	const isCompleted = e.target.closest('li').dataset.isCompleted;
+// 	const checkStatus = e.currentTarget;
+
+// 	const emptyCircle = checkStatus.children[0];
+// 	const checkedCircle = checkStatus.children[1];
+
+// 	if (!isCompleted) {
+// 		console.warn(emptyCircle.className);
+// 		console.warn(checkedCircle.className);
+
+// 		emptyCircle.style.display = 'none';
+// 		checkedCircle.style.display = 'grid';
+// 	}
+// 	if (isCompleted) {
+// 		checkedCircle.style.display = 'none';
+// 		emptyCircle.style.display = '';
+// 	}
+
+// 	// if (e.currentTarget.children[0].className === 'empty-circle') {
+// 	// 	emptyCircle.style.display = 'none';
+// 	// 	checkedCircle.style.display = 'grid';
+// 	// }
+// 	// if (e.currentTarget.children[0].className === 'checked-circle') {
+// 	// 	checkedCircle.style.display = 'none';
+// 	// 	emptyCircle.style.display = 'block';
+// 	// }
+// }
 
 function deleteCompletedTodos() {
 	$$('li').forEach(todo => {
@@ -434,13 +492,15 @@ function deleteCompletedTodos() {
 	updateUICounter();
 }
 
-function updateUICounter() {
-	todoTotal = $('.todos-con').children.length;
-	$('.number').textContent = todoTotal;
+function updateUICounter(todosCount) {
+	$('.number').textContent = todosCount;
 }
 
-function saveTodosToLocalStorage(object) {
-	localStorage.setItem('savedTodos', JSON.stringify(object));
+function saveTodosToLocalStorage(array) {
+	array.forEach(todo => {
+		if (typeof todo.isCompleted !== 'boolean') throw new Error('NOT A BOOLEAN');
+	});
+	localStorage.setItem('savedTodos', JSON.stringify(array));
 }
 
 function setNewTodoLocally(id, text) {
@@ -470,10 +530,10 @@ function displayTodosFromLocalStorage() {
 			const id = todo.id;
 			// createNewLi(todo.text)
 			return `
-        <li class="${done ? 'done' : 'undone'}-todo-text todo${id}" draggable="true" style="border-bottom: 1px solid rgb(210, 211, 219);">
+        <li class="${done ? 'done' : 'undone'}-todo todo${id}" draggable="true" style="border-bottom: 1px solid rgb(210, 211, 219);" data-is-completed="${done}">
           <div class="todo-icon-text">
             <div class="check-status">
-              <div class="empty-circle" style="border-radius: 50%; display: ${done ? 'none' : 'flex'}; ${done ? '' : 'border: 1px solid rgb(210, 211, 219)'}"></div>
+              <div class="empty-circle" style="border-radius: 50%;  display: ${done ? 'none' : 'block'}; ${done ? '' : 'border: 1px solid rgb(210, 211, 219)'}"></div>
               <div class="checked-circle" style="display: ${done ? 'grid' : 'none'}">
                 <img src="assets/images/icon-check.svg" alt="">
               </div>
@@ -498,16 +558,14 @@ function displayTodosFromLocalStorage() {
 	});
 
 	$$('.delete').forEach(deleteButton => deleteButton.addEventListener('click', deleteTodo));
-	$$('.empty-circle').forEach(deleteButton => deleteButton.addEventListener('click', addCheckToTodo));
-	$$('.checked-circle').forEach(deleteButton => deleteButton.addEventListener('click', removeCheckFromTodo));
+
+	$$('.check-status').forEach(status => status.addEventListener('click', toggleTodoState));
+	// $$('.checked-circle').forEach(checkedCircle => checkedCircle.addEventListener('click', toggleTodoState));
 
 	updateUICounter();
 	updateLocalTodos();
-	console.log(allTodos);
+	// ! :>>>>>>>>>>>>
 }
-
-// dropzone -> $('.todos-con)
-// $('.todos-con).addEventListener('drop', onDrop)
 
 themeToggle.addEventListener('click', handleThemeToggler, false);
 window.addEventListener('change', setPreferredColorScheme);
@@ -515,8 +573,6 @@ window.addEventListener('change', setPreferredColorScheme);
 tabs.forEach(tab => tab.addEventListener('click', handleTabSelection));
 form.addEventListener('submit', createNewTodo);
 clearAllTodosButton.addEventListener('click', deleteCompletedTodos);
-
-// todosContainer.addEventListener('drop', onDrop);
 
 setPreferredColorScheme();
 
@@ -542,7 +598,6 @@ function onDragEnd(e) {
 	e.target.style.opacity = 1;
 
 	updateLocalTodos();
-
 	saveTodosToLocalStorage(allTodos);
 }
 
@@ -569,18 +624,12 @@ function onMouseEnter(e) {
 		}
 	});
 }
-// displayTodosFromLocalStorage();
 
 function updateLocalTodos() {
 	[...$$('li')].forEach((todo, i) => {
 		allTodos[i].id = i + 1;
 		allTodos[i].text = todo.children[0].children[1].textContent;
-		allTodos[i].isCompleted = todo.children[0].children[1].classList.contains('done');
+		// allTodos[i].isCompleted = todo.children[0].children[1].classList.contains('done');
+		allTodos[i].isCompleted = Boolean(todo.dataset.isCompleted);
 	});
 }
-
-// TODO: a check id alapjan mukodjon ne textContent alapjan
-/*
-  ? addCheckToTodo
-  ? removeCheckFromTodo
-*/
