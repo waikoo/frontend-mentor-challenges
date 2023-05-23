@@ -193,10 +193,10 @@ cvcEl.addEventListener('focusout', function () {
 	}
 });
 
-(function () {
-	$('#name').value = 'David Flanagan';
-	$('#card_number').value = '1234 1234 1234 1234';
-	$('#expiry_month').value = '12';
-	$('#expiry_year').value = '28';
-	$('#cvc').value = '247';
-})();
+// (function () {
+// 	$('#name').value = 'David Flanagan';
+// 	$('#card_number').value = '1234 1234 1234 1234';
+// 	$('#expiry_month').value = '12';
+// 	$('#expiry_year').value = '28';
+// 	$('#cvc').value = '247';
+// })();
